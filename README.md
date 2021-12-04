@@ -55,4 +55,8 @@ The `app` object exists in the plugin's scope `this`, and exposes the following 
     <li><code>setEntityValue(id, value, callback)</code> Set the value of a Smart Switch<ul><li><b>id</b>: The identifier of the Smart Switch</li><li><b>value</b>: The value (true or false)</li><li><b>callback()</b>: The function to execute after setting the value (optional)</li></ul></li>
   <li><code>webGet(url, params, headers, success, error)</code> Retrieve data from a url<ul><li><b>url</b>: The url to access</li><li><b>params</b>: The parameters of the url (optional)</li><li><b>headers</b>: The headers to send with the web request (optional)</li><li><b>success(data)</b>: The function to execute after receiving data</li><li><b>error(msg)</b>: The function to execute when an error occurs (optional)</li></ul></li>
   <li><code>webPost(url, data, headers, success, error)</code> Post data to a url<ul><li><b>url</b>: The url to access</li><li><b>data</b>: The data to post (optional)</li><li><b>headers</b>: The headers to send with the web request (optional)</li><li><b>success(data)</b>: The function to execute after receiving data</li><li><b>error(msg)</b>: The function to execute when an error occurs (optional)</li></ul></li>
+  <li><code>util.getMapCoords(x, y)</code> Get the map coordinates for a Point</li>
+  <li><code>util.inRect(x, y, x1, y1, x2, y2)</code> Check if a Point is inside a rectangle</li>
+  <li><code>util.direction(x1, y1, x2, y2)</code> Get the direction of one Point versus the other</li>
+  <li><code>util.distance(x1, y1, x2, y2)</code> Get the distance between two Points in meters</li>
 </ul>
