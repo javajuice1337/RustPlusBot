@@ -230,7 +230,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
   "spawnTime":1638768666,
   "isAlive":true,
   "deathTime":1638768647
-},{
+}, {
   "steamId":"123456799",
   "name":"RustPlayer2",
   "x":1487.4344482421875,
