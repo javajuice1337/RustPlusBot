@@ -26,7 +26,7 @@ The plugins are written in JavaScript and run in a NodeJS environment.
 
 The `app` object exists in the plugin's scope `this`, and exposes the following properties and methods:
 
-###### Properties:
+### Properties:
 
 <ul>
   <li><code>devices</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the bot's paired devices (<b>key</b>: device name, <b>value</b>: Array of devices, see <code>Device</code>)</li>
@@ -41,7 +41,7 @@ The `app` object exists in the plugin's scope `this`, and exposes the following 
   <li><code>server_ip</code> The port of the bot's connected server (Rust+ app port)</li>
 </ul>
 
-###### Methods:
+### Methods:
 
 <ul>
   <li><code>sendTeamMessage(msg, callback)</code> Send a team chat message<ul><li><b>msg</b>: The message to send</li><li><b>callback()</b>: The function to execute after sending (optional)</li></ul></li>
@@ -59,4 +59,118 @@ The `app` object exists in the plugin's scope `this`, and exposes the following 
   <li><code>util.inRect(x, y, x1, y1, x2, y2)</code> Check if a Point is inside a rectangle</li>
   <li><code>util.direction(x1, y1, x2, y2)</code> Get the direction of one Point versus the other</li>
   <li><code>util.distance(x1, y1, x2, y2)</code> Get the distance between two Points in meters</li>
+</ul>
+
+### Data Types:
+
+<ul>
+  <li>
+    <b>Notification: Inactive Device</b>
+    <pre><code>{
+  notification: {
+    type: 'inactive',
+    server_name: 'Rust Server Name',
+    inactive: {
+      title: 'MyDevice',
+      message: 'This device is inactive.',
+      device_name: 'MyDevice',
+      device_id: '123456',
+      device_flag: false,
+      device_type: 'Smart Switch'
+    }
+  }
+}</code></pre>
+  </li>
+  <li>
+    <b>Notification: Decaying TC</b>
+    <pre><code>{
+  notification: {
+    type: 'monitor',
+    server_name: 'Rust Server Name',
+    monitor: {
+      title: 'MyDevice',
+      message: 'This monitored TC is decaying!',
+      device_name: 'MyDevice',
+      device_id: '123456',
+      device_flag: false,
+      device_type: 'Storage Monitor'
+    }
+  }
+}</code></pre>
+  </li>
+  <li>
+    <b>Notification: Player Tracking</b>
+    <pre><code>{
+  notification: {
+    type: 'tracking',
+    server_name: 'Rust Server Name',
+    tracking: {
+      id: '12345',
+      name: 'Tracked player \'Rust Player\' has joined the server',
+      status: 'joined'
+    }
+  }
+}</code></pre>
+  </li>
+  <li>
+    <b>Notification: Team Login</b>
+    <pre><code>{
+  notification: {
+    type: 'login',
+    server_name: 'Rust Server Name',
+    targetName: 'RustPlayer',
+    targetId: '123456789'
+  }
+}</code></pre>
+  </li>
+  <li>
+    <b>Notification: Player Death</b>
+    <pre><code>{
+  notification: {
+    type: 'death',
+    server_name: 'Rust Server Name',
+    targetName: 'RustPlayer',
+    targetId: '123456789'
+  }
+}</code></pre>
+  </li>
+  <li>
+    <b>Notification: Alarm</b>
+    <pre><code>{
+  notification: {
+    type: 'alarm',
+    server_name: 'Rust Server Name',
+    alarm: {
+      title: 'Smart Alarm Title',
+      message: 'Smart Alarm Message'
+    }
+  }
+}</code></pre>
+  </li>
+  <li>
+    <b>Notification: News</b>
+    <pre><code>{
+  notification: {
+    type: 'news',
+    server_name: 'Rust Server Name',
+    news: {
+      title: 'Rust Update News',
+      url: 'https://rust.facepunch.com/',
+      message: 'A new Rust update blog is available!'
+    }
+  }
+}</code></pre>
+  </li>
+  <li>
+    <b>Notification: Entity Pairing</b>
+    <pre><code>{
+  notification: {
+    type: 'entity',
+    server_name: 'Rust Server Name',
+    entityName: 'Smart Switch',
+    entityId: '123456',
+    entityType: '1'
+  }
+}</code></pre>
+  </li>
 </ul>
