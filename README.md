@@ -135,10 +135,10 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
     app.sendTeamMessage('Error posting: ' + error);
 });
 </code></pre></p></li>
-  <li><code>util.getMapCoords(x, y)</code> Get the map coordinates for a Point</li>
-  <li><code>util.inRect(x, y, x1, y1, x2, y2)</code> Check if a Point is inside a rectangle</li>
-  <li><code>util.direction(x1, y1, x2, y2)</code> Get the direction of one Point versus the other</li>
-  <li><code>util.distance(x1, y1, x2, y2)</code> Get the distance between two Points in meters</li>
+  <li><code>util.getMapCoords(x, y)</code> Get the map coordinates for a point</li>
+  <li><code>util.inRect(x, y, x1, y1, x2, y2)</code> Check if a point is inside a rectangle</li>
+  <li><code>util.direction(x1, y1, x2, y2)</code> Get the direction from the first point to the other</li>
+  <li><code>util.distance(x1, y1, x2, y2)</code> Get the distance between two points in meters</li>
 </ul>
 
 ### Data Types:
