@@ -44,12 +44,63 @@ The `app` object exists in the plugin's scope `this`, and exposes the following 
 ### Methods:
 
 <ul>
-  <li><code>sendTeamMessage(msg, callback)</code> Send a team chat message<ul><li><b>msg</b>: The message to send</li><li><b>callback()</b>: The function to execute after sending (optional)</li></ul></li>
-  <li><code>getEntityInfo(id, callback)</code> Get data from a Smart device<ul><li><b>id</b>: The identifier of the Smart device</li><li><b>callback(message)</b>: The function to execute after getting the info (<b>message</b>: contains <code>Payload</code>)</li></ul></li>
-  <li><code>getInfo(callback)</code> Get information about the server<ul><li><b>callback(message)</b>: The function to execute after getting the info (<b>message</b>: contains <code>Info</code>)</li></ul></li>
-  <li><code>getMapMarkers(callback)</code> Get information about all map markers<ul><li><b>callback(message)</b>: The function to execute after getting the info (<b>message</b>: contains <code>Markers</code>)</li></ul></li>
-  <li><code>getTeamInfo(callback)</code> Get information about the team (leader, members)<ul><li><b>callback(message)</b>: The function to execute after getting the info (<b>message</b>: contains <code>Team</code>)</li></ul></li>
-  <li><code>getTime(callback)</code> Get information about the server time<ul><li><b>callback(message)</b>: The function to execute after getting the info (<b>message</b>: contains <code>Time</code>)</li></ul></li>
+  <li><code>sendTeamMessage(msg, callback)</code> Send a team chat message<ul><li><b>msg</b>: The message to send</li><li><b>callback()</b>: The function to execute after sending (optional)</li></ul><p><pre><code>// sendTeamMessage example
+var app = this.app;
+app.sendTeamMessage('This is a team message');
+</code></pre></p></li>
+  <li><code>getEntityInfo(id, callback)</code> Get data from a Smart device<ul><li><b>id</b>: The identifier of the Smart device</li><li><b>callback(message)</b>: The function to execute after getting the info (<b>message</b>: contains <code>Payload</code>)</li></ul><p><pre><code>// getEntityInfo example
+var app = this.app;
+app.getEntityInfo(123456, (message) => {
+    if (message.response && message.response.entityInfo && message.response.entityInfo.payload) {
+        app.sendTeamMessage('This device is: ' + ((message.response.entityInfo.payload.value) ? 'On' : 'Off'));
+    }
+    else {
+        app.sendTeamMessage('This device is inactive');
+    }
+});
+</code></pre></p></li>
+  <li><code>getInfo(callback)</code> Get information about the server<ul><li><b>callback(message)</b>: The function to execute after getting the info (<b>message</b>: contains <code>Info</code>)</li></ul><p><pre><code>// getInfo example
+var app = this.app;
+app.getInfo((message) => {
+    if (message.response && message.response.info) {
+        app.sendTeamMessage('Current server population is ' + message.response.info.players + ' / ' + message.response.info.maxPlayers + ((message.response.info.queuedPlayers > 0) ? ' (' + message.response.info.queuedPlayers + ' in queue)' : ''));
+    }
+});
+</code></pre></p></li>
+  <li><code>getMapMarkers(callback)</code> Get information about all map markers<ul><li><b>callback(message)</b>: The function to execute after getting the info (<b>message</b>: contains <code>Markers</code>)</li></ul><p><pre><code>// getMapMarkers example
+var app = this.app;
+app.getMapMarkers((message) => {
+    if (message.response && message.response.mapMarkers && message.response.mapMarkers.markers) {
+        var cnt = 0;
+        for (var i = 0; i < message.response.mapMarkers.markers.length; i++) {
+            if (message.response.mapMarkers.markers[i].type == 3) { // 'VendingMachine'
+                if (message.response.mapMarkers.markers[i].sellOrders.length > 0) cnt++;
+            }
+        }
+        app.sendTeamMessage('There are this many active vending machines: ' + cnt);
+    }
+});
+</code></pre></p></li>
+  <li><code>getTeamInfo(callback)</code> Get information about the team (leader, members)<ul><li><b>callback(message)</b>: The function to execute after getting the info (<b>message</b>: contains <code>Team</code>)</li></ul><p><pre><code>// getTeamInfo example
+var app = this.app;
+app.getTeamInfo((message) => {
+    if (message.response && message.response.teamInfo) {
+        var cnt = 0;
+        for (var i = 0; i < message.response.teamInfo.members.length; i++) {
+            if (message.response.teamInfo.members[i].isAlive) cnt++;
+        }
+        app.sendTeamMessage('There are this many alive team members: ' + cnt);
+    }
+});
+</code></pre></p></li>
+  <li><code>getTime(callback)</code> Get information about the server time<ul><li><b>callback(message)</b>: The function to execute after getting the info (<b>message</b>: contains <code>Time</code>)</li></ul><p><pre><code>// getTime example
+var app = this.app;
+app.getTime((message) => {
+    if (message.response && message.response.time) {
+        app.sendTeamMessage('Current Rust time is ' + (Math.floor(message.response.time.time) + (Math.round((message.response.time.time % 1) * (message.response.time.dayLengthMinutes * message.response.time.timeScale)) / 100)).toFixed(2));
+    }
+});
+</code></pre></p></li>
   <li><code>postDiscordMessage(msg)</code> Post a message to the bot's communication Discord channel<ul><li><b>msg</b>: The message to post</li></ul></li>
   <li><code>postDiscordNotification(title, description, url, img, list)</code> Post a notification to the bot's communication Discord channel<ul><li><b>title</b>: The title of the notification</li><li><b>description</b>: The description of the notification</li><li><b>url</b>: The url of the notification (optional)</li><li><b>img</b>: The image url of the notification (optional)</li><li><b>list</b>: The item list data of the notification (optional; see <code>NotificationList</code>)</li></ul></li>
     <li><code>setEntityValue(id, value, callback)</code> Set the value of a Smart Switch<ul><li><b>id</b>: The identifier of the Smart Switch</li><li><b>value</b>: The value (true or false)</li><li><b>callback()</b>: The function to execute after setting the value (optional)</li></ul></li>
@@ -65,18 +116,60 @@ The `app` object exists in the plugin's scope `this`, and exposes the following 
 
 <ul>
   <li>
+    <b>Payload: Smart Switch, Smart Alarm</b>
+    <pre><code>{
+  "broadcast": {
+    "entityChanged": {
+      "entityId": 29408388,
+      "payload": {
+        "value": false,
+        "capacity": 0,
+        "hasProtection": false,
+        "protectionExpiry": 0
+      }
+    }
+  }
+}</code></pre>
+  </li>
+  <li>
+    <b>Payload: Storage Monitor</b>
+    <pre><code>{
+  "broadcast": {
+    "entityChanged": {
+      "entityId": 29408388,
+      "payload": {
+        "value": false,
+        "items": [{
+          "itemId": 317398316,
+          "quantity": 95,
+          "itemIsBlueprint": false
+        }, {
+          "itemId": -151838493,
+          "quantity": 998,
+          "itemIsBlueprint": false
+        }],
+        "capacity": 24,
+        "hasProtection": true,
+        "protectionExpiry": 1638790206
+      }
+    }
+  }
+}</code></pre>
+    <blockquote>Find the item name with the itemId using <code>itemIds</code></blockquote>
+  </li>
+  <li>
     <b>Notification: Inactive Device</b>
     <pre><code>{
-  notification: {
-    type: 'inactive',
-    server_name: 'Rust Server Name',
-    inactive: {
-      title: 'MyDevice',
-      message: 'This device is inactive.',
-      device_name: 'MyDevice',
-      device_id: '123456',
-      device_flag: false,
-      device_type: 'Smart Switch'
+  "notification": {
+    "type": "inactive",
+    "server_name": "Rust Server Name",
+    "inactive": {
+      "title": "MyDevice",
+      "message": "This device is inactive.",
+      "device_name": "MyDevice",
+      "device_id": "123456",
+      "device_flag": false,
+      "device_type": "Smart Switch"
     }
   }
 }</code></pre>
@@ -84,16 +177,16 @@ The `app` object exists in the plugin's scope `this`, and exposes the following 
   <li>
     <b>Notification: Decaying TC</b>
     <pre><code>{
-  notification: {
-    type: 'monitor',
-    server_name: 'Rust Server Name',
-    monitor: {
-      title: 'MyDevice',
-      message: 'This monitored TC is decaying!',
-      device_name: 'MyDevice',
-      device_id: '123456',
-      device_flag: false,
-      device_type: 'Storage Monitor'
+  "notification": {
+    "type": "monitor",
+    "server_name": "Rust Server Name",
+    "monitor": {
+      "title": "MyDevice",
+      "message": "This monitored TC is decaying!",
+      "device_name": "MyDevice",
+      "device_id": "123456",
+      "device_flag": false,
+      "device_type": "Storage Monitor"
     }
   }
 }</code></pre>
@@ -101,13 +194,13 @@ The `app` object exists in the plugin's scope `this`, and exposes the following 
   <li>
     <b>Notification: Player Tracking</b>
     <pre><code>{
-  notification: {
-    type: 'tracking',
-    server_name: 'Rust Server Name',
-    tracking: {
-      id: '12345',
-      name: 'Tracked player \'Rust Player\' has joined the server',
-      status: 'joined'
+  "notification": {
+    "type": "tracking",
+    "server_name": "Rust Server Name",
+    "tracking": {
+      "id": "12345",
+      "name": "Tracked player \"Rust Player\" has joined the server",
+      "status": "joined"
     }
   }
 }</code></pre>
@@ -115,34 +208,34 @@ The `app` object exists in the plugin's scope `this`, and exposes the following 
   <li>
     <b>Notification: Team Login</b>
     <pre><code>{
-  notification: {
-    type: 'login',
-    server_name: 'Rust Server Name',
-    targetName: 'RustPlayer',
-    targetId: '123456789'
+  "notification": {
+    "type": "login",
+    "server_name": "Rust Server Name",
+    "targetName": "RustPlayer",
+    "targetId": "123456789"
   }
 }</code></pre>
   </li>
   <li>
     <b>Notification: Player Death</b>
     <pre><code>{
-  notification: {
-    type: 'death',
-    server_name: 'Rust Server Name',
-    targetName: 'RustPlayer',
-    targetId: '123456789'
+  "notification": {
+    "type": "death",
+    "server_name": "Rust Server Name",
+    "targetName": "RustPlayer",
+    "targetId": "123456789"
   }
 }</code></pre>
   </li>
   <li>
     <b>Notification: Alarm</b>
     <pre><code>{
-  notification: {
-    type: 'alarm',
-    server_name: 'Rust Server Name',
-    alarm: {
-      title: 'Smart Alarm Title',
-      message: 'Smart Alarm Message'
+  "notification: {
+    "type": "alarm",
+    "server_name": "Rust Server Name",
+    "alarm": {
+      "title": "Smart Alarm Title",
+      "message": "Smart Alarm Message"
     }
   }
 }</code></pre>
@@ -150,13 +243,13 @@ The `app` object exists in the plugin's scope `this`, and exposes the following 
   <li>
     <b>Notification: News</b>
     <pre><code>{
-  notification: {
-    type: 'news',
-    server_name: 'Rust Server Name',
-    news: {
-      title: 'Rust Update News',
-      url: 'https://rust.facepunch.com/',
-      message: 'A new Rust update blog is available!'
+  "notification: {
+    "type": "news",
+    "server_name": "Rust Server Name",
+    "news": {
+      "title": "Rust Update News",
+      "url": "https://rust.facepunch.com/",
+      "message": "A new Rust update blog is available!"
     }
   }
 }</code></pre>
@@ -164,13 +257,43 @@ The `app` object exists in the plugin's scope `this`, and exposes the following 
   <li>
     <b>Notification: Entity Pairing</b>
     <pre><code>{
-  notification: {
-    type: 'entity',
-    server_name: 'Rust Server Name',
-    entityName: 'Smart Switch',
-    entityId: '123456',
-    entityType: '1'
+  "notification": {
+    "type": "entity",
+    "server_name": "Rust Server Name",
+    "entityName": "Smart Switch",
+    "entityId": "123456",
+    "entityType": "1"
   }
 }</code></pre>
+  </li>
+  <li>
+    <b>LeaderMapNotes</b>
+    <pre><code>[{
+  "type": 1,
+  "x": 1500.958740234375,
+  "y": 2551.239990234375
+}]</code></pre>
+  </li>
+  <li>
+    <b>Members</b>
+    <pre><code>[{
+  "steamId":"123456789",
+  "name":"RustPlayer1",
+  "x":1497.4344482421875,
+  "y":2522.85546875,
+  "isOnline":true,
+  "spawnTime":1638768666,
+  "isAlive":true,
+  "deathTime":1638768647
+},{
+  "steamId":"123456799",
+  "name":"RustPlayer2",
+  "x":1487.4344482421875,
+  "y":2512.85546875,
+  "isOnline":true,
+  "spawnTime":1638768866,
+  "isAlive":true,
+  "deathTime":1638768847
+}]</code></pre>
   </li>
 </ul>
