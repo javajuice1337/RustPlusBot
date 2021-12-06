@@ -156,6 +156,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 }
 //
 // entity types:
+//
 // 1 = Smart Switch
 // 2 = Smart Alarm
 // 3 = Storage Monitor</code></pre>
@@ -209,6 +210,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 }
 //
 // marker types:
+//
 // 1 = Player
 // 2 = Explosion
 // 3 = VendingMachine
