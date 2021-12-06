@@ -352,6 +352,13 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 }</code></pre>
   </li>
   <li>
+    <b>NotificationList</b>
+    <pre><code>[{
+  title: "Sub Item",
+  value: "Sub Value"
+}]</code></pre>
+  </li>
+  <li>
     <b>Payload: Smart Switch, Smart Alarm</b>
     <pre><code>{
   "broadcast": {
