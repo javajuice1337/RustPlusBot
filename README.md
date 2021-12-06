@@ -113,7 +113,7 @@ app.setEntityValue(123456, true, () => {
     app.sendTeamMessage('The smart switch is activated');
 });
 </code></pre></p></li>
-  <li><code>webGet(url, params, headers, success, error)</code> Retrieve data from a url<ul><li><b>url</b>: The url to access</li><li><b>params</b>: The parameters of the url (optional)</li><li><b>headers</b>: The headers to send with the web request (optional)</li><li><b>success(data)</b>: The function to execute after receiving data</li><li><b>error(msg)</b>: The function to execute when an error occurs (optional)</li></ul><p><pre><code>// webGet example
+  <li><code>webGet(url, params, headers, success, error)</code> Retrieve data from a url<ul><li><b>url</b>: The url to access</li><li><b>params</b>: The parameters of the url (optional)</li><li><b>headers</b>: The headers to send with the web request (optional)</li><li><b>success(data)</b>: The function to execute after receiving data (optional)</li><li><b>error(msg)</b>: The function to execute when an error occurs (optional)</li></ul><p><pre><code>// webGet example
 var app = this.app;
 app.webGet('https://rust.facepunch.com/rss/news', null, null, (data) => {
     var link = '',
@@ -127,7 +127,7 @@ app.webGet('https://rust.facepunch.com/rss/news', null, null, (data) => {
     app.sendTeamMessage('Error obtaining Rust update link: ' + error);
 });
 </code></pre></p></li>
-  <li><code>webPost(url, data, headers, success, error)</code> Post data to a url<ul><li><b>url</b>: The url to access</li><li><b>data</b>: The data to post (optional)</li><li><b>headers</b>: The headers to send with the web request (optional)</li><li><b>success(data)</b>: The function to execute after receiving data</li><li><b>error(msg)</b>: The function to execute when an error occurs (optional)</li></ul><p><pre><code>// webPost example
+  <li><code>webPost(url, data, headers, success, error)</code> Post data to a url<ul><li><b>url</b>: The url to access</li><li><b>data</b>: The data to post (optional)</li><li><b>headers</b>: The headers to send with the web request (optional)</li><li><b>success(data)</b>: The function to execute after receiving data (optional)</li><li><b>error(msg)</b>: The function to execute when an error occurs (optional)</li></ul><p><pre><code>// webPost example
 var app = this.app;
 app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
     app.sendTeamMessage('Post result: ' + data);
