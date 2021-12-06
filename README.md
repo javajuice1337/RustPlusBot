@@ -206,8 +206,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
     }]
   }]
 }</code></pre>
-    <pre><code>
-// marker types:
+    <pre><code>// marker types:
 // 1 = Player
 // 2 = Explosion
 // 3 = VendingMachine
