@@ -153,10 +153,8 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
     <pre><code>{
   "type": "1",
   "payload": {} // see Payload below
-}
-//
-// entity types:
-//
+}</code></pre>
+    <pre><code>// entity types:
 // 1 = Smart Switch
 // 2 = Smart Alarm
 // 3 = Storage Monitor</code></pre>
@@ -207,10 +205,9 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
       "currencyIsBlueprint": false
     }]
   }]
-}
-//
+}</code></pre>
+    <pre><code>
 // marker types:
-//
 // 1 = Player
 // 2 = Explosion
 // 3 = VendingMachine
@@ -282,6 +279,10 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
     "entityType": "1"
   }
 }</code></pre>
+    <pre><code>// entity types:
+// 1 = Smart Switch
+// 2 = Smart Alarm
+// 3 = Storage Monitor</code></pre>
   </li>
   <li>
     <b>Notification: Inactive Device</b>
