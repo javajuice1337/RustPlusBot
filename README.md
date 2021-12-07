@@ -38,7 +38,7 @@ The `app` object exists in the plugin's scope `this`, and exposes the following 
   <li><code>player_token</code> The server token of the bot's connected player</li>
   <li><code>server_ip</code> The IP address of the bot's connected server</li>
   <li><code>server_name</code> The name of the bot's connected server</li>
-  <li><code>server_ip</code> The port of the bot's connected server (Rust+ app port)</li>
+  <li><code>server_port</code> The port of the bot's connected server (Rust+ app port)</li>
 </ul>
 
 ### Methods:
@@ -53,7 +53,7 @@ var e = this.app.getEvents('oil');
   <li><code>getPrefix(type)</code> Get the command prefix for the bot<ul><li><b>type</b>: The command type (optional)<ul><li><code>all</code> All Commands</li><li><code>device</code> Device Commands</li></ul></li><li><b>returns</b>: The prefix <code>!</code> if it's required</li></ul><p><pre><code>// getPrefix example
 var prefix = this.app.getPrefix();
 </code></pre></p></li>
-  <li><code>getEntityInfo(id, callback)</code> Get data from a Smart device<ul><li><b>id</b>: The identifier of the Smart device</li><li><b>callback(message)</b>: The function to execute after getting the info (<code>message.response</code> contains <code>EntityInfo</code>)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// getEntityInfo example
+  <li><code>getEntityInfo(id, callback)</code> Get data from a Smart device<ul><li><b>id</b>: The identifier of the Smart device</li><li><b>callback(message)</b>: The function to execute after getting the entity info (<code>message.response</code> contains <code>EntityInfo</code>)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// getEntityInfo example
 var app = this.app;
 app.getEntityInfo(123456, (message) => {
     if (message.response && message.response.entityInfo && message.response.entityInfo.payload) {
@@ -72,7 +72,7 @@ app.getInfo((message) => {
     }
 });
 </code></pre></p></li>
-  <li><code>getMapMarkers(callback)</code> Get information about all map markers<ul><li><b>callback(message)</b>: The function to execute after getting the info (<code>message.response</code> contains <code>MapMarkers</code>)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// getMapMarkers example
+  <li><code>getMapMarkers(callback)</code> Get information about all map markers<ul><li><b>callback(message)</b>: The function to execute after getting the map markers (<code>message.response</code> contains <code>MapMarkers</code>)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// getMapMarkers example
 var app = this.app;
 app.getMapMarkers((message) => {
     if (message.response && message.response.mapMarkers && message.response.mapMarkers.markers) {
@@ -86,7 +86,7 @@ app.getMapMarkers((message) => {
     }
 });
 </code></pre></p></li>
-  <li><code>getTeamInfo(callback)</code> Get information about the team (leader, members)<ul><li><b>callback(message)</b>: The function to execute after getting the info (<code>message.response</code> contains <code>TeamInfo</code>)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// getTeamInfo example
+  <li><code>getTeamInfo(callback)</code> Get information about the team (leader, members)<ul><li><b>callback(message)</b>: The function to execute after getting the team info (<code>message.response</code> contains <code>TeamInfo</code>)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// getTeamInfo example
 var app = this.app;
 app.getTeamInfo((message) => {
     if (message.response && message.response.teamInfo) {
@@ -98,7 +98,7 @@ app.getTeamInfo((message) => {
     }
 });
 </code></pre></p></li>
-  <li><code>getTime(callback)</code> Get information about the server time<ul><li><b>callback(message)</b>: The function to execute after getting the info (<code>message.response</code> contains <code>Time</code>)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// getTime example
+  <li><code>getTime(callback)</code> Get information about the server time<ul><li><b>callback(message)</b>: The function to execute after getting the time (<code>message.response</code> contains <code>Time</code>)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// getTime example
 var app = this.app;
 app.getTime((message) => {
     if (message.response && message.response.time) {
@@ -127,7 +127,7 @@ var app = this.app;
 app.webGet('https://rust.facepunch.com/rss/news', null, null, (data) => {
     var link = '',
         pos = data.indexOf('>https://');
-    if (pos > 0) link = data.substr(pos, data.indexOf('<', pos) - pos);
+    if (pos > 0) link = data.substr(pos + 1, data.indexOf('<', pos) - pos - 1);
     if (link != '')
         app.sendTeamMessage('The newest Rust update link: ' + link);
     else
@@ -146,7 +146,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 </code></pre></p></li>
   <li><code>util.getMapCoords(x, y)</code> Get the map coordinates for a point</li>
   <li><code>util.inRect(x, y, x1, y1, x2, y2)</code> Check if a point is inside a rectangle</li>
-  <li><code>util.direction(x1, y1, x2, y2)</code> Get the direction from the first point to the other</li>
+  <li><code>util.direction(x1, y1, x2, y2)</code> Get the direction from the first point facing the second</li>
   <li><code>util.distance(x1, y1, x2, y2)</code> Get the distance between two points in meters</li>
 </ul>
 
@@ -214,7 +214,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
     <pre><code>{
   id: 123456789,
   type: "heli",
-  start: 1234567,     // timestamp
+  start: new Date(),
   stop: null,         // null if active
   getName: function() // get display name
 }</code></pre>
