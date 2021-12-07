@@ -44,11 +44,16 @@ The `app` object exists in the plugin's scope `this`, and exposes the following 
 ### Methods:
 
 <ul>
-  <li><code>sendTeamMessage(msg, callback)</code> Send a team chat message<ul><li><b>msg</b>: The message to send</li><li><b>callback()</b>: The function to execute after sending (optional)</li></ul><p><pre><code>// sendTeamMessage example
-var app = this.app;
-app.sendTeamMessage('This is a team message');
+  <li><code>getConfig()</code> Get the bot's configuration settings<ul><li><b>returns</b>: <code>Config</code> object</li></ul><p><pre><code>// getConfig example
+var cfg = this.app.getConfig();
 </code></pre></p></li>
-  <li><code>getEntityInfo(id, callback)</code> Get data from a Smart device<ul><li><b>id</b>: The identifier of the Smart device</li><li><b>callback(message)</b>: The function to execute after getting the info (<code>message.response</code> contains <code>EntityInfo</code>)</li></ul><p><pre><code>// getEntityInfo example
+  <li><code>getEvents(type)</code> Get the most recent game events (ordered by newest to oldest)<ul><li><b>type</b>: The type of event (optional)<ul><li><code>heli</code> Patrol Helicopter</li><li><code>brad</code> Bradley Tank</li><li><code>cargo</code> Cargo Ship</li><li><code>crate</code> Locked Crate</li><li><code>ch47</code> CH-47 Chinook</li><li><code>oil_rig_small</code> Oil Rig (Small)</li><li><code>large_oil_rig</code> Oil Rig (Large)</li></ul></li><li><b>returns</b>: <code>Event</code> array</li></ul><p><pre><code>// getEvents example
+var e = this.app.getEvents('oil');
+</code></pre></p></li>
+  <li><code>getPrefix(type)</code> Get the command prefix for the bot<ul><li><b>type</b>: The command type (optional)<ul><li><code>all</code> All Commands</li><li><code>device</code> Device Commands</li></ul></li><li><b>returns</b>: The prefix <code>!</code> if it's required</li></ul><p><pre><code>// getPrefix example
+var prefix = this.app.getPrefix();
+</code></pre></p></li>
+  <li><code>getEntityInfo(id, callback)</code> Get data from a Smart device<ul><li><b>id</b>: The identifier of the Smart device</li><li><b>callback(message)</b>: The function to execute after getting the info (<code>message.response</code> contains <code>EntityInfo</code>)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// getEntityInfo example
 var app = this.app;
 app.getEntityInfo(123456, (message) => {
     if (message.response && message.response.entityInfo && message.response.entityInfo.payload) {
@@ -59,7 +64,7 @@ app.getEntityInfo(123456, (message) => {
     }
 });
 </code></pre></p></li>
-  <li><code>getInfo(callback)</code> Get information about the server<ul><li><b>callback(message)</b>: The function to execute after getting the info (<code>message.response</code> contains <code>Info</code>)</li></ul><p><pre><code>// getInfo example
+  <li><code>getInfo(callback)</code> Get information about the server<ul><li><b>callback(message)</b>: The function to execute after getting the info (<code>message.response</code> contains <code>Info</code>)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// getInfo example
 var app = this.app;
 app.getInfo((message) => {
     if (message.response && message.response.info) {
@@ -67,7 +72,7 @@ app.getInfo((message) => {
     }
 });
 </code></pre></p></li>
-  <li><code>getMapMarkers(callback)</code> Get information about all map markers<ul><li><b>callback(message)</b>: The function to execute after getting the info (<code>message.response</code> contains <code>MapMarkers</code>)</li></ul><p><pre><code>// getMapMarkers example
+  <li><code>getMapMarkers(callback)</code> Get information about all map markers<ul><li><b>callback(message)</b>: The function to execute after getting the info (<code>message.response</code> contains <code>MapMarkers</code>)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// getMapMarkers example
 var app = this.app;
 app.getMapMarkers((message) => {
     if (message.response && message.response.mapMarkers && message.response.mapMarkers.markers) {
@@ -81,7 +86,7 @@ app.getMapMarkers((message) => {
     }
 });
 </code></pre></p></li>
-  <li><code>getTeamInfo(callback)</code> Get information about the team (leader, members)<ul><li><b>callback(message)</b>: The function to execute after getting the info (<code>message.response</code> contains <code>TeamInfo</code>)</li></ul><p><pre><code>// getTeamInfo example
+  <li><code>getTeamInfo(callback)</code> Get information about the team (leader, members)<ul><li><b>callback(message)</b>: The function to execute after getting the info (<code>message.response</code> contains <code>TeamInfo</code>)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// getTeamInfo example
 var app = this.app;
 app.getTeamInfo((message) => {
     if (message.response && message.response.teamInfo) {
@@ -93,7 +98,7 @@ app.getTeamInfo((message) => {
     }
 });
 </code></pre></p></li>
-  <li><code>getTime(callback)</code> Get information about the server time<ul><li><b>callback(message)</b>: The function to execute after getting the info (<code>message.response</code> contains <code>Time</code>)</li></ul><p><pre><code>// getTime example
+  <li><code>getTime(callback)</code> Get information about the server time<ul><li><b>callback(message)</b>: The function to execute after getting the info (<code>message.response</code> contains <code>Time</code>)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// getTime example
 var app = this.app;
 app.getTime((message) => {
     if (message.response && message.response.time) {
@@ -107,13 +112,17 @@ this.app.postDiscordMessage('This is a message from a bot\'s plugin');
   <li><code>postDiscordNotification(title, description, url, img, list)</code> Post a notification to the bot's communication Discord channel<ul><li><b>title</b>: The title of the notification</li><li><b>description</b>: The description of the notification</li><li><b>url</b>: The url of the notification (optional)</li><li><b>img</b>: The image url of the notification (optional)</li><li><b>list</b>: The item list data of the notification (optional; see <code>NotificationList</code> below)</li></ul><p><pre><code>// postDiscordNotification example
 this.app.postDiscordNotification('Plugin Alert Title', 'Plugin Alert Message');
 </code></pre></p></li>
-    <li><code>setEntityValue(id, value, callback)</code> Set the value of a Smart Switch<ul><li><b>id</b>: The identifier of the Smart Switch</li><li><b>value</b>: The value (true or false)</li><li><b>callback()</b>: The function to execute after setting the value (optional)</li></ul><p><pre><code>// setEntityValue example
+  <li><code>sendTeamMessage(msg, callback)</code> Send a team chat message<ul><li><b>msg</b>: The message to send</li><li><b>callback()</b>: The function to execute after sending (optional)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// sendTeamMessage example
+var app = this.app;
+app.sendTeamMessage('This is a team message');
+</code></pre></p></li>
+    <li><code>setEntityValue(id, value, callback)</code> Set the value of a Smart Switch<ul><li><b>id</b>: The identifier of the Smart Switch</li><li><b>value</b>: The value (true or false)</li><li><b>callback()</b>: The function to execute after setting the value (optional)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// setEntityValue example
 var app = this.app;
 app.setEntityValue(123456, true, () => {
     app.sendTeamMessage('The smart switch is activated');
 });
 </code></pre></p></li>
-  <li><code>webGet(url, params, headers, success, error)</code> Retrieve data from a url<ul><li><b>url</b>: The url to access</li><li><b>params</b>: The parameters of the url (optional)</li><li><b>headers</b>: The headers to send with the web request (optional)</li><li><b>success(data)</b>: The function to execute after receiving data (optional)</li><li><b>error(msg)</b>: The function to execute when an error occurs (optional)</li></ul><p><pre><code>// webGet example
+  <li><code>webGet(url, params, headers, success, error)</code> Retrieve data from a url<ul><li><b>url</b>: The url to access</li><li><b>params</b>: The parameters of the url (optional)</li><li><b>headers</b>: The headers to send with the web request (optional)</li><li><b>success(data)</b>: The function to execute after receiving data (optional)</li><li><b>error(msg)</b>: The function to execute when an error occurs (optional)</li><li><b>returns</b>: <code>true</code></li></ul><p><pre><code>// webGet example
 var app = this.app;
 app.webGet('https://rust.facepunch.com/rss/news', null, null, (data) => {
     var link = '',
@@ -127,7 +136,7 @@ app.webGet('https://rust.facepunch.com/rss/news', null, null, (data) => {
     app.sendTeamMessage('Error obtaining Rust update link: ' + error);
 });
 </code></pre></p></li>
-  <li><code>webPost(url, data, headers, success, error)</code> Post data to a url<ul><li><b>url</b>: The url to access</li><li><b>data</b>: The data to post (optional)</li><li><b>headers</b>: The headers to send with the web request (optional)</li><li><b>success(data)</b>: The function to execute after receiving data (optional)</li><li><b>error(msg)</b>: The function to execute when an error occurs (optional)</li></ul><p><pre><code>// webPost example
+  <li><code>webPost(url, data, headers, success, error)</code> Post data to a url<ul><li><b>url</b>: The url to access</li><li><b>data</b>: The data to post (optional)</li><li><b>headers</b>: The headers to send with the web request (optional)</li><li><b>success(data)</b>: The function to execute after receiving data (optional)</li><li><b>error(msg)</b>: The function to execute when an error occurs (optional)</li><li><b>returns</b>: <code>true</code></li></ul><p><pre><code>// webPost example
 var app = this.app;
 app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
     app.sendTeamMessage('Post result: ' + data);
@@ -145,8 +154,33 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 
 <ul>
   <li>
+    <b>Config</b>
+    <pre><code>{
+  "requirePrefix": "all",
+  "teamChatIncoming": "all",
+  "teamChatOutgoing": true,
+  "teamChatDelay": 0,
+  "broadcastEvents": true,
+  "broadcastVending": true,
+  "broadcastAmount": 1,
+  "battlemetricsID": 0,
+  "battlemetricsDiscord": true,
+  "deathDiscord": true,
+  "loginDiscord" :true,
+  "autoCleanDevices": false,
+  "alwaysPostAlarms": true,
+  "alwaysPostAlarms": true,
+  "eventsDisplay": "heli,brad,cargo,oil,crate,ch47"
+}</code></pre>
+  </li>
+  <li>
     <b>Device</b>
-    <pre><code>device.name, device.id, device.flag, device.type</code></pre>
+    <pre><code>{
+  name: "MyDevice",
+  id: 123456,
+  flag: false, // true if op is inverted
+  type: "Smart Switch"
+}</code></pre>
   </li>
   <li>
     <b>EntityInfo</b>
@@ -160,8 +194,8 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 // 3 = Storage Monitor</code></pre>
   </li>
   <li>
-    <b>Info</b>
-    <pre><code>{
+    <b>Event</b>
+    <pre><code>[{
   "name": "Rust Server Name",
   "headerImage": "",
   "url": "",
@@ -173,6 +207,16 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
   "queuedPlayers": 0,
   "seed": 0,
   "salt": 0
+}]</code></pre>
+  </li>
+  <li>
+    <b>Info</b>
+    <pre><code>{
+  id: 123456789,
+  type: "heli",
+  start: 1234567,     // timestamp
+  stop: null,         // null if active
+  getName: function() // get display name
 }</code></pre>
   </li>
   <li>
@@ -195,7 +239,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
     "rotation": 0,
     "radius": 0,
     "name": "",
-    sellOrders: [{
+    sellOrders: [{ // sellOrders when type is 3
       "itemId": 123456,
       "quantity": 1,
       "currencyId": 654321,
@@ -401,7 +445,10 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
   </li>
   <li>
     <b>Point</b>
-    <pre><code>point.x, point.y</code></pre>
+    <pre><code>{
+  x: 100,
+  y: 200
+}</code></pre>
   </li>
   <li>
     <b>TeamInfo</b>
