@@ -474,7 +474,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
           
 <ul>
   <li><code>encodeForm(data)</code> Convert an object to form data for a webPost<ul><li><b>data</b>: The object to convert</li><b>returns</b>: a string of encoded names and values</li></ul></li>
-  <li><code>combineItems(items, itemIds)</code> Combine the items from a Storage Monitor payload<ul><li><b>items</b>: The items from the payload</li><li><b>itemIds</b>: The item ID list to lookup item names</li><b>returns</b>: A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing combined items and item quantities</li></ul></li>
+  <li><code>combineItems(items, itemIds)</code> Combine the items from a Storage Monitor payload<ul><li><b>items</b>: The items from the payload</li><li><b>itemIds</b>: The item ID list to lookup item names</li><b>returns</b>: A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the combined items and item quantities</li></ul></li>
   <li><code>getTime(timestr)</code> Convert a time string to seconds<ul><li><b>timestr</b>: The time string (format: 1d1h1m1s)</li><b>returns</b>: the total seconds of the timestr</li></ul></li>
   <li><code>getTimeDifference(date)</code> Get the time difference display for a date<ul><li><b>date</b>: The date object</li><b>returns</b>: a string representing the date difference</li></ul></li>
   <li><code>getTimeDisplay(time)</code> Get the time display for time<ul><li><b>time</b>: The time in seconds</li><b>returns</b>: a string representing the time</li></ul></li>
