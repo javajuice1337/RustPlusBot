@@ -45,6 +45,21 @@ The `app` object exists in the plugin's scope `this`, and exposes the following 
 ### Methods:
 
 <ul>
+  <li><code>getBattlemetrics(serverId, playerName, success, error)</code> Retrieve the Battlemetrics for a server player<ul><li><b>serverId</b>: The Battlemetrics ID of the server</li><li><b>playerName</b>: The name of the player</li><li><b>success(data)</b>: The function to execute after receiving Battlemetrics data (optional)</li><li><b>error(msg)</b>: The function to execute when an error occurs (optional)</li><li><b>returns</b>: <code>true</code></li></ul><p><pre><code>// getBattlemetrics example
+var app = this.app;
+app.getBattlemetrics(123456, 'Rust Player 2099', (data) => {
+    if (data && data.name) {
+        app.sendTeamMessage('Server player \'' + data.name + '\' is ' + ((data.online) ? 'ONLINE' : 'OFFLINE') + ' and was last seen ' + getTimeDifference(data.lastseen) + ' ago');
+        app.sendTeamMessage('Server player \'' + data.name + '\' was first seen ' + getTimeDifference(data.firstseen) + ' ago and has a time played of ' + getTimeDisplay(data.timeplayed));
+    }
+    else if (data && data.indexOf('unavailable') > 0) {
+        app.sendTeamMessage(data);
+    }
+    else app.sendTeamMessage('Server player not found');
+}, (error) => {
+    app.sendTeamMessage('Error obtaining the Battlemetrics data: ' + error);
+});
+</code></pre></p></li>
   <li><code>getConfig()</code> Get the bot's configuration settings<ul><li><b>returns</b>: <code>Config</code> object</li></ul><p><pre><code>// getConfig example
 var cfg = this.app.getConfig();
 </code></pre></p></li>
@@ -87,6 +102,31 @@ app.getMapMarkers((message) => {
     }
 });
 </code></pre></p></li>
+  <li><code>getRecycleItems(items, success, error)</code> Retrieve the recycled items for the input items<ul><li><b>items</b>: An object containing the item names and item values</li><li><b>success(data)</b>: The function to execute after receiving recycle data (optional)</li><li><b>error(msg)</b>: The function to execute when an error occurs (optional)</li><li><b>returns</b>: <code>true</code></li></ul><p><pre><code>// getRecycleItems example
+var app = this.app;
+app.getRecycleItems({'Sheet Metal Door': 1}, (data) => {
+    var keys = Object.keys(data),
+        recycle = [];
+    for (var i = 0; i < keys.length; i++) {
+        recycle.push(keys[i] + ' x ' + data[keys[i]].toLocaleString());
+    }
+    if (recycle.length > 0) app.sendTeamMessage('Recyclables: ' + recycle.join(', '));
+}, (error) => {
+    app.sendTeamMessage('Error obtaining the recyle items: ' + error);
+});
+</code></pre></p></li>
+  <li><code>getSteamrep(steamId, success, error)</code> Retrieve the Steamrep data for a Steam member<ul><li><b>steamId</b>: The steam ID of the Steam member</li><li><b>success(data)</b>: The function to execute after receiving Steamrep data (optional)</li><li><b>error(msg)</b>: The function to execute when an error occurs (optional)</li><li><b>returns</b>: <code>true</code></li></ul><p><pre><code>// getSteamrep example
+var app = this.app;
+app.getSteamrep(123456789, (data) => {
+    if (data && data.membersince) {
+        app.sendTeamMessage('This player has been a member of Steam since ' + data.membersince);
+        app.sendTeamMessage('This player has ' + ((data.vacbanned != 'None' || data.communitybanned != 'None' || data.tradebanstate != 'None') ? 'bans: ' + ((data.vacbanned != 'None') ? 'VAC ' : '') + ((data.communitybanned != 'None') ? 'Community ' : '') + ((data.tradebanstate != 'None') ? 'Trade ' : '') : 'NO bans'));
+    }
+    else app.sendTeamMessage('Unable to lookup Steamrep data');
+}, (error) => {
+    app.sendTeamMessage('Error obtaining the Steamrep data: ' + error);
+});
+</code></pre></p></li>
   <li><code>getTeamInfo(callback)</code> Get information about the team (leader, members)<ul><li><b>callback(message)</b>: The function to execute after getting the team info (<code>message.response</code> contains <code>TeamInfo</code>)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// getTeamInfo example
 var app = this.app;
 app.getTeamInfo((message) => {
@@ -112,6 +152,9 @@ this.app.postDiscordMessage('This is a message from a bot\'s plugin');
 </code></pre></p></li>
   <li><code>postDiscordNotification(title, description, url, img, list)</code> Post a notification to the bot's communication Discord channel<ul><li><b>title</b>: The title of the notification</li><li><b>description</b>: The description of the notification</li><li><b>url</b>: The url of the notification (optional)</li><li><b>img</b>: The image url of the notification (optional)</li><li><b>list</b>: The item list data of the notification (optional; see <code>NotificationList</code> below)</li></ul><p><pre><code>// postDiscordNotification example
 this.app.postDiscordNotification('Plugin Alert Title', 'Plugin Alert Message');
+</code></pre></p></li>
+  <li><code>postDiscordWebhook(url, msg)</code> Post a message to a Discord webhook<ul><li><b>url</b>: The url of the Discord webhook</li><li><b>msg</b>: The message to post to the Discord webhook</li></ul><p><pre><code>// postDiscordWebhook example
+this.app.postDiscordWebhook('webhook url', 'Webhook Message');
 </code></pre></p></li>
   <li><code>sendTeamMessage(msg, callback)</code> Send a team chat message<ul><li><b>msg</b>: The message to send</li><li><b>callback()</b>: The function to execute after sending (optional)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// sendTeamMessage example
 var app = this.app;
