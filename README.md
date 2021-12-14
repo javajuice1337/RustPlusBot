@@ -442,7 +442,8 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
     <b>NotificationList</b>
     <pre><code>[{
   title: "Sub Item",
-  value: "Sub Value"
+  value: "Sub Value",
+  inline: false
 }]</code></pre>
   </li>
   <li>
