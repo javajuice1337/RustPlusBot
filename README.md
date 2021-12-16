@@ -31,6 +31,8 @@ The `app` object exists in the plugin's scope `this`, and exposes the following 
 <ul>
   <li><code>devices</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the bot's paired devices (<b>key</b>: device name, <b>value</b>: Array of devices, see <code>Device</code> below)</li>
   <li><code>devices_map</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the bot's paired device names (<b>key</b>: device ID, <b>value</b>: Array of device names)</li>
+  <li><code>guild_token</code> The unique token representing the Discord server</li>
+  <li><code>guild_name</code> The name of the Discord server</li>
   <li><code>itemIds</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the item names for all item IDs (<b>key</b>: item ID, <b>value</b>: item name)</li>
   <li><code>monuments</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing all monument names and locations (<b>key</b>: monument name, <b>value</b>: monument location, see <code>Point</code> below)</li>
   <li><code>tokenMap</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the monument names for all monument tokens (<b>key</b>: monument token, <b>value</b>: monument name)</li>
@@ -441,7 +443,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
   <li>
     <b>NotificationList</b>
     <pre><code>[{
-  title: "Sub Item",
+  name: "Sub Item",
   value: "Sub Value",
   inline: false
 }]</code></pre>
@@ -520,7 +522,8 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 <ul>
   <li><code>encodeForm(data)</code> Convert an object to form data for a webPost<ul><li><b>data</b>: The object to convert</li><b>returns</b>: a string of encoded names and values</li></ul></li>
   <li><code>combineItems(items, itemIds)</code> Combine the items from a Storage Monitor payload<ul><li><b>items</b>: The items from the payload</li><li><b>itemIds</b>: The item ID list to lookup item names</li><b>returns</b>: A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the combined items and item quantities</li></ul></li>
+  <li><code>getFriendlyDate(date)</code> Get a friendly representation of the date<ul><li><b>date</b>: The date object</li><b>returns</b>: a string containing the friendly representation of the date</li></ul></li>
   <li><code>getTime(timestr)</code> Convert a time string to seconds<ul><li><b>timestr</b>: The time string (format: 1d1h1m1s)</li><b>returns</b>: the total seconds of the timestr</li></ul></li>
-  <li><code>getTimeDifference(date)</code> Get the time difference display for a date<ul><li><b>date</b>: The date object</li><b>returns</b>: a string representing the date difference</li></ul></li>
+  <li><code>getTimeDifference(date)</code> Get the time difference for a date<ul><li><b>date</b>: The date object</li><b>returns</b>: the date difference in seconds</li></ul></li>
   <li><code>getTimeDisplay(time)</code> Get the time display for time<ul><li><b>time</b>: The time in seconds</li><b>returns</b>: a string representing the time</li></ul></li>
 </ul>
