@@ -29,7 +29,7 @@ The `app` object exists in the plugin's scope `this`, and exposes the following 
 ### Properties:
 
 <ul>
-  <li><code>bmData</code> An object containing the Battlemetrics data of the server (see <code>Battlemetrics Data</code> below)</li>
+  <li><code>bmData</code> An object containing the BattleMetrics data of the server (see <code>BattleMetrics Data</code> below)</li>
   <li><code>devices</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the bot's paired devices (<b>key</b>: device name, <b>value</b>: Array of devices, see <code>Device</code> below)</li>
   <li><code>devices_map</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the bot's paired device names (<b>key</b>: device ID, <b>value</b>: Array of device names)</li>
   <li><code>guild_token</code> The unique token representing the Discord server</li>
@@ -48,9 +48,9 @@ The `app` object exists in the plugin's scope `this`, and exposes the following 
 ### Methods:
 
 <ul>
-  <li><code>getBattlemetrics(serverId, playerName, success, error)</code> Retrieve the Battlemetrics for a server player<ul><li><b>serverId</b>: The Battlemetrics ID of the server</li><li><b>playerName</b>: The name of the player</li><li><b>success(data)</b>: The function to execute after receiving Battlemetrics data (optional)</li><li><b>error(msg)</b>: The function to execute when an error occurs (optional)</li><li><b>returns</b>: <code>true</code></li></ul><p><pre><code>// getBattlemetrics example
+  <li><code>getBattleMetrics(serverId, playerName, success, error)</code> Retrieve the BattleMetrics for a server player<ul><li><b>serverId</b>: The BattleMetrics ID of the server</li><li><b>playerName</b>: The name of the player</li><li><b>success(data)</b>: The function to execute after receiving BattleMetrics data (optional)</li><li><b>error(msg)</b>: The function to execute when an error occurs (optional)</li><li><b>returns</b>: <code>true</code></li></ul><p><pre><code>// getBattleMetrics example
 var app = this.app;
-app.getBattlemetrics('123456', 'Rust Player 2099', (data) => {
+app.getBattleMetrics('123456', 'Rust Player 2099', (data) => {
     if (data && data.name) {
         app.sendTeamMessage('Server player \'' + data.name + '\' is ' + ((data.online) ? 'ONLINE' : 'OFFLINE') + ' and was last seen ' + getTimeDifference(data.lastseen) + ' ago');
         app.sendTeamMessage('Server player \'' + data.name + '\' was first seen ' + getTimeDifference(data.firstseen) + ' ago and has a time played of ' + getTimeDisplay(data.timeplayed));
@@ -60,7 +60,7 @@ app.getBattlemetrics('123456', 'Rust Player 2099', (data) => {
     }
     else app.sendTeamMessage('Server player not found');
 }, (error) => {
-    app.sendTeamMessage('Error obtaining the Battlemetrics data: ' + error);
+    app.sendTeamMessage('Error obtaining the BattleMetrics data: ' + error);
 });
 </code></pre></p></li>
   <li><code>getConfig()</code> Get the bot's configuration settings<ul><li><b>returns</b>: <code>Config</code> object</li></ul><p><pre><code>// getConfig example
@@ -201,7 +201,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 
 <ul>
   <li>
-    <b>Battlemetrics Data</b>
+    <b>BattleMetrics Data</b>
     <pre><code>{
   "Name": "Server Name",
   "Address": "Server Address",
