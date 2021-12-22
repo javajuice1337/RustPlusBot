@@ -48,7 +48,7 @@ The `app` object exists in the plugin's scope `this`, and exposes the following 
 ### Methods:
 
 <ul>
-  <li><code>getBattleMetrics(serverId, playerName, success, error)</code> Retrieve the BattleMetrics for a server player<ul><li><b>serverId</b>: The BattleMetrics ID of the server</li><li><b>playerName</b>: The name of the player</li><li><b>success(data)</b>: The function to execute after receiving BattleMetrics data (optional)</li><li><b>error(msg)</b>: The function to execute when an error occurs (optional)</li><li><b>returns</b>: <code>true</code></li></ul><p><pre><code>// getBattleMetrics example
+  <li><code>getBattleMetrics(serverId, playerName, success, error)</code> Retrieve the BattleMetrics for a server player<ul><li><b>serverId</b>: The BattleMetrics ID of the server</li><li><b>playerName</b>: The name of the player</li><li><b>success(data)</b>: The function to execute after receiving BattleMetrics data (optional)</li><li><b>error(err)</b>: The function to execute when an error occurs (optional)</li><li><b>returns</b>: <code>true</code></li></ul><p><pre><code>// getBattleMetrics example
 var app = this.app;
 app.getBattleMetrics('123456', 'Rust Player 2099', (data) => {
     if (data && data.name) {
@@ -105,7 +105,7 @@ app.getMapMarkers((message) => {
     }
 });
 </code></pre></p></li>
-  <li><code>getRecycleItems(items, success, error)</code> Retrieve the recycled items for the input items<ul><li><b>items</b>: An object containing the item names and item values</li><li><b>success(data)</b>: The function to execute after receiving recycle data (optional)</li><li><b>error(msg)</b>: The function to execute when an error occurs (optional)</li><li><b>returns</b>: <code>true</code></li></ul><p><pre><code>// getRecycleItems example
+  <li><code>getRecycleItems(items, success, error)</code> Retrieve the recycled items for the input items<ul><li><b>items</b>: An object containing the item names and item values</li><li><b>success(data)</b>: The function to execute after receiving recycle data (optional)</li><li><b>error(err)</b>: The function to execute when an error occurs (optional)</li><li><b>returns</b>: <code>true</code></li></ul><p><pre><code>// getRecycleItems example
 var app = this.app;
 app.getRecycleItems({'Sheet Metal Door': 1}, (data) => {
     var keys = Object.keys(data),
@@ -118,7 +118,7 @@ app.getRecycleItems({'Sheet Metal Door': 1}, (data) => {
     app.sendTeamMessage('Error obtaining the recyle items: ' + error);
 });
 </code></pre></p></li>
-  <li><code>getSteamrep(steamId, success, error)</code> Retrieve the Steamrep data for a Steam member<ul><li><b>steamId</b>: The steam ID of the Steam member</li><li><b>success(data)</b>: The function to execute after receiving Steamrep data (optional)</li><li><b>error(msg)</b>: The function to execute when an error occurs (optional)</li><li><b>returns</b>: <code>true</code></li></ul><p><pre><code>// getSteamrep example
+  <li><code>getSteamrep(steamId, success, error)</code> Retrieve the Steamrep data for a Steam member<ul><li><b>steamId</b>: The steam ID of the Steam member</li><li><b>success(data)</b>: The function to execute after receiving Steamrep data (optional)</li><li><b>error(err)</b>: The function to execute when an error occurs (optional)</li><li><b>returns</b>: <code>true</code></li></ul><p><pre><code>// getSteamrep example
 var app = this.app;
 app.getSteamrep(123456789, (data) => {
     if (data && data.membersince) {
@@ -169,7 +169,15 @@ app.setEntityValue(123456, true, () => {
     app.sendTeamMessage('The smart switch is activated');
 });
 </code></pre></p></li>
-  <li><code>webGet(url, params, headers, success, error)</code> Retrieve data from a url<ul><li><b>url</b>: The url to access</li><li><b>params</b>: The parameters of the url (optional)</li><li><b>headers</b>: The headers to send with the web request (optional)</li><li><b>success(data)</b>: The function to execute after receiving data (optional)</li><li><b>error(msg)</b>: The function to execute when an error occurs (optional)</li><li><b>returns</b>: <code>true</code></li></ul><p><pre><code>// webGet example
+  <li><code>translateMessage(msg, lang, success, error)</code> Translate a message to another language<ul><li><b>msg</b>: The message to translate</li><li><b>lang</b>: The language code to use for translation</li><li><b>success(res)</b>: The function to execute after translating (optional)</li><li><b>error(err)</b>: The function to execute when an error occurs (optional)</li><li><b>returns</b>: <code>true</code></li></ul><p><pre><code>// translateMessage example
+var app = this.app;
+app.translateMessage('Hello, how are you?', 'es', (res) => {
+    app.sendTeamMessage(res);
+}, (error) => {
+    app.sendTeamMessage('Error: ' + error);
+});
+</code></pre></p></li>
+  <li><code>webGet(url, params, headers, success, error)</code> Retrieve data from a url<ul><li><b>url</b>: The url to access</li><li><b>params</b>: The parameters of the url (optional)</li><li><b>headers</b>: The headers to send with the web request (optional)</li><li><b>success(data)</b>: The function to execute after receiving data (optional)</li><li><b>error(err)</b>: The function to execute when an error occurs (optional)</li><li><b>returns</b>: <code>true</code></li></ul><p><pre><code>// webGet example
 var app = this.app;
 app.webGet('https://rust.facepunch.com/rss/news', null, null, (data) => {
     var link = '',
@@ -183,7 +191,7 @@ app.webGet('https://rust.facepunch.com/rss/news', null, null, (data) => {
     app.sendTeamMessage('Error obtaining Rust update link: ' + error);
 });
 </code></pre></p></li>
-  <li><code>webPost(url, data, headers, success, error)</code> Post data to a url<ul><li><b>url</b>: The url to access</li><li><b>data</b>: The data to post (optional)</li><li><b>headers</b>: The headers to send with the web request (optional)</li><li><b>success(data)</b>: The function to execute after receiving data (optional)</li><li><b>error(msg)</b>: The function to execute when an error occurs (optional)</li><li><b>returns</b>: <code>true</code></li></ul><p><pre><code>// webPost example
+  <li><code>webPost(url, data, headers, success, error)</code> Post data to a url<ul><li><b>url</b>: The url to access</li><li><b>data</b>: The data to post (optional)</li><li><b>headers</b>: The headers to send with the web request (optional)</li><li><b>success(data)</b>: The function to execute after receiving data (optional)</li><li><b>error(err)</b>: The function to execute when an error occurs (optional)</li><li><b>returns</b>: <code>true</code></li></ul><p><pre><code>// webPost example
 var app = this.app;
 app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
     app.sendTeamMessage('Post result: ' + data);
