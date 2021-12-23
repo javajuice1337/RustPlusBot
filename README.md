@@ -30,6 +30,7 @@ The `app` object exists in the plugin's scope `this`, and exposes the following 
 
 <ul>
   <li><code>bmData</code> An object containing the BattleMetrics data of the server (see <code>BattleMetrics Data</code> below)</li>
+  <li><code>cfg</code> An object containing the bot's configuration (see <code>Config</code> below)</li>
   <li><code>devices</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the bot's paired devices (<b>key</b>: device name, <b>value</b>: Array of devices, see <code>Device</code> below)</li>
   <li><code>devices_map</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the bot's paired device names (<b>key</b>: device ID, <b>value</b>: Array of device names)</li>
   <li><code>guild_token</code> The unique token representing the Discord server</li>
@@ -62,9 +63,6 @@ app.getBattleMetrics('123456', 'Rust Player 2099', (data) => {
 }, (error) => {
     app.sendTeamMessage('Error obtaining the BattleMetrics data: ' + error);
 });
-</code></pre></p></li>
-  <li><code>getConfig()</code> Get the bot's configuration settings<ul><li><b>returns</b>: <code>Config</code> object</li></ul><p><pre><code>// getConfig example
-var cfg = await this.app.getConfig();
 </code></pre></p></li>
   <li><code>getEvents(type)</code> Get the most recent game events (ordered by newest to oldest)<ul><li><b>type</b>: The event type (optional)<ul><li><code>heli</code> Patrol Helicopter</li><li><code>brad</code> Bradley Tank</li><li><code>cargo</code> Cargo Ship</li><li><code>crate</code> Locked Crate</li><li><code>ch47</code> CH-47 Chinook</li><li><code>oil_rig_small</code> Oil Rig (Small)</li><li><code>large_oil_rig</code> Oil Rig (Large)</li></ul></li><li><b>returns</b>: <code>Event</code> array</li></ul><p><pre><code>// getEvents example
 var e = await this.app.getEvents();
