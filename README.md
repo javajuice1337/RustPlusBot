@@ -64,13 +64,13 @@ app.getBattleMetrics('123456', 'Rust Player 2099', (data) => {
 });
 </code></pre></p></li>
   <li><code>getConfig()</code> Get the bot's configuration settings<ul><li><b>returns</b>: <code>Config</code> object</li></ul><p><pre><code>// getConfig example
-var cfg = this.app.getConfig();
+var cfg = await this.app.getConfig();
 </code></pre></p></li>
   <li><code>getEvents(type)</code> Get the most recent game events (ordered by newest to oldest)<ul><li><b>type</b>: The event type (optional)<ul><li><code>heli</code> Patrol Helicopter</li><li><code>brad</code> Bradley Tank</li><li><code>cargo</code> Cargo Ship</li><li><code>crate</code> Locked Crate</li><li><code>ch47</code> CH-47 Chinook</li><li><code>oil_rig_small</code> Oil Rig (Small)</li><li><code>large_oil_rig</code> Oil Rig (Large)</li></ul></li><li><b>returns</b>: <code>Event</code> array</li></ul><p><pre><code>// getEvents example
-var e = this.app.getEvents('oil');
+var e = await this.app.getEvents();
 </code></pre></p></li>
   <li><code>getPrefix(type)</code> Get the command prefix for the bot<ul><li><b>type</b>: The command type (optional)<ul><li><code>all</code> All Commands</li><li><code>device</code> Device Commands</li></ul></li><li><b>returns</b>: The prefix <code>!</code> if it's required</li></ul><p><pre><code>// getPrefix example
-var prefix = this.app.getPrefix();
+var prefix = await this.app.getPrefix();
 </code></pre></p></li>
   <li><code>getEntityInfo(id, callback)</code> Get data from a Smart device<ul><li><b>id</b>: The identifier of the Smart device</li><li><b>callback(message)</b>: The function to execute after getting the entity info (<code>message.response</code> contains <code>EntityInfo</code>)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// getEntityInfo example
 var app = this.app;
@@ -548,6 +548,8 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 ## Plugin Globals:
           
 <ul>
+  <li><code>cmdFormat(str)</code> Convert a string into a non-translatable string<ul><li><b>str</b>: The string to convert</li><b>returns</b>: a non-translatable string</li></ul></li>
+  <li><code>cmdFormatUndo(str)</code> Undo the non-translatable string conversion<ul><li><b>str</b>: The string to undo the non-translatable string conversion</li><b>returns</b>: a string</li></ul></li>
   <li><code>encodeForm(data)</code> Convert an object to form data for a webPost<ul><li><b>data</b>: The object to convert</li><b>returns</b>: a string of encoded names and values</li></ul></li>
   <li><code>combineItems(items, itemIds)</code> Combine the items from a Storage Monitor payload<ul><li><b>items</b>: The items from the payload</li><li><b>itemIds</b>: The item ID list to lookup item names</li><b>returns</b>: A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the combined items and item quantities</li></ul></li>
   <li><code>getFriendlyDate(date)</code> Get a friendly representation of the date<ul><li><b>date</b>: The date object</li><b>returns</b>: a string containing the friendly representation of the date</li></ul></li>
