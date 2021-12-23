@@ -146,7 +146,17 @@ app.getTeamInfo((message) => {
 var app = this.app;
 app.getTime((message) => {
     if (message.response && message.response.time) {
-        app.sendTeamMessage('Current Rust time is ' + (Math.floor(message.response.time.time) + (Math.round((message.response.time.time % 1) * (message.response.time.dayLengthMinutes * message.response.time.timeScale)) / 100)).toFixed(2));
+        var timeDisplay = function(value) {
+            let hours = Math.floor(value),
+                minutes = Math.floor((value - hours) * 60);
+            hours = (hours < 10) ? "0" + hours : hours;
+            minutes = (minutes < 10) ? "0" + minutes : minutes;
+            return hours + ":" + minutes;
+        };
+        app.sendTeamMessage('Current Rust time is ' + timeDisplay(message.response.time.time) +
+            ' | Sunrise: ' + timeDisplay(message.response.time.sunrise) +
+            ' | Sunset: ' + timeDisplay(message.response.time.sunset) +
+            ' | Day length: ' + getTimeDisplay(message.response.time.dayLengthMinutes * message.response.time.timeScale * 60));
     }
 });
 </code></pre></p></li>
