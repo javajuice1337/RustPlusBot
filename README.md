@@ -35,6 +35,7 @@ The `app` object exists in the plugin's scope `this`, and exposes the following 
   <li><code>guild_token</code> The unique token representing the Discord server</li>
   <li><code>guild_name</code> The name of the Discord server</li>
   <li><code>itemIds</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the item names for all item IDs (<b>key</b>: item ID, <b>value</b>: item name)</li>
+  <li><code>lang</code> The selected language for the bot's output</li>
   <li><code>monuments</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing all monument names and locations (<b>key</b>: monument name, <b>value</b>: monument location, see <code>Point</code> below)</li>
   <li><code>tokenMap</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the monument names for all monument tokens (<b>key</b>: monument token, <b>value</b>: monument name)</li>
   <li><code>player_id</code> The steam ID of the bot's connected player</li>
@@ -43,6 +44,7 @@ The `app` object exists in the plugin's scope `this`, and exposes the following 
   <li><code>server_ip</code> The IP address of the bot's connected server</li>
   <li><code>server_name</code> The name of the bot's connected server</li>
   <li><code>server_port</code> The port of the bot's connected server (Rust+ app port)</li>
+  <li><code>shortTime</code> The time display setting for the bot</li>
 </ul>
 
 ### Methods:
@@ -84,9 +86,6 @@ app.getInfo((message) => {
         app.sendTeamMessage('Current server population is ' + message.response.info.players + ' / ' + message.response.info.maxPlayers + ((message.response.info.queuedPlayers > 0) ? ' (' + message.response.info.queuedPlayers + ' in queue)' : ''));
     }
 });
-</code></pre></p></li>
-  <li><code>getLanguage()</code> Get the selected language for the bot's output<ul><li><b>returns</b>: The language code</li></ul><p><pre><code>// getLanguage example
-var lang = await this.app.getLanguage();
 </code></pre></p></li>
   <li><code>getMapMarkers(callback)</code> Get information about all map markers<ul><li><b>callback(message)</b>: The function to execute after getting the map markers (<code>message.response</code> contains <code>MapMarkers</code>)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// getMapMarkers example
 var app = this.app;
