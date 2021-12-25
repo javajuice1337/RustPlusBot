@@ -30,7 +30,6 @@ The `app` object exists in the plugin's scope `this`, and exposes the following 
 
 <ul>
   <li><code>bmData</code> An object containing the BattleMetrics data of the server (see <code>BattleMetrics Data</code> below)</li>
-  <li><code>cfg</code> An object containing the bot's configuration (see <code>Config</code> below)</li>
   <li><code>devices</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the bot's paired devices (<b>key</b>: device name, <b>value</b>: Array of devices, see <code>Device</code> below)</li>
   <li><code>devices_map</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the bot's paired device names (<b>key</b>: device ID, <b>value</b>: Array of device names)</li>
   <li><code>guild_token</code> The unique token representing the Discord server</li>
@@ -67,9 +66,6 @@ app.getBattleMetrics('123456', 'Rust Player 2099', (data) => {
   <li><code>getEvents(type)</code> Get the most recent game events (ordered by newest to oldest)<ul><li><b>type</b>: The event type (optional)<ul><li><code>heli</code> Patrol Helicopter</li><li><code>brad</code> Bradley Tank</li><li><code>cargo</code> Cargo Ship</li><li><code>crate</code> Locked Crate</li><li><code>ch47</code> CH-47 Chinook</li><li><code>oil_rig_small</code> Oil Rig (Small)</li><li><code>large_oil_rig</code> Oil Rig (Large)</li></ul></li><li><b>returns</b>: <code>Event</code> array</li></ul><p><pre><code>// getEvents example
 var e = await this.app.getEvents();
 </code></pre></p></li>
-  <li><code>getPrefix(type)</code> Get the command prefix for the bot<ul><li><b>type</b>: The command type (optional)<ul><li><code>all</code> All Commands</li><li><code>device</code> Device Commands</li></ul></li><li><b>returns</b>: The prefix <code>!</code> if it's required</li></ul><p><pre><code>// getPrefix example
-var prefix = await this.app.getPrefix();
-</code></pre></p></li>
   <li><code>getEntityInfo(id, callback)</code> Get data from a Smart device<ul><li><b>id</b>: The identifier of the Smart device</li><li><b>callback(message)</b>: The function to execute after getting the entity info (<code>message.response</code> contains <code>EntityInfo</code>)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// getEntityInfo example
 var app = this.app;
 app.getEntityInfo(123456, (message) => {
@@ -89,6 +85,9 @@ app.getInfo((message) => {
     }
 });
 </code></pre></p></li>
+  <li><code>getLanguage()</code> Get the selected language for the bot's output<ul><li><b>returns</b>: The language code</li></ul><p><pre><code>// getLanguage example
+var lang = await this.app.getLanguage();
+</code></pre></p></li>
   <li><code>getMapMarkers(callback)</code> Get information about all map markers<ul><li><b>callback(message)</b>: The function to execute after getting the map markers (<code>message.response</code> contains <code>MapMarkers</code>)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// getMapMarkers example
 var app = this.app;
 app.getMapMarkers((message) => {
@@ -102,6 +101,9 @@ app.getMapMarkers((message) => {
         app.sendTeamMessage('There are this many active vending machines: ' + cnt);
     }
 });
+</code></pre></p></li>
+  <li><code>getPrefix(type)</code> Get the command prefix for the bot<ul><li><b>type</b>: The command type (optional)<ul><li><code>all</code> All Commands</li><li><code>device</code> Device Commands</li></ul></li><li><b>returns</b>: The selected prefix if it's required</li></ul><p><pre><code>// getPrefix example
+var prefix = await this.app.getPrefix('all');
 </code></pre></p></li>
   <li><code>getRecycleItems(items, success, error)</code> Retrieve the recycled items for the input items<ul><li><b>items</b>: An object containing the item names and item values</li><li><b>success(data)</b>: The function to execute after receiving recycle data (optional)</li><li><b>error(err)</b>: The function to execute when an error occurs (optional)</li><li><b>returns</b>: <code>true</code></li></ul><p><pre><code>// getRecycleItems example
 var app = this.app;
@@ -229,30 +231,6 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
   "Uptime": "7 Days: 100%, 30 Days: 100%",
   "Average FPS": "60",
   "time": 1640108040219
-}</code></pre>
-  </li>
-  <li>
-    <b>Config</b>
-    <pre><code>{
-  "lang": "en",
-  "cmdPrefix": "!",
-  "requirePrefix": "all",
-  "teamChatIncoming": "all",
-  "teamChatOutgoing": true,
-  "teamChatDelay": 0,
-  "shortTime": false,
-  "broadcastEvents": true,
-  "broadcastVending": true,
-  "broadcastAmount": 1,
-  "battlemetricsID": 0,
-  "battlemetricsDiscord": true,
-  "deathDiscord": true,
-  "loginDiscord": true,
-  "autoCleanDevices": false,
-  "alwaysPostAlarms": true,
-  "alwaysPostAlarms": true,
-  "decayOffset": 0,
-  "eventsDisplay": "heli,brad,cargo,oil,crate,ch47"
 }</code></pre>
   </li>
   <li>
