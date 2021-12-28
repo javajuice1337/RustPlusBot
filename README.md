@@ -547,7 +547,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 </ul>
 
 ## Plugin Globals:
-          
+
 <ul>
   <li><code>cmdFormat(str)</code> Convert a string into a non-translatable string<ul><li><b>str</b>: The string to convert</li><b>returns</b>: a non-translatable string</li></ul></li>
   <li><code>cmdFormatUndo(str)</code> Undo the non-translatable string conversion<ul><li><b>str</b>: The string to undo the non-translatable string conversion</li><b>returns</b>: a string</li></ul></li>
@@ -557,4 +557,11 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
   <li><code>getTime(timestr)</code> Convert a time string to seconds<ul><li><b>timestr</b>: The time string (format: 1d1h1m1s)</li><b>returns</b>: the total seconds of the timestr</li></ul></li>
   <li><code>getTimeDifference(date)</code> Get the time difference for a date<ul><li><b>date</b>: The date object</li><b>returns</b>: the date difference in seconds</li></ul></li>
   <li><code>getTimeDisplay(time)</code> Get the time display for time<ul><li><b>time</b>: The time in seconds</li><b>returns</b>: a string representing the time</li></ul></li>
+</ul>
+
+## Links:
+
+<ul>
+    <li>Website: https://bot.rustplus.io/</li>
+    <li>Help & Documentation: https://bot.rustplus.io/help/</li>
 </ul>
