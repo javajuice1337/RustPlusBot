@@ -32,7 +32,7 @@ The `app` object exists in the plugin's scope `this`, and exposes the following 
   <li><code>bmData</code> An object containing the BattleMetrics data of the server (see <code>BattleMetrics Data</code> below)</li>
   <li><code>devices</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the bot's paired devices (<b>key</b>: device name, <b>value</b>: Array of devices, see <code>Device</code> below)</li>
   <li><code>devices_map</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the bot's paired device names (<b>key</b>: device ID, <b>value</b>: Array of device names)</li>
-  <li><code>event_types</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing game event names (<b>key</b>: Event ID, <b>value</b>: Event Name)</li>
+  <li><code>event_types</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing game event names (<b>key</b>: event ID, <b>value</b>: event name)</li>
   <li><code>guild_token</code> The unique token representing the Discord server</li>
   <li><code>guild_name</code> The name of the Discord server</li>
   <li><code>itemIds</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the item names for all item IDs (<b>key</b>: item ID, <b>value</b>: item name)</li>
