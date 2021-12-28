@@ -396,8 +396,8 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
       "type": "heli",
       "title": "Patrol Helicopter",
       "message": "The Patrol Helicopter has exploded @ A1",
-      "x": "100",
-      "y": "200"
+      "x": 100.543565665,
+      "y": 200.345765755
     },
     "server_name": "Rust Server Name"
   }
