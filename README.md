@@ -32,6 +32,7 @@ The `app` object exists in the plugin's scope `this`, and exposes the following 
   <li><code>bmData</code> An object containing the BattleMetrics data of the server (see <code>BattleMetrics Data</code> below)</li>
   <li><code>devices</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the bot's paired devices (<b>key</b>: device name, <b>value</b>: Array of devices, see <code>Device</code> below)</li>
   <li><code>devices_map</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the bot's paired device names (<b>key</b>: device ID, <b>value</b>: Array of device names)</li>
+  <li><code>event_types</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing game event names (<b>key</b>: Event ID, <b>value</b>: Event Name)</li>
   <li><code>guild_token</code> The unique token representing the Discord server</li>
   <li><code>guild_name</code> The name of the Discord server</li>
   <li><code>itemIds</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the item names for all item IDs (<b>key</b>: item ID, <b>value</b>: item name)</li>
@@ -168,7 +169,7 @@ this.app.postDiscordNotification('Plugin Alert Title', 'Plugin Alert Message');
   <li><code>postDiscordWebhook(url, msg)</code> Post a message to a Discord webhook<ul><li><b>url</b>: The url of the Discord webhook</li><li><b>msg</b>: The message to post to the Discord webhook</li></ul><p><pre><code>// postDiscordWebhook example
 this.app.postDiscordWebhook('webhook url', 'Webhook Message');
 </code></pre></p></li>
-  <li><code>sendTeamMessage(msg, callback, flag)</code> Send a team chat message<ul><li><b>msg</b>: The message to send</li><li><b>callback()</b>: The function to execute after sending (optional)</li><li><b>flag</b>: Set to <code>true</code> to disable message translation (optional)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// sendTeamMessage example
+  <li><code>sendTeamMessage(msg, callback, noTranslate)</code> Send a team chat message<ul><li><b>msg</b>: The message to send</li><li><b>callback()</b>: The function to execute after sending (optional)</li><li><b>noTranslate</b>: Set to <code>true</code> to disable message translation (optional)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// sendTeamMessage example
 var app = this.app;
 app.sendTeamMessage('This is a team message');
 </code></pre></p></li>
@@ -254,6 +255,16 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
   </li>
   <li>
     <b>Event</b>
+    <pre><code>{
+  id: 123456789,
+  type: "heli",
+  start: new Date(),
+  stop: null,         // null if active
+  getName: function() // get display name
+}</code></pre>
+  </li>
+  <li>
+    <b>Info</b>
     <pre><code>[{
   "name": "Rust Server Name",
   "headerImage": "",
@@ -267,16 +278,6 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
   "seed": 0,
   "salt": 0
 }]</code></pre>
-  </li>
-  <li>
-    <b>Info</b>
-    <pre><code>{
-  id: 123456789,
-  type: "heli",
-  start: new Date(),
-  stop: null,         // null if active
-  getName: function() // get display name
-}</code></pre>
   </li>
   <li>
     <b>LeaderMapNotes</b>
@@ -345,11 +346,11 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
     <pre><code>{
   "notification: {
     "type": "alarm",
-    "server_name": "Rust Server Name",
     "alarm": {
       "title": "Smart Alarm Title",
       "message": "Smart Alarm Message"
-    }
+    },
+    "server_name": "Rust Server Name"
   }
 }</code></pre>
   </li>
@@ -358,7 +359,6 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
     <pre><code>{
   "notification": {
     "type": "monitor",
-    "server_name": "Rust Server Name",
     "monitor": {
       "title": "MyDevice",
       "message": "This monitored TC is decaying!",
@@ -366,7 +366,8 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
       "device_id": "123456",
       "device_flag": false,
       "device_type": "Storage Monitor"
-    }
+    },
+    "server_name": "Rust Server Name"
   }
 }</code></pre>
   </li>
@@ -387,11 +388,25 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 // 3 = Storage Monitor</code></pre>
   </li>
   <li>
+    <b>Notification: Event</b>
+    <pre><code>{
+  "notification": {
+    "type": "event",
+    "event": {
+      "type": "heli",
+      "title": "Patrol Helicopter",
+      "message": "The Patrol Helicopter has exploded @ A1",
+      "x": "100",
+      "y": "200"
+    },
+    "server_name": "Rust Server Name"
+  }
+}</code></pre>
+  <li>
     <b>Notification: Inactive Device</b>
     <pre><code>{
   "notification": {
     "type": "inactive",
-    "server_name": "Rust Server Name",
     "inactive": {
       "title": "MyDevice",
       "message": "This device is inactive.",
@@ -399,7 +414,8 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
       "device_id": "123456",
       "device_flag": false,
       "device_type": "Smart Switch"
-    }
+    },
+    "server_name": "Rust Server Name"
   }
 }</code></pre>
   </li>
@@ -408,12 +424,12 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
     <pre><code>{
   "notification: {
     "type": "news",
-    "server_name": "Rust Server Name",
     "news": {
       "title": "Rust Update News",
       "url": "https://rust.facepunch.com/",
       "message": "A new Rust update blog is available!"
-    }
+    },
+    "server_name": "Rust Server Name"
   }
 }</code></pre>
   </li>
@@ -433,12 +449,12 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
     <pre><code>{
   "notification": {
     "type": "tracking",
-    "server_name": "Rust Server Name",
     "tracking": {
       "id": "12345",
       "name": "Tracked player \"Rust Player\" has joined the server",
       "status": "joined"
-    }
+    },
+    "server_name": "Rust Server Name"
   }
 }</code></pre>
   </li>
