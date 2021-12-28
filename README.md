@@ -168,7 +168,7 @@ this.app.postDiscordNotification('Plugin Alert Title', 'Plugin Alert Message');
   <li><code>postDiscordWebhook(url, msg)</code> Post a message to a Discord webhook<ul><li><b>url</b>: The url of the Discord webhook</li><li><b>msg</b>: The message to post to the Discord webhook</li></ul><p><pre><code>// postDiscordWebhook example
 this.app.postDiscordWebhook('webhook url', 'Webhook Message');
 </code></pre></p></li>
-  <li><code>sendTeamMessage(msg, callback)</code> Send a team chat message<ul><li><b>msg</b>: The message to send</li><li><b>callback()</b>: The function to execute after sending (optional)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// sendTeamMessage example
+  <li><code>sendTeamMessage(msg, callback, flag)</code> Send a team chat message<ul><li><b>msg</b>: The message to send</li><li><b>callback()</b>: The function to execute after sending (optional)</li><li><b>flag</b>: Set to <code>true</code> to disable message translation (optional)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// sendTeamMessage example
 var app = this.app;
 app.sendTeamMessage('This is a team message');
 </code></pre></p></li>
