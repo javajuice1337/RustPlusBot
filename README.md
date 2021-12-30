@@ -32,13 +32,13 @@ The `app` object exists in the plugin's scope `this`, and exposes the following 
 
 <ul>
   <li><code>bmData</code> An object containing the BattleMetrics data of the server (see <code>BattleMetrics Data</code> below)</li>
+  <li><code>cfg</code> An object containing the configuration settings for the bot (see <code>Config</code> below)</li>
   <li><code>devices</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the bot's paired devices (<b>key</b>: device name, <b>value</b>: Array of devices, see <code>Device</code> below)</li>
   <li><code>devices_map</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the bot's paired device names (<b>key</b>: device ID, <b>value</b>: Array of device names)</li>
   <li><code>event_types</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing game event names (<b>key</b>: event ID, <b>value</b>: event name)</li>
   <li><code>guild_token</code> The unique token representing the Discord server</li>
   <li><code>guild_name</code> The name of the Discord server</li>
   <li><code>itemIds</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the item names for all item IDs (<b>key</b>: item ID, <b>value</b>: item name)</li>
-  <li><code>lang</code> The selected language for the bot's output (default is English)</li>
   <li><code>monuments</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing all monument names and locations (<b>key</b>: monument name, <b>value</b>: monument location, see <code>Point</code> below)</li>
   <li><code>tokenMap</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the monument names for all monument tokens (<b>key</b>: monument token, <b>value</b>: monument name)</li>
   <li><code>player_id</code> The steam ID of the bot's connected player</li>
@@ -47,7 +47,6 @@ The `app` object exists in the plugin's scope `this`, and exposes the following 
   <li><code>server_ip</code> The IP address of the bot's connected server</li>
   <li><code>server_name</code> The name of the bot's connected server</li>
   <li><code>server_port</code> The port of the bot's connected server (Rust+ app port)</li>
-  <li><code>shortTime</code> The time display setting for the bot</li>
 </ul>
 
 ### Methods
@@ -233,6 +232,32 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
   "Uptime": "7 Days: 100%, 30 Days: 100%",
   "Average FPS": "60",
   "time": 1640108040219
+}</code></pre>
+  </li>
+  <li>
+    <b>Config</b>
+    <pre><code>{
+  "lang":"en",
+  "cmdPrefix":"!",
+  "requirePrefix":"all",
+  "teamChatIncoming":"all",
+  "teamChatOutgoing":true,
+  "teamChatDelay":0,
+  "shortTime":false,
+  "eventsDiscord":false,
+  "broadcastEvents":true,
+  "broadcastVending":true,
+  "broadcastAmount":1,
+  "battlemetricsID":0,
+  "battlemetricsDiscord":true,
+  "deathDiscord":true,
+  "loginDiscord":true,
+  "autoCleanDevices":false,
+  "autoDeviceCommand":true,
+  "alwaysPostAlarms":true,
+  "alwaysPostAlarms":true,
+  "decayOffset":0,
+  "eventsDisplay":"heli,brad,cargo,oil,crate,ch47"
 }</code></pre>
   </li>
   <li>
