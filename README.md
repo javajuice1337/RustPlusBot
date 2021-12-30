@@ -4,19 +4,21 @@
 
 # **RustPlusBot** plugins reference and examples
 
-**RustPlusBot** plugins allow the user to develop their own commands to add functionality to the bot. The plugin itself exposes many events for a programmer to attach to and execute code.
+**RustPlusBot** plugins allow the individual to develop their own commands to add functionality to the bot. The plugin itself exposes many events for a programmer to attach to and execute code.
 
-The plugins are written in JavaScript and run in a NodeJS environment.
+The plugins are written in JavaScript and run in a NodeJS environment after they are published. During development, you host the plugin on your client machine and in your web-browser. Your plugin interfaces with the bot via a WebSocket connection.
+
+You can load any of the official plugins and use them as a template for getting started in the Plugin Studio. The Plugin Studio can be accessed via a link in the Plugin settings tab on the RustPlusBot settings page for your Discord server.
 
 ## Plugin Events:
 
 <ul>
-  <li><code>onConnected()</code> Fires when the bot connects to a server</li>
+  <li><code>onConnected()</code> Fires when the bot connects to a server or when the plugin loads</li>
   <li><code>onDisconnected()</code> Fires when the bot disconnects from a server</li>
   <li><code>onEntityChanged(obj)</code> Fires when a paired Smart Device is changed<ul><li><b>obj.entityId</b>: The entity ID of the Smart device</li><li><b>obj.payload</b>: The payload data of the event (see <code>Payload</code> below)</li></ul></li>
   <li><code>onMessageReceive(obj)</code> Fires when a team chat message is received<ul><li><b>obj.message</b>: The incoming team chat message</li><li><b>obj.name</b>: The steam name of the sender</li><li><b>obj.steamId</b>: The steam ID of the sender</li></ul></li>
   <li><code>onMessageSend(obj)</code> Fires when a team chat message is sent<ul><li><b>obj.message</b>: The outgoing team chat message</li></ul></li>
-  <li><code>onNotification(obj)</code> Fires when there is a bot notification<ul><li><b>obj.notification</b>: The notification data of the event (see <code>Notification</code> below)</li></ul></li>
+  <li><code>onNotification(obj)</code> Fires when there is a bot notification (including game events)<ul><li><b>obj.notification</b>: The notification data of the event (see <code>Notification</code> below)</li></ul></li>
   <li><code>onTeamChanged(obj)</code> Fires when the team leader changes, or a team member is added or removed from the team<ul><li><b>obj.leaderSteamId</b>: The steam ID of the team leader</li><li><b>obj.leaderMapNotes</b>: The leader map notes data of the event (see <code>LeaderMapNotes</code> below)</li><li><b>obj.members</b>: The members list data of the event (see <code>Members</code> below)</li></ul></li>
 </ul>
 
@@ -36,7 +38,7 @@ The `app` object exists in the plugin's scope `this`, and exposes the following 
   <li><code>guild_token</code> The unique token representing the Discord server</li>
   <li><code>guild_name</code> The name of the Discord server</li>
   <li><code>itemIds</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the item names for all item IDs (<b>key</b>: item ID, <b>value</b>: item name)</li>
-  <li><code>lang</code> The selected language for the bot's output</li>
+  <li><code>lang</code> The selected language for the bot's output (default is English)</li>
   <li><code>monuments</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing all monument names and locations (<b>key</b>: monument name, <b>value</b>: monument location, see <code>Point</code> below)</li>
   <li><code>tokenMap</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the monument names for all monument tokens (<b>key</b>: monument token, <b>value</b>: monument name)</li>
   <li><code>player_id</code> The steam ID of the bot's connected player</li>
@@ -179,7 +181,7 @@ app.setEntityValue(123456, true, () => {
     app.sendTeamMessage('The smart switch is activated');
 });
 </code></pre></p></li>
-  <li><code>translateMessage(msg, lang, success, error)</code> Translate a message to another language<ul><li><b>msg</b>: The message to translate</li><li><b>lang</b>: The language code to use for translation</li><li><b>success(res)</b>: The function to execute after translating (optional)</li><li><b>error(err)</b>: The function to execute when an error occurs (optional)</li><li><b>returns</b>: <code>true</code></li></ul><p><pre><code>// translateMessage example
+  <li><code>translateMessage(msg, lang, success, error)</code> Translate a message to another language<ul><li><b>msg</b>: The message to translate</li><li><b>lang</b>: The language code to use for translation (see: <a href="https://developers.google.com/admin-sdk/directory/v1/languages">Language Codes</a>)</li><li><b>success(res)</b>: The function to execute after translating (optional)</li><li><b>error(err)</b>: The function to execute when an error occurs (optional)</li><li><b>returns</b>: <code>true</code></li></ul><p><pre><code>// translateMessage example
 var app = this.app;
 app.translateMessage('Hello, how are you?', 'es', (res) => {
     app.sendTeamMessage(res);
@@ -209,10 +211,10 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
     app.sendTeamMessage('Error posting: ' + error);
 });
 </code></pre></p></li>
-  <li><code>util.getMapCoords(x, y)</code> Get the map coordinates for a point</li>
-  <li><code>util.inRect(x, y, x1, y1, x2, y2)</code> Check if a point is inside a rectangle</li>
   <li><code>util.direction(x1, y1, x2, y2)</code> Get the direction from the first point facing the second</li>
   <li><code>util.distance(x1, y1, x2, y2)</code> Get the distance between two points in meters</li>
+  <li><code>util.getMapCoords(x, y)</code> Get the map coordinates for a point</li>
+  <li><code>util.inRect(x, y, x1, y1, x2, y2)</code> Check if a point is inside a rectangle</li>
 </ul>
 
 ### Data Types:
@@ -558,6 +560,10 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
   <li><code>getTimeDifference(date)</code> Get the time difference for a date<ul><li><b>date</b>: The date object</li><b>returns</b>: the date difference in seconds</li></ul></li>
   <li><code>getTimeDisplay(time)</code> Get the time display for time<ul><li><b>time</b>: The time in seconds</li><b>returns</b>: a string representing the time</li></ul></li>
 </ul>
+
+## Plugin Publishing:
+          
+You can publish your plugin when you are done making any major changes to it by clicking the Publish tab in the Plugin Studio. You have the option of making it a public plugin for others to use with their bot. There will be a review of your plugin after submitting which could take several days. If your plugin is accepted for publishing, you will then be able to select it in the Plugin settings for your bot and install it.
 
 ## Links:
 
