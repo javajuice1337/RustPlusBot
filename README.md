@@ -221,43 +221,49 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 <ul>
   <li>
     <b>BattleMetrics Data</b>
-    <pre><code>{
+    <pre><code>{     
   "Name": "Server Name",
-  "Address": "Server Address",
   "Rank": "#1",
   "Player count": "1/100",
+  "Address": "Server Address",
   "Status": "online",
   "Distance": "1 km",
   "Country": "United States",
   "Uptime": "7 Days: 100%, 30 Days: 100%",
   "Average FPS": "60",
+  "Last Wipe": "12/16/2021 - 13 days ago",
+  "PVE": "False",
+  "Website": "https://",
+  "Entity Count": "265,097",
+  "Official Server": "True",
+  "id": 546784,
   "time": 1640108040219
 }</code></pre>
   </li>
   <li>
     <b>Config</b>
     <pre><code>{
-  "lang":"en",
-  "cmdPrefix":"!",
-  "requirePrefix":"all",
-  "teamChatIncoming":"all",
-  "teamChatOutgoing":true,
-  "teamChatDelay":0,
-  "shortTime":false,
-  "eventsDiscord":false,
-  "broadcastEvents":true,
-  "broadcastVending":true,
-  "broadcastAmount":1,
-  "battlemetricsID":0,
-  "battlemetricsDiscord":true,
-  "deathDiscord":true,
-  "loginDiscord":true,
-  "autoCleanDevices":false,
-  "autoDeviceCommand":true,
-  "alwaysPostAlarms":true,
-  "alwaysPostAlarms":true,
-  "decayOffset":0,
-  "eventsDisplay":"heli,brad,cargo,oil,crate,ch47"
+  "lang": "en",
+  "cmdPrefix": "!",
+  "requirePrefix": "all",
+  "teamChatIncoming": "all",
+  "teamChatOutgoing": true,
+  "teamChatDelay": 0,
+  "shortTime": false,
+  "eventsDiscord": false,
+  "broadcastEvents": true,
+  "broadcastVending": true,
+  "broadcastAmount": 1,
+  "battlemetricsID": 0,
+  "battlemetricsDiscord": true,
+  "deathDiscord": true,
+  "loginDiscord": true,
+  "autoCleanDevices": false,
+  "autoDeviceCommand": true,
+  "alwaysPostAlarms": true,
+  "alwaysPostAlarms": true,
+  "decayOffset": 0,
+  "eventsDisplay": "heli,brad,cargo,oil,crate,ch47"
 }</code></pre>
   </li>
   <li>
@@ -349,23 +355,23 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
   <li>
     <b>Members</b>
     <pre><code>[{
-  "steamId":"123456789",
-  "name":"RustPlayer1",
-  "x":1497.4344482421875,
-  "y":2522.85546875,
-  "isOnline":true,
-  "spawnTime":1638768666,
-  "isAlive":true,
-  "deathTime":1638768647
+  "steamId": "123456789",
+  "name": "RustPlayer1",
+  "x": 1497.4344482421875,
+  "y": 2522.85546875,
+  "isOnline": true,
+  "spawnTime": 1638768666,
+  "isAlive": true,
+  "deathTime": 1638768647
 }, {
-  "steamId":"123456799",
-  "name":"RustPlayer2",
-  "x":1487.4344482421875,
-  "y":2512.85546875,
-  "isOnline":true,
-  "spawnTime":1638768866,
-  "isAlive":true,
-  "deathTime":1638768847
+  "steamId": "123456799",
+  "name": "RustPlayer2",
+  "x": 1487.4344482421875,
+  "y": 2512.85546875,
+  "isOnline": true,
+  "spawnTime": 1638768866,
+  "isAlive": true,
+  "deathTime": 1638768847
 }]</code></pre>
   </li>
   <li>
