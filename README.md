@@ -10,7 +10,7 @@ The plugins are written in JavaScript and run in a NodeJS environment after they
 
 You can load any of the official plugins and use them as a template for getting started in the Plugin Studio. The Plugin Studio can be accessed via a link in the Plugin settings tab on the RustPlusBot settings page for your Discord server.
 
-## Plugin Events:
+## Plugin Events
 
 <ul>
   <li><code>onConnected()</code> Fires when the bot connects to a server or when the plugin loads</li>
@@ -24,11 +24,11 @@ You can load any of the official plugins and use them as a template for getting 
 
 > Plugins are loaded when the bot is starting and lasts for its entire life-cycle. Restarting the bot also restarts all plugins.
 
-## Plugin Interface:
+## Plugin Interface
 
 The `app` object exists in the plugin's scope `this`, and exposes the following properties and methods:
 
-### Properties:
+### Properties
 
 <ul>
   <li><code>bmData</code> An object containing the BattleMetrics data of the server (see <code>BattleMetrics Data</code> below)</li>
@@ -50,7 +50,7 @@ The `app` object exists in the plugin's scope `this`, and exposes the following 
   <li><code>shortTime</code> The time display setting for the bot</li>
 </ul>
 
-### Methods:
+### Methods
 
 <ul>
   <li><code>getBattleMetrics(serverId, playerName, success, error)</code> Retrieve the BattleMetrics for a server player<ul><li><b>serverId</b>: The BattleMetrics ID of the server</li><li><b>playerName</b>: The name of the player</li><li><b>success(data)</b>: The function to execute after receiving BattleMetrics data (optional)</li><li><b>error(err)</b>: The function to execute when an error occurs (optional)</li><li><b>returns</b>: <code>true</code></li></ul><p><pre><code>// getBattleMetrics example
@@ -217,7 +217,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
   <li><code>util.inRect(x, y, x1, y1, x2, y2)</code> Check if a point is inside a rectangle</li>
 </ul>
 
-### Data Types:
+### Data Types
 
 <ul>
   <li>
@@ -548,7 +548,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
   </li>
 </ul>
 
-## Plugin Globals:
+## Plugin Globals
 
 <ul>
   <li><code>cmdFormat(str)</code> Convert a string into a non-translatable string<ul><li><b>str</b>: The string to convert</li><b>returns</b>: a non-translatable string</li></ul></li>
@@ -561,11 +561,11 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
   <li><code>getTimeDisplay(time)</code> Get the time display for time<ul><li><b>time</b>: The time in seconds</li><b>returns</b>: a string representing the time</li></ul></li>
 </ul>
 
-## Plugin Publishing:
+## Plugin Publishing
           
 You can publish your plugin when you are done making any major changes to it by clicking the Publish tab in the Plugin Studio. You have the option of making it a public plugin for others to use with their bot. There will be a review of your plugin after submitting which could take several days. If your plugin is accepted for publishing, you will then be able to select it in the Plugin settings for your bot and install it.
 
-## Links:
+## Links
 
 <ul>
     <li>Website: https://bot.rustplus.io/</li>
