@@ -291,9 +291,9 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
     <pre><code>{
   id: 123456789,
   type: "heli",
+  name: "Patrol Helicopter @ A1",
   start: new Date(),
-  stop: null,         // null if active
-  getName: function() // get display name
+  stop: null // null if active
 }</code></pre>
   </li>
   <li>
