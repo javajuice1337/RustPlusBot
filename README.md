@@ -272,7 +272,8 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
   name: "MyDevice",
   id: 123456,
   flag: false, // true if op is inverted
-  type: "Smart Switch"
+  type: "Smart Switch",
+  time: 0 // timestamp of last state change
 }</code></pre>
   </li>
   <li>
