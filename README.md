@@ -89,6 +89,17 @@ app.getInfo((message) => {
     }
 });
 </code></pre></p></li>
+  <li><code>getItemName(item, success, error)</code> Lookup the full item name for a partial item name search<ul><li><b>item</b>: The item name to search for</li><li><b>success(data)</b>: The function to execute after receiving ItemName data (optional)</li><li><b>error(err)</b>: The function to execute when an error occurs (optional)</li><li><b>returns</b>: <code>true</code></li></ul><p><pre><code>// getItemName example
+var app = this.app;
+app.getItemName("metal", (data) => {
+    if (data) {
+        app.sendTeamMessage('Item \'metal\' matches: ' + data);
+    }
+    else app.sendTeamMessage('Unable to lookup ItemName data');
+}, (error) => {
+    app.sendTeamMessage('Error obtaining the ItemName data: ' + error);
+});
+</code></pre></p></li>
   <li><code>getMapMarkers(callback)</code> Get information about all map markers<ul><li><b>callback(message)</b>: The function to execute after getting the map markers (<code>message.response</code> contains <code>MapMarkers</code>)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// getMapMarkers example
 var app = this.app;
 app.getMapMarkers((message) => {
