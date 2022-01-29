@@ -594,14 +594,15 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 ## Plugin Globals
 
 <ul>
-  <li><code>cmdFormat(str)</code> Convert a string into a non-translatable string<ul><li><b>str</b>: The string to convert</li><b>returns</b>: a non-translatable string</li></ul></li>
-  <li><code>cmdFormatUndo(str)</code> Undo the non-translatable string conversion<ul><li><b>str</b>: The string to undo the non-translatable string conversion</li><b>returns</b>: a string</li></ul></li>
-  <li><code>encodeForm(data)</code> Convert an object to form data for a webPost<ul><li><b>data</b>: The object to convert</li><b>returns</b>: a string of encoded names and values</li></ul></li>
-  <li><code>combineItems(items, itemIds)</code> Combine the items from a Storage Monitor payload<ul><li><b>items</b>: The items from the payload</li><li><b>itemIds</b>: The item ID list to lookup item names</li><b>returns</b>: A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the combined items and item quantities</li></ul></li>
-  <li><code>getFriendlyDate(date)</code> Get a friendly representation of the date<ul><li><b>date</b>: The date object</li><b>returns</b>: a string containing the friendly representation of the date</li></ul></li>
-  <li><code>getTime(timestr)</code> Convert a time string to seconds<ul><li><b>timestr</b>: The time string (format: 1d1h1m1s)</li><b>returns</b>: the total seconds of the timestr</li></ul></li>
-  <li><code>getTimeDifference(date)</code> Get the time difference for a date<ul><li><b>date</b>: The date object</li><b>returns</b>: the date difference in seconds</li></ul></li>
-  <li><code>getTimeDisplay(time)</code> Get the time display for time<ul><li><b>time</b>: The time in seconds</li><b>returns</b>: a string representing the time</li></ul></li>
+  <li><code>cmdFormat(str)</code> Convert a string into a non-translatable string<ul><li><b>str</b>: The string to convert</li><li><b>returns</b>: a non-translatable string</li></ul></li>
+  <li><code>cmdFormatUndo(str)</code> Undo the non-translatable string conversion<ul><li><b>str</b>: The string to undo the non-translatable string conversion</li><li><b>returns</b>: a string</li></ul></li>
+  <li><code>encodeForm(data)</code> Convert an object to form data for a webPost<ul><li><b>data</b>: The object to convert</li><li><b>returns</b>: a string of encoded names and values</li></ul></li>
+  <li><code>combineItems(items, itemIds)</code> Combine the items from a Storage Monitor payload<ul><li><b>items</b>: The items from the payload</li><li><b>itemIds</b>: The item ID list to lookup item names</li><li><b>returns</b>: A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the combined items and item quantities</li></ul></li>
+  <li><code>getFriendlyDate(date)</code> Get a friendly representation of the date<ul><li><b>date</b>: The date object</li><li><b>returns</b>: a string containing the friendly representation of the date</li></ul></li>
+  <li><code>getTime(timestr)</code> Convert a time string to seconds<ul><li><b>timestr</b>: The time string (format: 1d1h1m1s)</li><li><b>returns</b>: the total seconds of the timestr</li></ul></li>
+  <li><code>getTimeDifference(date)</code> Get the time difference for a date<ul><li><b>date</b>: The date object</li><li><b>returns</b>: the date difference in seconds</li></ul></li>
+  <li><code>getTimeDisplay(time)</code> Get the time display for time<ul><li><b>time</b>: The time in seconds</li><li><b>returns</b>: a string representing the time</li></ul></li>
+  <li><code>multiLineFormat(msg, list, callback)</code> Format the message + list to fit the Rust message size using multiple lines<ul><li><b>msg</b>: The message to prepend</li><li><b>list</b>: The list of items to output</li><li><b>callback</b>: The function to execute for each formatted line (optional)</li><li><b>returns</b>: an Array containing the formatted lines</li></ul></li>
 </ul>
 
 ## Plugin Publishing
