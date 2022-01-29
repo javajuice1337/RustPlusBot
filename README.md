@@ -602,7 +602,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
   <li><code>getTime(timestr)</code> Convert a time string to seconds<ul><li><b>timestr</b>: The time string (format: 1d1h1m1s)</li><li><b>returns</b>: the total seconds of the timestr</li></ul></li>
   <li><code>getTimeDifference(date)</code> Get the time difference for a date<ul><li><b>date</b>: The date object</li><li><b>returns</b>: the date difference in seconds</li></ul></li>
   <li><code>getTimeDisplay(time)</code> Get the time display for time<ul><li><b>time</b>: The time in seconds</li><li><b>returns</b>: a string representing the time</li></ul></li>
-  <li><code>multiLineFormat(msg, list, callback)</code> Format the message + list to fit the Rust message size using multiple lines<ul><li><b>msg</b>: The message to prepend</li><li><b>list</b>: The list of items to output</li><li><b>callback</b>: The function to execute for each formatted line (optional)</li><li><b>returns</b>: an Array containing the formatted lines</li></ul></li>
+  <li><code>multiLineFormat(msg, list, callback)</code> Format the message + list to fit the Rust message size using multiple lines<ul><li><b>msg</b>: The message to prepend</li><li><b>list</b>: The list of items to output</li><li><b>callback(line)</b>: The function to execute for each formatted line (optional)</li><li><b>returns</b>: an Array containing the formatted lines</li></ul></li>
 </ul>
 
 ## Plugin Publishing
