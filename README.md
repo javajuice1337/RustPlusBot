@@ -224,7 +224,8 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
   <li><code>util.direction(x1, y1, x2, y2)</code> Get the direction from the first point facing the second</li>
   <li><code>util.distance(x1, y1, x2, y2)</code> Get the distance between two points in meters</li>
   <li><code>util.getMapCoords(x, y)</code> Get the map coordinates for a point</li>
-  <li><code>util.inRect(x, y, x1, y1, x2, y2)</code> Check if a point is inside a rectangle</li>
+  <li><code>util.inRect(x, y, x1, y1, x2, y2)</code> Returns true if the point is inside the rectangle</li>
+  <li><code>util.intersects(a, b, c, d, p, q, r, s)</code> Returns true if line a,b:c,d intersects line p,q:r,s</li>
 </ul>
 
 ### Data Types
