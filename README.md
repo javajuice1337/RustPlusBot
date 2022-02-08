@@ -362,7 +362,8 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 // 3 = VendingMachine
 // 4 = CH47
 // 5 = CargoShip
-// 6 = Crate</code></pre>
+// 6 = Crate
+// 8 = PatrolHelicopter</code></pre>
     <blockquote>Find the item name with the itemId using <code>itemIds</code></blockquote>
   </li>
   <li>
