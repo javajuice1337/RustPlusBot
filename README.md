@@ -17,7 +17,7 @@ You can load any of the official plugins and use them as a template for getting 
 For data that persists beyond the bot's instance, use `this.storage`. For example:
 
 ```
-this.storage.playerName = 'Player';
+if (!this.storage.playerName) this.storage.playerName = 'Player';
 console.log(this.storage.playerName);
 ```
 
