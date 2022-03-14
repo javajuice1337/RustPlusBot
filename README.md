@@ -10,6 +10,17 @@ The plugins are written in JavaScript and run in a NodeJS environment after they
 
 You can load any of the official plugins and use them as a template for getting started in the Plugin Studio. The Plugin Studio can be accessed via a link in the Plugin settings tab on the RustPlusBot settings page for your Discord server.
 
+> Plugins are loaded when the bot is starting and lasts for its entire life-cycle. Restarting the bot also restarts all plugins.
+
+## Plugin Storage
+
+For data that persists beyond the bot's instance, use `this.storage`. For example:
+
+```
+this.storage.playerName = 'Player';
+console.log(this.storage.playerName);
+```
+
 ## Plugin Events
 
 <ul>
@@ -21,8 +32,6 @@ You can load any of the official plugins and use them as a template for getting 
   <li><code>onNotification(obj)</code> Fires when there is a bot notification (including game events)<ul><li><b>obj.notification</b>: The notification data of the event (see <code>Notification</code> below)</li></ul></li>
   <li><code>onTeamChanged(obj)</code> Fires when the team leader changes, or a team member is added or removed from the team<ul><li><b>obj.leaderSteamId</b>: The steam ID of the team leader</li><li><b>obj.leaderMapNotes</b>: The leader map notes data of the event (see <code>LeaderMapNotes</code> below)</li><li><b>obj.members</b>: The members list data of the event (see <code>Members</code> below)</li></ul></li>
 </ul>
-
-> Plugins are loaded when the bot is starting and lasts for its entire life-cycle. Restarting the bot also restarts all plugins.
 
 ## Plugin Interface
 
