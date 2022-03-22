@@ -14,9 +14,10 @@ You can load any of the official plugins and use them as a template for getting 
 
 ## Plugin Storage
 
-For data that persists beyond the bot's instance, use `this.storage`. For example:
+For data that persists beyond the bot's instance, use `this.storage`. This object loads with the bot and saves when it shuts down or restarts.
 
 ```
+// store the playerName variable
 if (!this.storage.playerName) this.storage.playerName = 'Player';
 console.log(this.storage.playerName);
 ```
@@ -58,10 +59,15 @@ The `app` object exists in the plugin's scope `this`, and exposes the following 
   <li><code>server_port</code> The port of the bot's connected server (Rust+ app port)</li>
 </ul>
 
+```
+// get the bot's language setting
+console.log(this.app.cfg.lang);
+```
+
 ### Methods
 
 <ul>
-  <li><code>getBattleMetrics(serverId, playerName, success, error)</code> Retrieve the BattleMetrics for a server player<ul><li><b>serverId</b>: The BattleMetrics ID of the server</li><li><b>playerName</b>: The name of the player</li><li><b>success(data)</b>: The function to execute after receiving BattleMetrics data (optional)</li><li><b>error(err)</b>: The function to execute when an error occurs (optional)</li><li><b>returns</b>: <code>true</code></li></ul><p><pre><code>// getBattleMetrics example
+  <li><code>getBattleMetrics(serverId, playerName, success, error)</code> Retrieve the BattleMetrics for a server player<ul><li><b>serverId</b>: The BattleMetrics ID of the server</li><li><b>playerName</b>: The name of the player</li><li><b>success(data)</b>: The function to execute after receiving the BattleMetrics data (optional)</li><li><b>error(err)</b>: The function to execute when an error occurs (optional)</li><li><b>returns</b>: <code>true</code></li></ul><p><pre><code>// getBattleMetrics example
 var app = this.app;
 app.getBattleMetrics('123456', 'Rust Player 2099', (data) => {
     if (data && data.name) {
@@ -269,27 +275,38 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
   <li>
     <b>Config</b>
     <pre><code>{
+         "autoDeviceCommand":true,"showDevicePlayer":false,"alwaysPostAlarms":true,"alwaysPostAlarms":true,"decayOffset":0,"eventsDisplay":"heli,brad,cargo,oil,crate,ch47","subEventsDisplay":"heli_lootable,brad_lootable,cargo_crates,oil_lootable"}
+          
   "lang": "en",
   "cmdPrefix": "!",
   "requirePrefix": "all",
   "teamChatIncoming": "all",
   "teamChatOutgoing": true,
+  "teamChatResponses": false,
+  "teamChatSilenced": false,
   "teamChatDelay": 0,
+  "teamChatTTS": false,
   "shortTime": false,
+  "nextTime": false,
+  "altTime": false,
   "eventsDiscord": false,
   "broadcastEvents": true,
+  "vendingDiscord": false,
   "broadcastVending": true,
+  "broadcastVendingName": true,
   "broadcastAmount": 1,
   "battlemetricsID": 0,
   "battlemetricsDiscord": true,
   "deathDiscord": true,
   "loginDiscord": true,
-  "autoCleanDevices": false,
+  "autoCleanDevices": true,
   "autoDeviceCommand": true,
+  "showDevicePlayer": false,
   "alwaysPostAlarms": true,
   "alwaysPostAlarms": true,
   "decayOffset": 0,
-  "eventsDisplay": "heli,brad,cargo,oil,crate,ch47"
+  "eventsDisplay": "heli,brad,cargo,oil,crate,ch47",
+  "subEventsDisplay": "heli_lootable,brad_lootable,cargo_crates,oil_lootable"
 }</code></pre>
   </li>
   <li>
