@@ -211,7 +211,7 @@ app.setEntityValue(123456, true, () => {
     app.sendTeamMessage('The smart switch is activated');
 });
 </code></pre></p></li>
-  <li><code>translateMessage(msg, lang, success, error)</code> Translate a message to another language<ul><li><b>msg</b>: The message to translate</li><li><b>lang</b>: The language code to use for translation (see: <a href="https://developers.google.com/admin-sdk/directory/v1/languages">Language Codes</a>)</li><li><b>success(res)</b>: The function to execute after translating (optional)</li><li><b>error(err)</b>: The function to execute when an error occurs (optional)</li><li><b>returns</b>: <code>true</code></li></ul><p><pre><code>// translateMessage example
+  <li><code>translateMessage(msg, lang, success, error)</code> Translate a message to another language<ul><li><b>msg</b>: The message to translate</li><li><b>lang</b>: The language code to use for translation (see: <a href="https://bot.rustplus.io/languages">Language Codes</a>)</li><li><b>success(res)</b>: The function to execute after translating (optional)</li><li><b>error(err)</b>: The function to execute when an error occurs (optional)</li><li><b>returns</b>: <code>true</code></li></ul><p><pre><code>// translateMessage example
 var app = this.app;
 app.translateMessage('Hello, how are you?', 'es', (res) => {
     app.sendTeamMessage(res);
@@ -274,9 +274,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
   </li>
   <li>
     <b>Config</b>
-    <pre><code>{
-         "autoDeviceCommand":true,"showDevicePlayer":false,"alwaysPostAlarms":true,"alwaysPostAlarms":true,"decayOffset":0,"eventsDisplay":"heli,brad,cargo,oil,crate,ch47","subEventsDisplay":"heli_lootable,brad_lootable,cargo_crates,oil_lootable"}
-          
+    <pre><code>{     
   "lang": "en",
   "cmdPrefix": "!",
   "requirePrefix": "all",
@@ -627,15 +625,112 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 ## Plugin Globals
 
 <ul>
-  <li><code>cmdFormat(str)</code> Convert a string into a non-translatable string<ul><li><b>str</b>: The string to convert</li><li><b>returns</b>: a non-translatable string</li></ul></li>
-  <li><code>cmdFormatUndo(str)</code> Undo the non-translatable string conversion<ul><li><b>str</b>: The string to undo the non-translatable string conversion</li><li><b>returns</b>: a string</li></ul></li>
-  <li><code>encodeForm(data)</code> Convert an object to form data for a webPost<ul><li><b>data</b>: The object to convert</li><li><b>returns</b>: a string of encoded names and values</li></ul></li>
-  <li><code>combineItems(items, itemIds)</code> Combine the items from a Storage Monitor payload<ul><li><b>items</b>: The items from the payload</li><li><b>itemIds</b>: The item ID list to lookup item names</li><li><b>returns</b>: A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the combined items and item quantities</li></ul></li>
-  <li><code>getFriendlyDate(date)</code> Get a friendly representation of the date<ul><li><b>date</b>: The date object</li><li><b>returns</b>: a string containing the friendly representation of the date</li></ul></li>
-  <li><code>getTime(timestr)</code> Convert a time string to seconds<ul><li><b>timestr</b>: The time string (format: 1d1h1m1s)</li><li><b>returns</b>: the total seconds of the timestr</li></ul></li>
-  <li><code>getTimeDifference(date)</code> Get the time difference for a date<ul><li><b>date</b>: The date object</li><li><b>returns</b>: the date difference in seconds</li></ul></li>
-  <li><code>getTimeDisplay(time)</code> Get the time display for time<ul><li><b>time</b>: The time in seconds</li><li><b>returns</b>: a string representing the time</li></ul></li>
-  <li><code>multiLineFormat(msg, list, callback)</code> Format the message + list to fit the Rust message size using multiple lines<ul><li><b>msg</b>: The message to prepend</li><li><b>list</b>: The list of items to output</li><li><b>callback(line, msg, data)</b>: The function to execute for each formatted line (optional)</li><li><b>returns</b>: an Array containing the formatted lines</li></ul></li>
+  <li><code>cmdFormat(str)</code> Convert a string into a non-translatable string<ul><li><b>str</b>: The string to convert</li><li><b>returns</b>: a non-translatable string</li></ul><p><pre><code>// cmdFormat example
+var app = this.app,
+    msg = 'Here is the url: ' + cmdFormat('https://www.google.com');
+app.sendTeamMessage(msg);
+</code></pre></p></li>
+  <li><code>cmdFormatUndo(str)</code> Undo the non-translatable string conversion<ul><li><b>str</b>: The string to undo the non-translatable string conversion</li><li><b>returns</b>: a string</li></ul><p><pre><code>// cmdFormatUndo example
+var app = this.app,
+    msg = 'Here is the url: ' + cmdFormat('https://www.google.com');
+console.log(cmdFormatUndo(msg));
+</code></pre></p></li>
+  <li><code>encodeForm(data)</code> Convert an object to form data for a webPost<ul><li><b>data</b>: The object to convert</li><li><b>returns</b>: a string of encoded names and values</li></ul><p><pre><code>// encodeForm example
+var app = this.app;
+app.webPost('https://www.iplocation.net/ip-lookup', encodeForm({ query: app.server_ip }), null, (data) => {
+    var regex = new RegExp('<tr><td>' + app.server_ip + '</td><td>([^<]+)<', 'g'),
+        match = regex.exec(data);
+    if (match)
+        app.sendTeamMessage('GeoIP location of the server: ' + match[1]);
+    else
+        app.sendTeamMessage('Unable to get the GeoIP location of the server');
+}, (error) => {
+    app.sendTeamMessage('Error posting: ' + error);
+});
+</code></pre></p></li>
+  <li><code>combineItems(items, itemIds)</code> Combine the items from a Storage Monitor payload<ul><li><b>items</b>: The items from the payload</li><li><b>itemIds</b>: The item ID list to lookup item names</li><li><b>returns</b>: A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the combined items and item quantities</li></ul><p><pre><code>// combineItems example
+var app = this.app,
+    device = app.devices.get('BaseTC')[0];
+app.getEntityInfo(device.id, (message) => {
+    if (message.response && message.response.entityInfo && message.response.entityInfo.payload && message.response.entityInfo.payload.capacity > 0 && message.response.entityInfo.payload.items) {
+        var items = combineItems(message.response.entityInfo.payload.items, app.itemIds),
+            sorted = [],
+            list = [];
+        items.forEach((value, key) => {
+            sorted.push({ name: key, quantity: value });
+        });
+        sorted.sort(function (a, b) {
+            if (a.name < b.name) return -1;
+            if (a.name > b.name) return 1;
+        });
+        sorted.forEach((item) => {
+            list.push(item.name + ' x ' + item.quantity.toLocaleString());
+        });
+        if (list.length > 0) {
+            multiLineFormat('Device \'' + cmdFormat(device.name) + '\' contents: ', list, function(line) {
+                app.sendTeamMessage(line);
+            });
+        }
+    }
+});
+</code></pre></p></li>
+  <li><code>getFriendlyDate(date)</code> Get a friendly representation of the date<ul><li><b>date</b>: The date object</li><li><b>returns</b>: a string containing the friendly representation of the date</li></ul><p><pre><code>// getFriendlyDate example
+var app = this.app;
+app.getTeamInfo((message) => {
+    if (message.response && message.response.teamInfo) {
+        var status = '',
+            status_time = 0;
+        for (var i = 0; i < message.response.teamInfo.members.length; i++) {
+            if (message.response.teamInfo.members[i].steamId == message.response.teamInfo.leaderSteamId) {
+                status = (message.response.teamInfo.members[i].isAlive) ? 'alive' : 'dead';
+                status_time = (message.response.teamInfo.members[i].isAlive) ? message.response.teamInfo.members[i].spawnTime : message.response.teamInfo.members[i].deathTime;
+                break;
+            }
+        }
+        app.sendTeamMessage('The team leader has been ' + status + ' since ' + getFriendlyDate(status_time * 1000));
+    }
+});
+</code></pre></p></li>
+  <li><code>getTime(timestr)</code> Convert a time string to seconds<ul><li><b>timestr</b>: The time string (format: 1d1h1m1s)</li><li><b>returns</b>: the total seconds of the timestr</li></ul><p><pre><code>// getTime example
+var app = this.app;
+app.sendTeamMessage('The time in seconds for 1d1h1m1s is ' + getTime('1d1h1m1s'));
+</code></pre></p></li>
+  <li><code>getTimeDifference(date)</code> Get the time difference for a date<ul><li><b>date</b>: The date object</li><li><b>returns</b>: the date difference in seconds</li></ul><p><pre><code>// getTimeDifference example
+var app = this.app,
+    connected = await app.getConnected();
+app.sendTeamMessage('The time in seconds since the bot connected is ' + Math.round(getTimeDifference(new Date(connected))));
+</code></pre></p></li>
+  <li><code>getTimeDisplay(time)</code> Get the time display for time<ul><li><b>time</b>: The time in seconds</li><li><b>returns</b>: a string representing the time</li></ul><p><pre><code>// getTimeDisplay example
+var app = this.app,
+    connected = await app.getConnected();
+app.sendTeamMessage('The bot has been connected for ' + getTimeDisplay(Math.round(getTimeDifference(new Date(connected)))));
+</code></pre></p></li>
+  <li><code>multiLineFormat(msg, list, callback)</code> Format the message + list to fit the Rust message size using multiple lines<ul><li><b>msg</b>: The message to prepend</li><li><b>list</b>: The list of items to output</li><li><b>callback(line, msg, data)</b>: The function to execute for each formatted line (optional)</li><li><b>returns</b>: an Array containing the formatted lines</li></ul><p><pre><code>// multiLineFormat example
+var app = this.app,
+    device = app.devices.get('BaseTC')[0];
+app.getEntityInfo(device.id, (message) => {
+    if (message.response && message.response.entityInfo && message.response.entityInfo.payload && message.response.entityInfo.payload.capacity > 0 && message.response.entityInfo.payload.items) {
+        var items = combineItems(message.response.entityInfo.payload.items, app.itemIds),
+            sorted = [],
+            list = [];
+        items.forEach((value, key) => {
+            sorted.push({ name: key, quantity: value });
+        });
+        sorted.sort(function (a, b) {
+            if (a.name < b.name) return -1;
+            if (a.name > b.name) return 1;
+        });
+        sorted.forEach((item) => {
+            list.push(item.name + ' x ' + item.quantity.toLocaleString());
+        });
+        if (list.length > 0) {
+            multiLineFormat('Device \'' + cmdFormat(device.name) + '\' contents: ', list, function(line) {
+                app.sendTeamMessage(line);
+            });
+        }
+    }
+});
+</code></pre></p></li>
 </ul>
 
 ## Plugin Publishing
