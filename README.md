@@ -49,7 +49,7 @@ The `app` object exists in the plugin's scope `this`, and exposes the following 
   <li><code>guild_token</code> The unique token representing the Discord server</li>
   <li><code>guild_name</code> The name of the Discord server</li>
   <li><code>itemIds</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the item names for all item IDs (<b>key</b>: item ID, <b>value</b>: item name)</li>
-  <li><code>monuments</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing all monument tokens  and locations (<b>key</b>: monument token, <b>value</b>: monument location, see <code>Point</code> below)</li>
+  <li><code>monuments</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing all monument tokens  and locations (<b>key</b>: monument token, <b>value</b>: Array of monument locations, see <code>Point</code> below)</li>
   <li><code>tokenMap</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the monument names for all monument tokens (<b>key</b>: monument token, <b>value</b>: monument name)</li>
   <li><code>player_id</code> The steam ID of the bot's connected player</li>
   <li><code>player_name</code> The steam name of the bot's connected player</li>
