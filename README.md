@@ -120,6 +120,14 @@ app.getItemName("metal", (data) => {
     app.sendTeamMessage('Error obtaining the ItemName data: ' + error);
 });
 </code></pre></p></li>
+  <li><code>getMapInfo(callback)</code> Get information about the server's map<ul><li><b>callback(message)</b>: The function to execute after getting the map info (<code>message</code> is <code>MapInfo</code>)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// getMapInfo example
+var app = this.app;
+app.getMapInfo((message) => {
+    if (message && message.image) {
+        app.sendTeamMessage('Link to server map: ' + message.image);
+    }
+});
+</code></pre></p></li>
   <li><code>getMapMarkers(callback)</code> Get information about all map markers<ul><li><b>callback(message)</b>: The function to execute after getting the map markers (<code>message.response</code> contains <code>MapMarkers</code>)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// getMapMarkers example
 var app = this.app;
 app.getMapMarkers((message) => {
@@ -353,6 +361,18 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
   "queuedPlayers": 0,
   "seed": 0,
   "salt": 0
+}]</code></pre>
+  </li>
+  <li>
+    <b>MapInfo</b>
+    <pre><code>[{
+  "width": 3125,
+  "height": 3125,
+  "oceanMargin": 500,
+  "mapSize": 4250,
+  "background": "#12404D",
+  "image": "",
+  "cached": true
 }]</code></pre>
   </li>
   <li>
