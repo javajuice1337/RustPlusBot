@@ -57,6 +57,7 @@ The `app` object exists in the plugin's scope `this`, and exposes the following 
   <li><code>server_ip</code> The IP address of the bot's connected server</li>
   <li><code>server_name</code> The name of the bot's connected server</li>
   <li><code>server_port</code> The port of the bot's connected server (Rust+ app port)</li>
+  <li><code>server_tags</code> Internal tags used to describe this server</li>
 </ul>
 
 ```
