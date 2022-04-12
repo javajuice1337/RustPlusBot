@@ -186,17 +186,15 @@ app.getTeamInfo((message) => {
 var app = this.app;
 app.getTime((message) => {
     if (message.response && message.response.time) {
-        var timeDisplay = function(value) {
-            let hours = Math.floor(value),
-                minutes = Math.floor((value - hours) * 60);
-            hours = (hours < 10) ? "0" + hours : hours;
-            minutes = (minutes < 10) ? "0" + minutes : minutes;
-            return hours + ":" + minutes;
-        };
-        app.sendTeamMessage('Current Rust time is ' + timeDisplay(message.response.time.time) +
-            ' | Sunrise: ' + timeDisplay(message.response.time.sunrise) +
-            ' | Sunset: ' + timeDisplay(message.response.time.sunset) +
-            ' | Day length: ' + getTimeDisplay(message.response.time.dayLengthMinutes * message.response.time.timeScale * 60));
+        app.sendTeamMessage('Current Rust time is ' + (await app.getTimeInfo(message.response.time)));
+    }
+});
+</code></pre></p></li>
+  <li><code>getTimeInfo(time)</code> Get the server time + day/night display text<ul><li><b>time</b>: The time object from the getTime method</li><li><b>returns</b>: the server time + day/night display text</li></ul><p><pre><code>// getTimeInfo example
+var app = this.app;
+app.getTime((message) => {
+    if (message.response && message.response.time) {
+        app.sendTeamMessage('Current Rust time is ' + (await app.getTimeInfo(message.response.time)));
     }
 });
 </code></pre></p></li>
