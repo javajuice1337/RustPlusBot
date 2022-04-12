@@ -309,7 +309,6 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
   "autoDeviceCommand": true,
   "showDevicePlayer": false,
   "alwaysPostAlarms": true,
-  "alwaysPostAlarms": true,
   "decayOffset": 0,
   "eventsDisplay": "heli,brad,cargo,oil,crate,ch47",
   "subEventsDisplay": "heli_lootable,brad_lootable,cargo_crates,oil_lootable"
