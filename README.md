@@ -171,6 +171,21 @@ app.getSteamrep(123456789, (data) => {
     app.sendTeamMessage('Error obtaining the Steamrep data: ' + error);
 });
 </code></pre></p></li>
+  <li><code>getTeamData(callback)</code> Get detailed information about the team (leader, members)<ul><li><b>callback(data)</b>: The function to execute after getting the team data (<code>data</code> is <code>TeamData</code>)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// getTeamData example
+var app = this.app;
+app.getTeamData((data) => {
+    if (data && data.members) {
+        var info = '';
+        for (var i = 0; i < data.members.length; i++) {
+            if (data.members[i].steamId == data.leader.steamId) {
+                info = data.members[i].status + '; ' + data.members[i].info;
+                break;
+            }
+        }
+        app.sendTeamMessage('Team leader \'' + data.leader.name + '\' is ' + info);
+    }
+});
+</code></pre></p></li>
   <li><code>getTeamInfo(callback)</code> Get information about the team (leader, members)<ul><li><b>callback(message)</b>: The function to execute after getting the team info (<code>message.response</code> contains <code>TeamInfo</code>)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// getTeamInfo example
 var app = this.app;
 app.getTeamInfo((message) => {
@@ -620,6 +635,33 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
     <pre><code>{
   x: 100,
   y: 200
+}</code></pre>
+  </li>
+  <li>
+    <b>Time</b>
+    <pre><code>{
+  "dayLengthMinutes": 60,
+  "timeScale": 1,
+  "sunrise": 7,
+  "sunset": 20,
+  "time": 12
+}</code></pre>
+  </li>
+  <li>
+    <b>TeamData</b>
+    <pre><code>{
+  "leader": {
+    "name": "RustPlayer1",
+    "steamId": "123456789"
+  },
+  "members": [{
+    "name": "RustPlayer1",
+    "steamId": "123456789",
+    "status": "OFFLINE",
+    "info": "last seen 5 hours ago",
+    "x": 1932.2833251953125,
+    "y": 2376.96240234375
+  }]
 }</code></pre>
   </li>
   <li>
