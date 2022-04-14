@@ -171,6 +171,20 @@ app.getSteamrep(123456789, (data) => {
     app.sendTeamMessage('Error obtaining the Steamrep data: ' + error);
 });
 </code></pre></p></li>
+  <li><code>getTeamChat(callback)</code> Get recent team chat messages<ul><li><b>callback(message)</b>: The function to execute after getting the team chat messages (<code>message.response</code> contains <code>TeamChat</code>)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// getTeamChat example
+const messages_max = 5;
+var app = this.app;
+app.getTeamChat((message) => {
+    if (message.response && message.response.teamChat) {
+        var cnt = message.response.teamChat.messages.length,
+            max = (cnt > messages_max) ? messages_max : cnt;
+        app.sendTeamMessage('Showing the last ' + cnt + ' team chat messages:');
+        for (var i = 0; i < cnt; i++) {
+            app.sendTeamMessage('(' + getFriendlyDate(new Date(message.response.teamChat.messages[cnt - i - 1].time * 1000)) + ') ' + message.response.teamChat.messages[cnt - i - 1].message);
+        }
+    }
+});
+</code></pre></p></li>
   <li><code>getTeamData(callback)</code> Get detailed information about the team (leader, members)<ul><li><b>callback(data)</b>: The function to execute after getting the team data (<code>data</code> is <code>TeamData</code>)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// getTeamData example
 var app = this.app;
 app.getTeamData((data) => {
@@ -645,6 +659,18 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
   "sunrise": 7,
   "sunset": 20,
   "time": 12
+}</code></pre>
+  </li>
+  <li>
+    <b>TeamChat</b>
+    <pre><code>{
+  "messages": [{
+    "steamId": "123456789",
+    "name": "RustPlayer1",
+    "message": "A Locked Crate has been dropped @ M13 (Airfield)",
+    "color": "#5af",
+    "time": 1649959932
+  }]
 }</code></pre>
   </li>
   <li>
