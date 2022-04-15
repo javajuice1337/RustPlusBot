@@ -419,6 +419,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
     "type": 3,
     "x": 1500.958740234375,
     "y": 2551.239990234375,
+    "location": "G20",
     "steamId": 0,
     "rotation": 0,
     "radius": 0,
