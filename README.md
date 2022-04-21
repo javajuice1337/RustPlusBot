@@ -282,6 +282,9 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
     app.sendTeamMessage('Error posting: ' + error);
 });
 </code></pre></p></li>
+  <li><code>interactiveMap.addMarker(markerId, steamId, name, msg, x, y)</code> Returns true if the custom map marker is added</li>
+  <li><code>interactiveMap.removeMarker(markerId)</code> Returns true if the custom map marker matching markerId is removed</li>
+  <li><code>interactiveMap.clearMarkers(steamId)</code> Returns true if all custom map markers are removed for steamId</li>
   <li><code>util.collides(x, y, rotation, x1, y1, x2, y2)</code> Returns true if angled point x,y collides with rectangle x1,y1,x2,y2</li>
   <li><code>util.direction(x1, y1, x2, y2)</code> Get the direction from the first point facing the second</li>
   <li><code>util.distance(x1, y1, x2, y2)</code> Get the distance between two points in meters</li>
