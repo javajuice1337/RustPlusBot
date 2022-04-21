@@ -283,6 +283,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 });
 </code></pre></p></li>
   <li><code>interactiveMap.addMarker(markerId, steamId, name, msg, x, y)</code> Returns true if the custom map marker is added</li>
+  <li><code>interactiveMap.setMarkerColor(markerId, color)</code> Returns true if the custom map marker's color is updated</li>
   <li><code>interactiveMap.removeMarker(markerId)</code> Returns true if the custom map marker matching markerId is removed</li>
   <li><code>interactiveMap.clearMarkers(steamId)</code> Returns true if all custom map markers are removed for steamId</li>
   <li><code>util.collides(x, y, rotation, x1, y1, x2, y2)</code> Returns true if angled point x,y collides with rectangle x1,y1,x2,y2</li>
