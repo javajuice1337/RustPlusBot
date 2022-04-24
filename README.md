@@ -237,7 +237,7 @@ this.app.postDiscordNotification('Plugin Alert Title', 'Plugin Alert Message');
   <li><code>postDiscordWebhook(url, msg)</code> Post a message to a Discord webhook<ul><li><b>url</b>: The url of the Discord webhook</li><li><b>msg</b>: The message to post to the Discord webhook</li></ul><p><pre><code>// postDiscordWebhook example
 this.app.postDiscordWebhook('webhook url', 'Webhook Message');
 </code></pre></p></li>
-  <li><code>runCommand(cmd, callback)</code> Run a team chat command<ul><li><b>cmd</b>: The command to run</li><li><b>callback()</b>: The function to execute after running the command (optional)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// runCommand example
+  <li><code>runCommand(cmd, steamId, steamName)</code> Run a team chat command as a specific player<ul><li><b>cmd</b>: The command to run</li><li><b>steamId</b>: The player's steamId (optional)</li><li><b>steamName</b>: The player's steam name (optional)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// runCommand example
 var app = this.app,
     prefix = await app.getPrefix('all');
 app.runCommand(prefix + 'pop');
@@ -386,7 +386,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
   </li>
   <li>
     <b>Info</b>
-    <pre><code>[{
+    <pre><code>{
   "name": "Rust Server Name",
   "headerImage": "",
   "url": "",
@@ -398,19 +398,31 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
   "queuedPlayers": 0,
   "seed": 0,
   "salt": 0
-}]</code></pre>
+}</code></pre>
   </li>
   <li>
     <b>MapInfo</b>
-    <pre><code>[{
+    <pre><code>{
   "width": 3125,
   "height": 3125,
   "oceanMargin": 500,
-  "mapSize": 4250,
   "background": "#12404D",
   "image": "",
-  "cached": true
-}]</code></pre>
+  "cached": true,
+  "info": {
+    "name": "Rust Server Name",
+    "headerImage": "",
+    "url": "",
+    "map": "Procedure Map",
+    "mapSize": 4250,
+    "wipeTime": 0,
+    "players": 100,
+    "maxPlayers": 200,
+    "queuedPlayers": 0,
+    "seed": 0,
+    "salt": 0
+  }
+}</code></pre>
   </li>
   <li>
     <b>LeaderMapNotes</b>
