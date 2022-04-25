@@ -626,8 +626,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
   </li>
   <li>
     <b>Payload: Smart Switch, Smart Alarm</b>
-    <pre><code>
-"payload": {
+    <pre><code>"payload": {
   "value": false,
   "capacity": 0,
   "hasProtection": false,
@@ -637,8 +636,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
   </li>
   <li>
     <b>Payload: Storage Monitor</b>
-    <pre><code>
-"payload": {
+    <pre><code>"payload": {
   "value": false,
   "items": [{
     "itemId": 317398316,
