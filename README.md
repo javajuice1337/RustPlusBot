@@ -626,44 +626,34 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
   </li>
   <li>
     <b>Payload: Smart Switch, Smart Alarm</b>
-    <pre><code>{
-  "broadcast": {
-    "entityChanged": {
-      "entityId": 29408388,
-      "payload": {
-        "value": false,
-        "capacity": 0,
-        "hasProtection": false,
-        "protectionExpiry": 0
-      }
-    }
-  }
-}</code></pre>
+    <pre><code>
+"payload": {
+  "value": false,
+  "capacity": 0,
+  "hasProtection": false,
+  "protectionExpiry": 0
+}
+</code></pre>
   </li>
   <li>
     <b>Payload: Storage Monitor</b>
-    <pre><code>{
-  "broadcast": {
-    "entityChanged": {
-      "entityId": 29408388,
-      "payload": {
-        "value": false,
-        "items": [{
-          "itemId": 317398316,
-          "quantity": 95,
-          "itemIsBlueprint": false
-        }, {
-          "itemId": -151838493,
-          "quantity": 998,
-          "itemIsBlueprint": false
-        }],
-        "capacity": 24,
-        "hasProtection": true,
-        "protectionExpiry": 1638790206
-      }
-    }
-  }
-}</code></pre>
+    <pre><code>
+"payload": {
+  "value": false,
+  "items": [{
+    "itemId": 317398316,
+    "quantity": 95,
+    "itemIsBlueprint": false
+  }, {
+    "itemId": -151838493,
+    "quantity": 998,
+    "itemIsBlueprint": false
+  }],
+  "capacity": 24,
+  "hasProtection": true,
+  "protectionExpiry": 1638790206
+}
+</code></pre>
     <blockquote>Find the item name with the itemId using <code>itemIds</code></blockquote>
   </li>
   <li>
