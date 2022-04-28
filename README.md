@@ -228,10 +228,10 @@ app.getTime((message) => {
     }
 });
 </code></pre></p></li>
-  <li><code>postDiscordMessage(msg)</code> Post a message to the bot's communication Discord channel<ul><li><b>msg</b>: The message to post</li></ul><p><pre><code>// postDiscordMessage example
+  <li><code>postDiscordMessage(msg)</code> Post a message to the bot's Main Discord channel<ul><li><b>msg</b>: The message to post</li></ul><p><pre><code>// postDiscordMessage example
 this.app.postDiscordMessage('This is a message from a bot\'s plugin');
 </code></pre></p></li>
-  <li><code>postDiscordNotification(title, description, url, img, list)</code> Post a notification to the bot's communication Discord channel<ul><li><b>title</b>: The title of the notification</li><li><b>description</b>: The description of the notification</li><li><b>url</b>: The url of the notification (optional)</li><li><b>img</b>: The image url of the notification (optional)</li><li><b>list</b>: The item list data of the notification (optional; see <code>NotificationList</code> below)</li></ul><p><pre><code>// postDiscordNotification example
+  <li><code>postDiscordNotification(title, description, url, img, list)</code> Post a notification to the bot's Notification Discord channel<ul><li><b>title</b>: The title of the notification</li><li><b>description</b>: The description of the notification</li><li><b>url</b>: The url of the notification (optional)</li><li><b>img</b>: The image url of the notification (optional)</li><li><b>list</b>: The item list data of the notification (optional; see <code>NotificationList</code> below)</li></ul><p><pre><code>// postDiscordNotification example
 this.app.postDiscordNotification('Plugin Alert Title', 'Plugin Alert Message');
 </code></pre></p></li>
   <li><code>postDiscordWebhook(url, msg)</code> Post a message to a Discord webhook<ul><li><b>url</b>: The url of the Discord webhook</li><li><b>msg</b>: The message to post to the Discord webhook</li></ul><p><pre><code>// postDiscordWebhook example
