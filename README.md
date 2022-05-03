@@ -4,7 +4,7 @@
 
 # **RustPlusBot** plugins reference and examples
 
-**RustPlusBot** plugins allow the individual to develop their own commands to add functionality to the bot. The plugin itself exposes many events for a programmer to attach to and execute code.
+**RustPlusBot** plugins allow you to develop your own commands to add functionality to the bot. The plugin itself exposes many events for a programmer to attach to and execute code.
 
 The plugins are written in JavaScript and run in a NodeJS environment after they are published. During development, you host the plugin on your client machine and in your web-browser. Your plugin interfaces with the bot via a WebSocket connection.
 
@@ -53,7 +53,6 @@ The `app` object exists in the plugin's scope `this`, and exposes the following 
   <li><code>tokenMap</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the monument names for all monument tokens (<b>key</b>: monument token, <b>value</b>: monument name)</li>
   <li><code>player_id</code> The steam ID of the bot's connected player</li>
   <li><code>player_name</code> The steam name of the bot's connected player</li>
-  <li><code>player_token</code> The server token of the bot's connected player</li>
   <li><code>server_ip</code> The IP address of the bot's connected server</li>
   <li><code>server_name</code> The name of the bot's connected server</li>
   <li><code>server_port</code> The port of the bot's connected server (Rust+ app port)</li>
@@ -286,6 +285,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
   <li><code>interactiveMap.setMarkerColor(markerId, color)</code> Returns true if the custom map marker's color is updated</li>
   <li><code>interactiveMap.removeMarker(markerId)</code> Returns true if the custom map marker matching markerId is removed</li>
   <li><code>interactiveMap.clearMarkers(steamId)</code> Returns true if all custom map markers are removed for steamId</li>
+  <li><code>interactiveMap.getHeatmapData()</code> Returns an object containing the heatmap data (see <b>HeatmapData</b> below)</li>
   <li><code>util.collides(x, y, rotation, x1, y1, x2, y2)</code> Returns true if angled point x,y collides with rectangle x1,y1,x2,y2</li>
   <li><code>util.direction(x1, y1, x2, y2)</code> Get the direction from the first point facing the second</li>
   <li><code>util.distance(x1, y1, x2, y2)</code> Get the distance between two points in meters</li>
@@ -382,6 +382,40 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
   name: "Patrol Helicopter @ A1",
   start: new Date(),
   stop: null // null if active
+}</code></pre>
+  </li>
+  <li>
+    <b>Heatmap Data</b>
+    <pre><code>{     
+  "deaths": [],
+  "brad": [{
+    "x": 2667.51416015625,
+    "y": 2336.646240234375,
+    "count": 1
+  }],
+  "heli": [{
+    "x": 688.2880859375,
+    "y": 922.4451904296875,
+    "count": 1
+  }],
+  "crate": [{
+    "x": 2047.0020751953125,
+    "y": 2884.339111328125,
+    "count": 6
+  }],
+  "cargo": [{
+    "x": -1775,
+    "y": 2098.646240234375,
+    "count": 8
+  },{
+    "x": -1684.09814453125,
+    "y": 2145.852783203125,
+    "count": 2
+  },{
+    "x": -1608.643798828125,
+    "y": 2141.641357421875,
+    "count": 2
+  }]
 }</code></pre>
   </li>
   <li>
