@@ -27,11 +27,11 @@ console.log(this.storage.playerName);
 <ul>
   <li><code>onConnected()</code> Fires when the bot connects to a server or when the plugin loads</li>
   <li><code>onDisconnected()</code> Fires when the bot disconnects from a server</li>
-  <li><code>onEntityChanged(obj)</code> Fires when a paired Smart Device is changed<ul><li><b>obj.entityId</b>: The entity ID of the Smart device</li><li><b>obj.payload</b>: The payload data of the event (see <code>Payload</code> below)</li></ul></li>
-  <li><code>onMessageReceive(obj)</code> Fires when a team chat message is received<ul><li><b>obj.message</b>: The incoming team chat message</li><li><b>obj.name</b>: The steam name of the sender</li><li><b>obj.steamId</b>: The steam ID of the sender</li></ul></li>
-  <li><code>onMessageSend(obj)</code> Fires when a team chat message is sent<ul><li><b>obj.message</b>: The outgoing team chat message</li></ul></li>
-  <li><code>onNotification(obj)</code> Fires when there is a bot notification (including game events)<ul><li><b>obj.notification</b>: The notification data of the event (see <code>Notification</code> below)</li></ul></li>
-  <li><code>onTeamChanged(obj)</code> Fires when the team leader changes, or a team member is added or removed from the team<ul><li><b>obj.leaderSteamId</b>: The steam ID of the team leader</li><li><b>obj.leaderMapNotes</b>: The leader map notes data of the event (see <code>LeaderMapNotes</code> below)</li><li><b>obj.members</b>: The members list data of the event (see <code>Members</code> below)</li></ul></li>
+  <li><code>onEntityChanged(obj)</code> Fires when a paired Smart Device is changed<ul><li><b>obj.entityId</b>: <sup><code>int</code></sup> The entity ID of the Smart device</li><li><b>obj.payload</b>: <sup><code>object</code></sup> The payload data of the event (see <code>Payload</code> below)</li></ul></li>
+  <li><code>onMessageReceive(obj)</code> Fires when a team chat message is received<ul><li><b>obj.message</b>: <sup><code>string</code></sup> The incoming team chat message</li><li><b>obj.name</b>: <sup><code>string</code></sup> The steam name of the sender</li><li><b>obj.steamId</b>: <sup><code>string</code></sup> The steam ID of the sender</li></ul></li>
+  <li><code>onMessageSend(obj)</code> Fires when a team chat message is sent<ul><li><b>obj.message</b>: <sup><code>string</code></sup> The outgoing team chat message</li></ul></li>
+  <li><code>onNotification(obj)</code> Fires when there is a bot notification (including game events)<ul><li><b>obj.notification</b>: <sup><code>object</code></sup> The notification data of the event (see <code>Notification</code> below)</li></ul></li>
+  <li><code>onTeamChanged(obj)</code> Fires when the team leader changes, or a team member is added or removed from the team<ul><li><b>obj.leaderSteamId</b>: <sup><code>object</code></sup> The steam ID of the team leader</li><li><b>obj.leaderMapNotes</b>: <sup><code>object</code></sup> The leader map notes data of the event (see <code>LeaderMapNotes</code> below)</li><li><b>obj.members</b>: <sup><code>object</code></sup> The members list data of the event (see <code>Members</code> below)</li></ul></li>
 </ul>
 
 ## Plugin Interface
@@ -41,22 +41,22 @@ The `app` object exists in the plugin's scope `this`, and exposes the following 
 ### Properties
 
 <ul>
-  <li><code>bmData</code> An object containing the BattleMetrics data of the server (see <code>BattleMetrics Data</code> below)</li>
-  <li><code>cfg</code> An object containing the configuration settings for the bot (see <code>Config</code> below)</li>
-  <li><code>devices</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the bot's paired devices (<b>key</b>: device name (lowercase only), <b>value</b>: Array of devices, see <code>Device</code> below)</li>
-  <li><code>devices_map</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the bot's paired device names (<b>key</b>: device ID, <b>value</b>: Array of lowercased device names)</li>
-  <li><code>event_types</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing game event names (<b>key</b>: event ID, <b>value</b>: event name)</li>
-  <li><code>guild_token</code> The unique token representing the Discord server</li>
-  <li><code>guild_name</code> The name of the Discord server</li>
-  <li><code>itemIds</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the item names for all item IDs (<b>key</b>: item ID, <b>value</b>: item name)</li>
-  <li><code>monuments</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing all monument tokens  and locations (<b>key</b>: monument token, <b>value</b>: Array of monument locations, see <code>Point</code> below)</li>
-  <li><code>tokenMap</code> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the monument names for all monument tokens (<b>key</b>: monument token, <b>value</b>: monument name)</li>
-  <li><code>player_id</code> The steam ID of the bot's connected player</li>
-  <li><code>player_name</code> The steam name of the bot's connected player</li>
-  <li><code>server_ip</code> The IP address of the bot's connected server</li>
-  <li><code>server_name</code> The name of the bot's connected server</li>
-  <li><code>server_port</code> The port of the bot's connected server (Rust+ app port)</li>
-  <li><code>server_tags</code> Internal tags used to describe this server</li>
+  <li><code>bmData</code> <sup><code>object</code></sup> An object containing the BattleMetrics data of the server (see <code>BattleMetrics Data</code> below)</li>
+  <li><code>cfg</code> <sup><code>object</code></sup> An object containing the configuration settings for the bot (see <code>Config</code> below)</li>
+  <li><code>devices</code> <sup><code>Map</code></sup> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the bot's paired devices (<b>key</b>: device name (lowercase only), <b>value</b>: Array of devices, see <code>Device</code> below)</li>
+  <li><code>devices_map</code> <sup><code>Map</code></sup> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the bot's paired device names (<b>key</b>: device ID, <b>value</b>: Array of lowercased device names)</li>
+  <li><code>event_types</code> <sup><code>Map</code></sup> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing game event names (<b>key</b>: event ID, <b>value</b>: event name)</li>
+  <li><code>guild_token</code> <sup><code>string</code></sup> The unique token representing the Discord server</li>
+  <li><code>guild_name</code> <sup><code>string</code></sup> The name of the Discord server</li>
+  <li><code>itemIds</code> <sup><code>Map</code></sup> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the item names for all item IDs (<b>key</b>: item ID, <b>value</b>: item name)</li>
+  <li><code>monuments</code> <sup><code>Map</code></sup> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing all monument tokens  and locations (<b>key</b>: monument token, <b>value</b>: Array of monument locations, see <code>Point</code> below)</li>
+  <li><code>tokenMap</code> <sup><code>Map</code></sup> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the monument names for all monument tokens (<b>key</b>: monument token, <b>value</b>: monument name)</li>
+  <li><code>player_id</code> <sup><code>string</code></sup> The steam ID of the bot's connected player</li>
+  <li><code>player_name</code> <sup><code>string</code></sup> The steam name of the bot's connected player</li>
+  <li><code>server_ip</code> <sup><code>string</code></sup> The IP address of the bot's connected server</li>
+  <li><code>server_name</code> <sup><code>string</code></sup> The name of the bot's connected server</li>
+  <li><code>server_port</code> <sup><code>string</code></sup> The port of the bot's connected server (Rust+ app port)</li>
+  <li><code>server_tags</code> <sup><code>string</code></sup> Internal tags used to describe this server</li>
 </ul>
 
 ```
@@ -67,7 +67,7 @@ console.log(this.app.cfg.lang);
 ### Methods
 
 <ul>
-  <li><code>getBattleMetrics(serverId, playerName, success, error)</code> Retrieve the BattleMetrics for a server player<ul><li><b>serverId</b>: The BattleMetrics ID of the server</li><li><b>playerName</b>: The name of the player</li><li><b>success(data)</b>: The function to execute after receiving the BattleMetrics data (optional)</li><li><b>error(err)</b>: The function to execute when an error occurs (optional)</li><li><b>returns</b>: <code>true</code></li></ul><p><pre><code>// getBattleMetrics example
+  <li><code>getBattleMetrics(serverId, playerName, success, error)</code> Retrieve the BattleMetrics for a server player<ul><li><b>serverId</b>: <sup><code>string</code></sup> The BattleMetrics ID of the server</li><li><b>playerName</b>: <sup><code>string</code></sup> The name of the player</li><li><b>success(data)</b>: <sup><code>function</code></sup> The function to execute after receiving the BattleMetrics data (optional)</li><li><b>error(err)</b>: <sup><code>function</code></sup> The function to execute when an error occurs (optional)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code></li></ul><p><pre><code>// getBattleMetrics example
 var app = this.app;
 app.getBattleMetrics('123456', 'Rust Player 2099', (data) => {
     if (data && data.name) {
@@ -82,15 +82,15 @@ app.getBattleMetrics('123456', 'Rust Player 2099', (data) => {
     app.sendTeamMessage('Error obtaining the BattleMetrics data: ' + error);
 });
 </code></pre></p></li>
-  <li><code>getConnected()</code> Get the date of the server connection<ul><li><b>returns</b>: a Date string</li></ul><p><pre><code>// getConnected example
+  <li><code>getConnected()</code> Get the date of the server connection<ul><li><b>returns</b>: <sup><code>string</code></sup> a Date string</li></ul><p><pre><code>// getConnected example
 var connected = await this.app.getConnected();
 console.log(new Date(connected));
 </code></pre></p></li>
-  <li><code>getEvents(type)</code> Get the most recent game events (ordered by newest to oldest)<ul><li><b>type</b>: The event type (optional)<ul><li><code>heli</code> Patrol Helicopter</li><li><code>brad</code> Bradley Tank</li><li><code>cargo</code> Cargo Ship</li><li><code>crate</code> Locked Crate</li><li><code>ch47</code> CH-47 Chinook</li><li><code>oil_rig_small</code> Oil Rig (Small)</li><li><code>large_oil_rig</code> Oil Rig (Large)</li></ul></li><li><b>returns</b>: <code>Event</code> array</li></ul><p><pre><code>// getEvents example
+  <li><code>getEvents(type)</code> Get the most recent game events (ordered by newest to oldest)<ul><li><b>type</b>: <sup><code>string</code></sup> The event type (optional)<ul><li><code>heli</code> Patrol Helicopter</li><li><code>brad</code> Bradley Tank</li><li><code>cargo</code> Cargo Ship</li><li><code>crate</code> Locked Crate</li><li><code>ch47</code> CH-47 Chinook</li><li><code>oil_rig_small</code> Oil Rig (Small)</li><li><code>large_oil_rig</code> Oil Rig (Large)</li></ul></li><li><b>returns</b>: <sup><code>array</code></sup> <code>Event</code> array</li></ul><p><pre><code>// getEvents example
 var e = await this.app.getEvents();
 console.log(e);
 </code></pre></p></li>
-  <li><code>getEntityInfo(id, callback)</code> Get data from a Smart device<ul><li><b>id</b>: The identifier of the Smart device</li><li><b>callback(message)</b>: The function to execute after getting the entity info (<code>message.response</code> contains <code>EntityInfo</code>)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// getEntityInfo example
+  <li><code>getEntityInfo(id, callback)</code> Get data from a Smart device<ul><li><b>id</b>: <sup><code>int</code></sup> The identifier of the Smart device</li><li><b>callback(message)</b>: <sup><code>function</code></sup> The function to execute after getting the entity info (<code>message.response</code> contains <code>EntityInfo</code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getEntityInfo example
 var app = this.app;
 app.getEntityInfo(123456, (message) => {
     if (message.response && message.response.entityInfo && message.response.entityInfo.payload) {
@@ -101,7 +101,7 @@ app.getEntityInfo(123456, (message) => {
     }
 });
 </code></pre></p></li>
-  <li><code>getInfo(callback)</code> Get information about the server<ul><li><b>callback(message)</b>: The function to execute after getting the info (<code>message.response</code> contains <code>Info</code>)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// getInfo example
+  <li><code>getInfo(callback)</code> Get information about the server<ul><li><b>callback(message)</b>: <sup><code>function</code></sup> The function to execute after getting the info (<code>message.response</code> contains <code>Info</code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getInfo example
 var app = this.app;
 app.getInfo((message) => {
     if (message.response && message.response.info) {
@@ -109,7 +109,7 @@ app.getInfo((message) => {
     }
 });
 </code></pre></p></li>
-  <li><code>getItemName(item, success, error)</code> Lookup the full item name for a partial item name search<ul><li><b>item</b>: The item name to search for</li><li><b>success(data)</b>: The function to execute after receiving ItemName data (optional)</li><li><b>error(err)</b>: The function to execute when an error occurs (optional)</li><li><b>returns</b>: <code>true</code></li></ul><p><pre><code>// getItemName example
+  <li><code>getItemName(item, success, error)</code> Lookup the full item name for a partial item name search<ul><li><b>item</b>: <sup><code>string</code></sup> The item name to search for</li><li><b>success(data)</b>: <sup><code>function</code></sup> The function to execute after receiving ItemName data (optional)</li><li><b>error(err)</b>: <sup><code>function</code></sup> The function to execute when an error occurs (optional)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code></li></ul><p><pre><code>// getItemName example
 var app = this.app;
 app.getItemName("metal", (data) => {
     if (data) {
@@ -120,7 +120,7 @@ app.getItemName("metal", (data) => {
     app.sendTeamMessage('Error obtaining the ItemName data: ' + error);
 });
 </code></pre></p></li>
-  <li><code>getMapInfo(callback)</code> Get information about the server's map<ul><li><b>callback(message)</b>: The function to execute after getting the map info (<code>message</code> is <code>MapInfo</code>)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// getMapInfo example
+  <li><code>getMapInfo(callback)</code> Get information about the server's map<ul><li><b>callback(message)</b>: <sup><code>function</code></sup> The function to execute after getting the map info (<code>message</code> is <code>MapInfo</code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getMapInfo example
 var app = this.app;
 app.getMapInfo((message) => {
     if (message && message.image) {
@@ -128,7 +128,7 @@ app.getMapInfo((message) => {
     }
 });
 </code></pre></p></li>
-  <li><code>getMapMarkers(callback)</code> Get information about all map markers<ul><li><b>callback(message)</b>: The function to execute after getting the map markers (<code>message.response</code> contains <code>MapMarkers</code>)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// getMapMarkers example
+  <li><code>getMapMarkers(callback)</code> Get information about all map markers<ul><li><b>callback(message)</b>: <sup><code>function</code></sup> The function to execute after getting the map markers (<code>message.response</code> contains <code>MapMarkers</code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getMapMarkers example
 var app = this.app;
 app.getMapMarkers((message) => {
     if (message.response && message.response.mapMarkers && message.response.mapMarkers.markers) {
@@ -142,10 +142,10 @@ app.getMapMarkers((message) => {
     }
 });
 </code></pre></p></li>
-  <li><code>getPrefix(type)</code> Get the command prefix for the bot<ul><li><b>type</b>: The command type (optional)<ul><li><code>all</code> All Commands</li><li><code>device</code> Device Commands</li></ul></li><li><b>returns</b>: The selected prefix if it's required</li></ul><p><pre><code>// getPrefix example
+  <li><code>getPrefix(type)</code> Get the command prefix for the bot<ul><li><b>type</b>: <sup><code>string</code></sup> The command type (optional)<ul><li><code>all</code> All Commands</li><li><code>device</code> Device Commands</li></ul></li><li><b>returns</b>: <sup><code>string</code></sup> The selected prefix if it's required</li></ul><p><pre><code>// getPrefix example
 var prefix = await this.app.getPrefix('all');
 </code></pre></p></li>
-  <li><code>getRecycleItems(items, success, error)</code> Retrieve the recycled items for the input items<ul><li><b>items</b>: An object containing the item names and item values</li><li><b>success(data)</b>: The function to execute after receiving recycle data (optional)</li><li><b>error(err)</b>: The function to execute when an error occurs (optional)</li><li><b>returns</b>: <code>true</code></li></ul><p><pre><code>// getRecycleItems example
+  <li><code>getRecycleItems(items, success, error)</code> Retrieve the recycled items for the input items<ul><li><b>items</b>: <sup><code>object</code></sup> An object containing the item names and item values</li><li><b>success(data)</b>: <sup><code>function</code></sup> The function to execute after receiving recycle data (optional)</li><li><b>error(err)</b>: <sup><code>function</code></sup> The function to execute when an error occurs (optional)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code></li></ul><p><pre><code>// getRecycleItems example
 var app = this.app;
 app.getRecycleItems({'Sheet Metal Door': 1}, (data) => {
     var keys = Object.keys(data),
@@ -158,7 +158,7 @@ app.getRecycleItems({'Sheet Metal Door': 1}, (data) => {
     app.sendTeamMessage('Error obtaining the recyle items: ' + error);
 });
 </code></pre></p></li>
-  <li><code>getSteamrep(steamId, success, error)</code> Retrieve the Steamrep data for a Steam member<ul><li><b>steamId</b>: The steam ID of the Steam member</li><li><b>success(data)</b>: The function to execute after receiving Steamrep data (optional)</li><li><b>error(err)</b>: The function to execute when an error occurs (optional)</li><li><b>returns</b>: <code>true</code></li></ul><p><pre><code>// getSteamrep example
+  <li><code>getSteamrep(steamId, success, error)</code> Retrieve the Steamrep data for a Steam member<ul><li><b>steamId</b>: <sup><code>string</code></sup> The steam ID of the Steam member</li><li><b>success(data)</b>: <sup><code>function</code></sup> The function to execute after receiving Steamrep data (optional)</li><li><b>error(err)</b>: <sup><code>function</code></sup> The function to execute when an error occurs (optional)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code></li></ul><p><pre><code>// getSteamrep example
 var app = this.app;
 app.getSteamrep(123456789, (data) => {
     if (data && data.membersince) {
@@ -170,7 +170,7 @@ app.getSteamrep(123456789, (data) => {
     app.sendTeamMessage('Error obtaining the Steamrep data: ' + error);
 });
 </code></pre></p></li>
-  <li><code>getTeamChat(callback)</code> Get recent team chat messages<ul><li><b>callback(message)</b>: The function to execute after getting the team chat messages (<code>message.response</code> contains <code>TeamChat</code>)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// getTeamChat example
+  <li><code>getTeamChat(callback)</code> Get recent team chat messages<ul><li><b>callback(message)</b>: <sup><code>function</code></sup> The function to execute after getting the team chat messages (<code>message.response</code> contains <code>TeamChat</code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getTeamChat example
 const messages_max = 5;
 var app = this.app;
 app.getTeamChat((message) => {
@@ -184,7 +184,7 @@ app.getTeamChat((message) => {
     }
 });
 </code></pre></p></li>
-  <li><code>getTeamData(callback)</code> Get detailed information about the team (leader, members)<ul><li><b>callback(data)</b>: The function to execute after getting the team data (<code>data</code> is <code>TeamData</code>)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// getTeamData example
+  <li><code>getTeamData(callback)</code> Get detailed information about the team (leader, members)<ul><li><b>callback(data)</b>: <sup><code>function</code></sup> The function to execute after getting the team data (<code>data</code> is <code>TeamData</code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getTeamData example
 var app = this.app;
 app.getTeamData((data) => {
     if (data && data.members) {
@@ -199,7 +199,7 @@ app.getTeamData((data) => {
     }
 });
 </code></pre></p></li>
-  <li><code>getTeamInfo(callback)</code> Get information about the team (leader, members)<ul><li><b>callback(message)</b>: The function to execute after getting the team info (<code>message.response</code> contains <code>TeamInfo</code>)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// getTeamInfo example
+  <li><code>getTeamInfo(callback)</code> Get information about the team (leader, members)<ul><li><b>callback(message)</b>: <sup><code>function</code></sup> The function to execute after getting the team info (<code>message.response</code> contains <code>TeamInfo</code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getTeamInfo example
 var app = this.app;
 app.getTeamInfo((message) => {
     if (message.response && message.response.teamInfo) {
@@ -211,7 +211,7 @@ app.getTeamInfo((message) => {
     }
 });
 </code></pre></p></li>
-  <li><code>getTime(callback)</code> Get information about the server time<ul><li><b>callback(message)</b>: The function to execute after getting the time (<code>message.response</code> contains <code>Time</code>)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// getTime example
+  <li><code>getTime(callback)</code> Get information about the server time<ul><li><b>callback(message)</b>: <sup><code>function</code></sup> The function to execute after getting the time (<code>message.response</code> contains <code>Time</code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getTime example
 var app = this.app;
 app.getTime((message) => {
     if (message.response && message.response.time) {
@@ -219,7 +219,7 @@ app.getTime((message) => {
     }
 });
 </code></pre></p></li>
-  <li><code>getTimeInfo(time)</code> Get the server time + day/night display text<ul><li><b>time</b>: The time object from the getTime method</li><li><b>returns</b>: the server time + day/night display text</li></ul><p><pre><code>// getTimeInfo example
+  <li><code>getTimeInfo(time)</code> Get the server time + day/night display text<ul><li><b>time</b>: <sup><code>object</code></sup> The time object from the getTime method</li><li><b>returns</b>: <sup><code>string</code></sup> the server time + day/night display text</li></ul><p><pre><code>// getTimeInfo example
 var app = this.app;
 app.getTime((message) => {
     if (message.response && message.response.time) {
@@ -227,31 +227,31 @@ app.getTime((message) => {
     }
 });
 </code></pre></p></li>
-  <li><code>postDiscordMessage(msg)</code> Post a message to the bot's Main Discord channel<ul><li><b>msg</b>: The message to post</li></ul><p><pre><code>// postDiscordMessage example
+  <li><code>postDiscordMessage(msg)</code> Post a message to the bot's Main Discord channel<ul><li><b>msg</b>: <sup><code>string</code></sup> The message to post</li></ul><p><pre><code>// postDiscordMessage example
 this.app.postDiscordMessage('This is a message from a bot\'s plugin');
 </code></pre></p></li>
-  <li><code>postDiscordNotification(title, description, url, img, list)</code> Post a notification to the bot's Notification Discord channel<ul><li><b>title</b>: The title of the notification</li><li><b>description</b>: The description of the notification</li><li><b>url</b>: The url of the notification (optional)</li><li><b>img</b>: The image url of the notification (optional)</li><li><b>list</b>: The item list data of the notification (optional; see <code>NotificationList</code> below)</li></ul><p><pre><code>// postDiscordNotification example
+  <li><code>postDiscordNotification(title, description, url, img, list)</code> Post a notification to the bot's Notification Discord channel<ul><li><b>title</b>: <sup><code>string</code></sup> The title of the notification</li><li><b>description</b>: <sup><code>string</code></sup> The description of the notification</li><li><b>url</b>: <sup><code>string</code></sup> The url of the notification (optional)</li><li><b>img</b>: <sup><code>string</code></sup> The image url of the notification (optional)</li><li><b>list</b>: <sup><code>array</code></sup> The item list data of the notification (optional; see <code>NotificationList</code> below)</li></ul><p><pre><code>// postDiscordNotification example
 this.app.postDiscordNotification('Plugin Alert Title', 'Plugin Alert Message');
 </code></pre></p></li>
-  <li><code>postDiscordWebhook(url, msg)</code> Post a message to a Discord webhook<ul><li><b>url</b>: The url of the Discord webhook</li><li><b>msg</b>: The message to post to the Discord webhook</li></ul><p><pre><code>// postDiscordWebhook example
+  <li><code>postDiscordWebhook(url, msg)</code> Post a message to a Discord webhook<ul><li><b>url</b>: <sup><code>string</code></sup> The url of the Discord webhook</li><li><b>msg</b>: <sup><code>string</code></sup> The message to post to the Discord webhook</li></ul><p><pre><code>// postDiscordWebhook example
 this.app.postDiscordWebhook('webhook url', 'Webhook Message');
 </code></pre></p></li>
-  <li><code>runCommand(cmd, steamId, steamName)</code> Run a team chat command as a specific player<ul><li><b>cmd</b>: The command to run</li><li><b>steamId</b>: The player's steamId (optional)</li><li><b>steamName</b>: The player's steam name (optional)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// runCommand example
+  <li><code>runCommand(cmd, steamId, steamName)</code> Run a team chat command as a specific player<ul><li><b>cmd</b>: <sup><code>string</code></sup> The command to run</li><li><b>steamId</b>: <sup><code>string</code></sup> The player's steamId (optional)</li><li><b>steamName</b>: <sup><code>string</code></sup> The player's steam name (optional)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// runCommand example
 var app = this.app,
     prefix = await app.getPrefix('all');
 app.runCommand(prefix + 'pop');
 </code></pre></p></li>
-  <li><code>sendTeamMessage(msg, callback, noTranslate)</code> Send a team chat message<ul><li><b>msg</b>: The message to send</li><li><b>callback()</b>: The function to execute after sending (optional)</li><li><b>noTranslate</b>: Set to <code>true</code> to disable message translation (optional)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// sendTeamMessage example
+  <li><code>sendTeamMessage(msg, callback, noTranslate)</code> Send a team chat message<ul><li><b>msg</b>: <sup><code>string</code></sup> The message to send</li><li><b>callback()</b>: <sup><code>function</code></sup> The function to execute after sending (optional)</li><li><b>noTranslate</b>: <sup><code>bool</code></sup> Set to <code>true</code> to disable message translation (optional)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// sendTeamMessage example
 var app = this.app;
 app.sendTeamMessage('This is a team message');
 </code></pre></p></li>
-    <li><code>setEntityValue(id, value, callback)</code> Set the value of a Smart Switch<ul><li><b>id</b>: The identifier of the Smart Switch</li><li><b>value</b>: The value (true or false)</li><li><b>callback()</b>: The function to execute after setting the value (optional)</li><li><b>returns</b>: <code>true</code> if successful</li></ul><p><pre><code>// setEntityValue example
+    <li><code>setEntityValue(id, value, callback)</code> Set the value of a Smart Switch<ul><li><b>id</b>: <sup><code>int</code></sup> The identifier of the Smart Switch</li><li><b>value</b>: <sup><code>bool</code></sup> The value (true or false)</li><li><b>callback()</b>: <sup><code>function</code></sup> The function to execute after setting the value (optional)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// setEntityValue example
 var app = this.app;
 app.setEntityValue(123456, true, () => {
     app.sendTeamMessage('The smart switch is activated');
 });
 </code></pre></p></li>
-  <li><code>translateMessage(msg, lang, success, error)</code> Translate a message to another language<ul><li><b>msg</b>: The message to translate</li><li><b>lang</b>: The language code to use for translation (see: <a href="https://bot.rustplus.io/languages">Language Codes</a>)</li><li><b>success(res)</b>: The function to execute after translating (optional)</li><li><b>error(err)</b>: The function to execute when an error occurs (optional)</li><li><b>returns</b>: <code>true</code></li></ul><p><pre><code>// translateMessage example
+  <li><code>translateMessage(msg, lang, success, error)</code> Translate a message to another language<ul><li><b>msg</b>: <sup><code>string</code></sup> The message to translate</li><li><b>lang</b>: <sup><code>string</code></sup> The language code to use for translation (see: <a href="https://bot.rustplus.io/languages">Language Codes</a>)</li><li><b>success(res)</b>: <sup><code>function</code></sup> The function to execute after translating (optional)</li><li><b>error(err)</b>: <sup><code>function</code></sup> The function to execute when an error occurs (optional)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code></li></ul><p><pre><code>// translateMessage example
 var app = this.app;
 app.translateMessage('Hello, how are you?', 'es', (res) => {
     app.sendTeamMessage(res);
@@ -259,12 +259,12 @@ app.translateMessage('Hello, how are you?', 'es', (res) => {
     app.sendTeamMessage('Error: ' + error);
 });
 </code></pre></p></li>
-  <li><code>webGet(url, params, headers, success, error)</code> Retrieve data from a url<ul><li><b>url</b>: The url to access</li><li><b>params</b>: The parameters of the url (optional)</li><li><b>headers</b>: The headers to send with the web request (optional)</li><li><b>success(data)</b>: The function to execute after receiving data (optional)</li><li><b>error(err)</b>: The function to execute when an error occurs (optional)</li><li><b>returns</b>: <code>true</code></li></ul><p><pre><code>// webGet example
+  <li><code>webGet(url, params, headers, success, error)</code> Retrieve data from a url<ul><li><b>url</b>: <sup><code>string</code></sup> The url to access</li><li><b>params</b>: <sup><code>object</code></sup> The parameters of the url (optional)</li><li><b>headers</b>: <sup><code>object</code></sup> The headers to send with the web request (optional)</li><li><b>success(data)</b>: <sup><code>function</code></sup> The function to execute after receiving data (optional)</li><li><b>error(err)</b>: <sup><code>function</code></sup> The function to execute when an error occurs (optional)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code></li></ul><p><pre><code>// webGet example
 var app = this.app;
 app.webGet('https://rust.facepunch.com/rss/news', null, null, (data) => {
     var link = '',
         pos = data.indexOf('>https://');
-    if (pos > 0) link = data.substr(pos + 1, data.indexOf('<', pos) - pos - 1);
+    if (pos > 0) link = data.substr(pos + 1, data.indexOf('&lt;', pos) - pos - 1);
     if (link != '')
         app.sendTeamMessage('The newest Rust update link: ' + link);
     else
@@ -273,7 +273,7 @@ app.webGet('https://rust.facepunch.com/rss/news', null, null, (data) => {
     app.sendTeamMessage('Error obtaining Rust update link: ' + error);
 });
 </code></pre></p></li>
-  <li><code>webPost(url, data, headers, success, error)</code> Post data to a url<ul><li><b>url</b>: The url to access</li><li><b>data</b>: The data to post (optional)</li><li><b>headers</b>: The headers to send with the web request (optional)</li><li><b>success(data)</b>: The function to execute after receiving data (optional)</li><li><b>error(err)</b>: The function to execute when an error occurs (optional)</li><li><b>returns</b>: <code>true</code></li></ul><p><pre><code>// webPost example
+  <li><code>webPost(url, data, headers, success, error)</code> Post data to a url<ul><li><b>url</b>: <sup><code>string</code></sup> The url to access</li><li><b>data</b>: <sup><code>string</code></sup> The data to post (optional)</li><li><b>headers</b>: <sup><code>object</code></sup> The headers to send with the web request (optional)</li><li><b>success(data)</b>: <sup><code>function</code></sup> The function to execute after receiving data (optional)</li><li><b>error(err)</b>: <sup><code>function</code></sup> The function to execute when an error occurs (optional)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code></li></ul><p><pre><code>// webPost example
 var app = this.app;
 app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
     app.sendTeamMessage('Post result: ' + data);
@@ -281,16 +281,16 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
     app.sendTeamMessage('Error posting: ' + error);
 });
 </code></pre></p></li>
-  <li><code>interactiveMap.addMarker(markerId, steamId, name, msg, x, y)</code> Returns true if the custom map marker is added</li>
-  <li><code>interactiveMap.setMarkerColor(markerId, color)</code> Returns true if the custom map marker's color is updated</li>
-  <li><code>interactiveMap.removeMarker(markerId)</code> Returns true if the custom map marker matching markerId is removed</li>
-  <li><code>interactiveMap.clearMarkers(steamId)</code> Returns true if all custom map markers are removed for steamId</li>
+  <li><code>interactiveMap.addMarker(markerId<sup><code>int</code></sup>, steamId<sup><code>string</code></sup>, name<sup><code>string</code></sup>, msg<sup><code>string</code></sup>, x<sup><code>int</code></sup>, y<sup><code>int</code></sup>)</code> Returns <code>true</code> if the custom map marker is added</li>
+  <li><code>interactiveMap.setMarkerColor(markerId<sup><code>int</code></sup>, color<sup><code>string</code></sup>)</code> Returns <code>true</code> if the custom map marker's color is updated</li>
+  <li><code>interactiveMap.removeMarker(markerId<sup><code>int</code></sup>)</code> Returns <code>true</code> if the custom map marker matching markerId is removed</li>
+  <li><code>interactiveMap.clearMarkers(steamId<sup><code>string</code></sup>)</code> Returns <code>true</code> if all custom map markers are removed for steamId</li>
   <li><code>interactiveMap.getHeatmapData()</code> Returns an object containing the heatmap data (see <b>HeatmapData</b> below)</li>
-  <li><code>util.collides(x, y, rotation, x1, y1, x2, y2)</code> Returns true if angled point x,y collides with rectangle x1,y1,x2,y2</li>
-  <li><code>util.direction(x1, y1, x2, y2)</code> Get the direction from the first point facing the second</li>
-  <li><code>util.distance(x1, y1, x2, y2)</code> Get the distance between two points in meters</li>
-  <li><code>util.getMapCoords(x, y)</code> Get the map coordinates for a point</li>
-  <li><code>util.inRect(x, y, x1, y1, x2, y2)</code> Returns true if the point is inside the rectangle</li>
+  <li><code>util.collides(x<sup><code>int</code></sup>, y<sup><code>int</code></sup>, rotation<sup><code>int</code></sup>, x1<sup><code>int</code></sup>, y1<sup><code>int</code></sup>, x2<sup><code>int</code></sup>, y2<sup><code>int</code></sup>)</code> Returns <code>true</code> if angled point x,y collides with rectangle x1,y1,x2,y2</li>
+  <li><code>util.direction(x1<sup><code>int</code></sup>, y1<sup><code>int</code></sup>, x2<sup><code>int</code></sup>, y2<sup><code>int</code></sup>)</code> Get the direction from the first point facing the second</li>
+  <li><code>util.distance(x1<sup><code>int</code></sup>, y1<sup><code>int</code></sup>, x2<sup><code>int</code></sup>, y2<sup><code>int</code></sup>)</code> Get the distance between two points in meters</li>
+  <li><code>util.getMapCoords(x<sup><code>int</code></sup>, y<sup><code>int</code></sup>)</code> Get the map coordinates for a point</li>
+  <li><code>util.inRect(x<sup><code>int</code></sup>, y<sup><code>int</code></sup>, x1<sup><code>int</code></sup>, y1<sup><code>int</code></sup>, x2<sup><code>int</code></sup>, y2<sup><code>int</code></sup>)</code> Returns <code>true</code> if the point is inside the rectangle</li>
 </ul>
 
 ### Data Types
@@ -343,12 +343,17 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
   "battlemetricsDiscord": true,
   "deathDiscord": true,
   "loginDiscord": true,
-  "autoCleanDevices": true,
+  "aliasesFullMatch": false,
+  "accessOnlyCommands": false,
+  "deviceTTS": false,
+  "autoCleanDevices": false,
   "autoDeviceCommand": true,
   "showDevicePlayer": false,
   "alwaysPostAlarms": true,
   "alwaysPostDecay": true,
   "decayOffset": 0,
+  "streamerMode": false,
+  "promoteStrict": false,
   "eventsDisplay": "heli,brad,cargo,oil,crate,ch47",
   "subEventsDisplay": "heli_lootable,brad_lootable,cargo_crates,oil_lootable"
 }</code></pre>
@@ -757,17 +762,17 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 ## Plugin Globals
 
 <ul>
-  <li><code>cmdFormat(str)</code> Convert a string into a non-translatable string<ul><li><b>str</b>: The string to convert</li><li><b>returns</b>: a non-translatable string</li></ul><p><pre><code>// cmdFormat example
+  <li><code>cmdFormat(str)</code> Convert a string into a non-translatable string<ul><li><b>str</b>: <sup><code>string</code></sup> The string to convert</li><li><b>returns</b>: <sup><code>string</code></sup> a non-translatable string</li></ul><p><pre><code>// cmdFormat example
 var app = this.app,
     msg = 'Here is the url: ' + cmdFormat('https://www.google.com');
 app.sendTeamMessage(msg);
 </code></pre></p></li>
-  <li><code>cmdFormatUndo(str)</code> Undo the non-translatable string conversion<ul><li><b>str</b>: The string to undo the non-translatable string conversion</li><li><b>returns</b>: a string</li></ul><p><pre><code>// cmdFormatUndo example
+  <li><code>cmdFormatUndo(str)</code> Undo the non-translatable string conversion<ul><li><b>str</b>: <sup><code>string</code></sup> The string to undo the non-translatable string conversion</li><li><b>returns</b>: <sup><code>string</code></sup> a string</li></ul><p><pre><code>// cmdFormatUndo example
 var app = this.app,
     msg = 'Here is the url: ' + cmdFormat('https://www.google.com');
 console.log(cmdFormatUndo(msg));
 </code></pre></p></li>
-  <li><code>encodeForm(data)</code> Convert an object to form data for a webPost<ul><li><b>data</b>: The object to convert</li><li><b>returns</b>: a string of encoded names and values</li></ul><p><pre><code>// encodeForm example
+  <li><code>encodeForm(data)</code> Convert an object to form data for a webPost<ul><li><b>data</b>: <sup><code>object</code></sup> The object to convert</li><li><b>returns</b>: <sup><code>string</code></sup> a string of encoded names and values</li></ul><p><pre><code>// encodeForm example
 var app = this.app;
 app.webPost('https://www.iplocation.net/ip-lookup', encodeForm({ query: app.server_ip }), null, (data) => {
     var regex = new RegExp('&lt;tr&gt;&lt;td&gt;' + app.server_ip + '&lt;/td&gt;&lt;td&gt;([^<]+)<', 'g'),
@@ -780,7 +785,7 @@ app.webPost('https://www.iplocation.net/ip-lookup', encodeForm({ query: app.serv
     app.sendTeamMessage('Error posting: ' + error);
 });
 </code></pre></p></li>
-  <li><code>combineItems(items, itemIds)</code> Combine the items from a Storage Monitor payload<ul><li><b>items</b>: The items from the payload</li><li><b>itemIds</b>: The item ID list to lookup item names</li><li><b>returns</b>: A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the combined items and item quantities</li></ul><p><pre><code>// combineItems example
+  <li><code>combineItems(items, itemIds)</code> Combine the items from a Storage Monitor payload<ul><li><b>items</b>: <sup><code>object</code></sup> The items from the payload</li><li><b>itemIds</b>: <sup><code>Map</code></sup> The item ID list to lookup item names</li><li><b>returns</b>: <sup><code>Map</code></sup> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the combined items and item quantities</li></ul><p><pre><code>// combineItems example
 var app = this.app,
     device = app.devices.get('BaseTC')[0];
 app.getEntityInfo(device.id, (message) => {
@@ -806,7 +811,7 @@ app.getEntityInfo(device.id, (message) => {
     }
 });
 </code></pre></p></li>
-  <li><code>getFriendlyDate(date)</code> Get a friendly representation of the date<ul><li><b>date</b>: The date object</li><li><b>returns</b>: a string containing the friendly representation of the date</li></ul><p><pre><code>// getFriendlyDate example
+  <li><code>getFriendlyDate(date)</code> Get a friendly representation of the date<ul><li><b>date</b>: <sup><code>date</code></sup> The date object</li><li><b>returns</b>: <sup><code>string</code></sup> a string containing the friendly representation of the date</li></ul><p><pre><code>// getFriendlyDate example
 var app = this.app;
 app.getTeamInfo((message) => {
     if (message.response && message.response.teamInfo) {
@@ -823,21 +828,21 @@ app.getTeamInfo((message) => {
     }
 });
 </code></pre></p></li>
-  <li><code>getTime(timestr)</code> Convert a time string to seconds<ul><li><b>timestr</b>: The time string (format: 1d1h1m1s)</li><li><b>returns</b>: the total seconds of the timestr</li></ul><p><pre><code>// getTime example
+  <li><code>getTime(timestr)</code> Convert a time string to seconds<ul><li><b>timestr</b>: <sup><code>string</code></sup> The time string (format: 1d1h1m1s)</li><li><b>returns</b>: <sup><code>int</code></sup> the total seconds of the timestr</li></ul><p><pre><code>// getTime example
 var app = this.app;
 app.sendTeamMessage('The time in seconds for 1d1h1m1s is ' + getTime('1d1h1m1s'));
 </code></pre></p></li>
-  <li><code>getTimeDifference(date)</code> Get the time difference for a date<ul><li><b>date</b>: The date object</li><li><b>returns</b>: the date difference in seconds</li></ul><p><pre><code>// getTimeDifference example
+  <li><code>getTimeDifference(date)</code> Get the time difference for a date<ul><li><b>date</b>: <sup><code>date</code></sup> The date object</li><li><b>returns</b>: <sup><code>int</code></sup> the date difference in seconds</li></ul><p><pre><code>// getTimeDifference example
 var app = this.app,
     connected = await app.getConnected();
 app.sendTeamMessage('The time in seconds since the bot connected is ' + Math.round(getTimeDifference(new Date(connected))));
 </code></pre></p></li>
-  <li><code>getTimeDisplay(time)</code> Get the time display for time<ul><li><b>time</b>: The time in seconds</li><li><b>returns</b>: a string representing the time</li></ul><p><pre><code>// getTimeDisplay example
+  <li><code>getTimeDisplay(time)</code> Get the time display for time<ul><li><b>time</b>: <sup><code>int</code></sup> The time in seconds</li><li><b>returns</b>: <sup><code>string</code></sup> a string representing the time</li></ul><p><pre><code>// getTimeDisplay example
 var app = this.app,
     connected = await app.getConnected();
 app.sendTeamMessage('The bot has been connected for ' + getTimeDisplay(Math.round(getTimeDifference(new Date(connected)))));
 </code></pre></p></li>
-  <li><code>multiLineFormat(msg, list, callback)</code> Format the message + list to fit the Rust message size using multiple lines<ul><li><b>msg</b>: The message to prepend</li><li><b>list</b>: The list of items to output</li><li><b>callback(line, msg, data)</b>: The function to execute for each formatted line (optional)</li><li><b>returns</b>: an Array containing the formatted lines</li></ul><p><pre><code>// multiLineFormat example
+  <li><code>multiLineFormat(msg, list, callback)</code> Format the message + list to fit the Rust message size using multiple lines<ul><li><b>msg</b>: <sup><code>string</code></sup> The message to prepend</li><li><b>list</b>: <sup><code>array</code></sup> The list of items to output</li><li><b>callback(line, msg, data)</b>: <sup><code>function</code></sup> The function to execute for each formatted line (optional)</li><li><b>returns</b>: <sup><code>array</code></sup> an Array containing the formatted lines</li></ul><p><pre><code>// multiLineFormat example
 var app = this.app,
     device = app.devices.get('BaseTC')[0];
 app.getEntityInfo(device.id, (message) => {
