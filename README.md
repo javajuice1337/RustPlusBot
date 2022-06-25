@@ -17,9 +17,9 @@ You can load any of the official plugins and use them as a template for getting 
 For data that persists beyond the bot's instance, use `this.storage`. This object loads with the bot and saves when it shuts down or restarts.
 
 ```
-// store the playerName variable
-if (!this.storage.playerName) this.storage.playerName = 'Player';
-console.log(this.storage.playerName);
+// store the myData variable
+if (!this.storage.myData) this.storage.myData = 'Hello World!';
+console.log(this.storage.myData);
 ```
 
 ## Plugin Events
@@ -27,11 +27,11 @@ console.log(this.storage.playerName);
 <ul>
   <li><code>onConnected()</code> Fires when the bot connects to a server or when the plugin loads</li>
   <li><code>onDisconnected()</code> Fires when the bot disconnects from a server</li>
-  <li><code>onEntityChanged(obj)</code> Fires when a paired Smart Device is changed<ul><li><b>obj.entityId</b>: <sup><code>int</code></sup> The entity ID of the Smart device</li><li><b>obj.payload</b>: <sup><code>object</code></sup> The payload data of the event (see <code>Payload</code> below)</li></ul></li>
+  <li><code>onEntityChanged(obj)</code> Fires when a paired Smart Device is changed<ul><li><b>obj.entityId</b>: <sup><code>int</code></sup> The entity ID of the Smart device</li><li><b>obj.payload</b>: <sup><code>object</code></sup> The payload data of the event (see <code><a href="#Payload">Payload</a></code> below)</li></ul></li>
   <li><code>onMessageReceive(obj)</code> Fires when a team chat message is received<ul><li><b>obj.message</b>: <sup><code>string</code></sup> The incoming team chat message</li><li><b>obj.name</b>: <sup><code>string</code></sup> The steam name of the sender</li><li><b>obj.steamId</b>: <sup><code>string</code></sup> The steam ID of the sender</li></ul></li>
   <li><code>onMessageSend(obj)</code> Fires when a team chat message is sent<ul><li><b>obj.message</b>: <sup><code>string</code></sup> The outgoing team chat message</li></ul></li>
-  <li><code>onNotification(obj)</code> Fires when there is a bot notification (including game events)<ul><li><b>obj.notification</b>: <sup><code>object</code></sup> The notification data of the event (see <code>Notification</code> below)</li></ul></li>
-  <li><code>onTeamChanged(obj)</code> Fires when the team leader changes, or a team member is added or removed from the team<ul><li><b>obj.leaderSteamId</b>: <sup><code>object</code></sup> The steam ID of the team leader</li><li><b>obj.leaderMapNotes</b>: <sup><code>object</code></sup> The leader map notes data of the event (see <code>LeaderMapNotes</code> below)</li><li><b>obj.members</b>: <sup><code>object</code></sup> The members list data of the event (see <code>Members</code> below)</li></ul></li>
+  <li><code>onNotification(obj)</code> Fires when there is a bot notification (including game events)<ul><li><b>obj.notification</b>: <sup><code>object</code></sup> The notification data of the event (see all <code><a href="#NotificationAlarm">Notification</a></code> below)</li></ul></li>
+  <li><code>onTeamChanged(obj)</code> Fires when the team leader changes, or a team member is added or removed from the team<ul><li><b>obj.leaderSteamId</b>: <sup><code>object</code></sup> The steam ID of the team leader</li><li><b>obj.leaderMapNotes</b>: <sup><code>object</code></sup> The leader map notes data of the event (see <code><a href="#LeaderMapNotes">LeaderMapNotes</a></code> below)</li><li><b>obj.members</b>: <sup><code>object</code></sup> The members list data of the event (see <code><a href="#Members">Members</a></code> below)</li></ul></li>
 </ul>
 
 ## Plugin Interface
@@ -41,15 +41,15 @@ The `app` object exists in the plugin's scope `this`, and exposes the following 
 ### Properties
 
 <ul>
-  <li><code>bmData</code> <sup><code>object</code></sup> An object containing the BattleMetrics data of the server (see <code>BattleMetrics Data</code> below)</li>
-  <li><code>cfg</code> <sup><code>object</code></sup> An object containing the configuration settings for the bot (see <code>Config</code> below)</li>
-  <li><code>devices</code> <sup><code>Map</code></sup> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the bot's paired devices (<b>key</b>: device name (lowercase only), <b>value</b>: Array of devices, see <code>Device</code> below)</li>
+  <li><code>bmData</code> <sup><code>object</code></sup> An object containing the BattleMetrics data of the server (see <code><a href="#BattleMetricsData">BattleMetrics Data</a></code> below)</li>
+  <li><code>cfg</code> <sup><code>object</code></sup> An object containing the configuration settings for the bot (see <code><a href="#Config">Config</a></code> below)</li>
+  <li><code>devices</code> <sup><code>Map</code></sup> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the bot's paired devices (<b>key</b>: device name (lowercase only), <b>value</b>: Array of devices, see <code><a href="#Device">Device</a></code> below)</li>
   <li><code>devices_map</code> <sup><code>Map</code></sup> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the bot's paired device names (<b>key</b>: device ID, <b>value</b>: Array of lowercased device names)</li>
   <li><code>event_types</code> <sup><code>Map</code></sup> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing game event names (<b>key</b>: event ID, <b>value</b>: event name)</li>
   <li><code>guild_token</code> <sup><code>string</code></sup> The unique token representing the Discord server</li>
   <li><code>guild_name</code> <sup><code>string</code></sup> The name of the Discord server</li>
   <li><code>itemIds</code> <sup><code>Map</code></sup> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the item names for all item IDs (<b>key</b>: item ID, <b>value</b>: item name)</li>
-  <li><code>monuments</code> <sup><code>Map</code></sup> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing all monument tokens  and locations (<b>key</b>: monument token, <b>value</b>: Array of monument locations, see <code>Point</code> below)</li>
+  <li><code>monuments</code> <sup><code>Map</code></sup> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing all monument tokens  and locations (<b>key</b>: monument token, <b>value</b>: Array of monument locations, see <code><a href="#Point">Point</a></code> below)</li>
   <li><code>tokenMap</code> <sup><code>Map</code></sup> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the monument names for all monument tokens (<b>key</b>: monument token, <b>value</b>: monument name)</li>
   <li><code>player_id</code> <sup><code>string</code></sup> The steam ID of the bot's connected player</li>
   <li><code>player_name</code> <sup><code>string</code></sup> The steam name of the bot's connected player</li>
@@ -86,11 +86,7 @@ app.getBattleMetrics('123456', 'Rust Player 2099', (data) => {
 var connected = await this.app.getConnected();
 console.log(new Date(connected));
 </code></pre></p></li>
-  <li><code>getEvents(type)</code> Get the most recent game events (ordered by newest to oldest)<ul><li><b>type</b>: <sup><code>string</code></sup> The event type (optional)<ul><li><code>heli</code> Patrol Helicopter</li><li><code>brad</code> Bradley Tank</li><li><code>cargo</code> Cargo Ship</li><li><code>crate</code> Locked Crate</li><li><code>ch47</code> CH-47 Chinook</li><li><code>oil_rig_small</code> Oil Rig (Small)</li><li><code>large_oil_rig</code> Oil Rig (Large)</li></ul></li><li><b>returns</b>: <sup><code>array</code></sup> <code>Event</code> array</li></ul><p><pre><code>// getEvents example
-var e = await this.app.getEvents();
-console.log(e);
-</code></pre></p></li>
-  <li><code>getEntityInfo(id, callback)</code> Get data from a Smart device<ul><li><b>id</b>: <sup><code>int</code></sup> The identifier of the Smart device</li><li><b>callback(message)</b>: <sup><code>function</code></sup> The function to execute after getting the entity info (<code>message.response</code> contains <code>EntityInfo</code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getEntityInfo example
+  <li><code>getEntityInfo(id, callback)</code> Get data from a Smart device<ul><li><b>id</b>: <sup><code>int</code></sup> The identifier of the Smart device</li><li><b>callback(message)</b>: <sup><code>function</code></sup> The function to execute after getting the entity info (<code>message.response</code> contains <code><a href="#EntityInfo">EntityInfo</a></code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getEntityInfo example
 var app = this.app;
 app.getEntityInfo(123456, (message) => {
     if (message.response && message.response.entityInfo && message.response.entityInfo.payload) {
@@ -101,7 +97,11 @@ app.getEntityInfo(123456, (message) => {
     }
 });
 </code></pre></p></li>
-  <li><code>getInfo(callback)</code> Get information about the server<ul><li><b>callback(message)</b>: <sup><code>function</code></sup> The function to execute after getting the info (<code>message.response</code> contains <code>Info</code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getInfo example
+  <li><code>getEvents(type)</code> Get the most recent game events (ordered by newest to oldest)<ul><li><b>type</b>: <sup><code>string</code></sup> The event type (optional)<ul><li><code>heli</code> Patrol Helicopter</li><li><code>brad</code> Bradley Tank</li><li><code>cargo</code> Cargo Ship</li><li><code>crate</code> Locked Crate</li><li><code>ch47</code> CH-47 Chinook</li><li><code>oil_rig_small</code> Oil Rig (Small)</li><li><code>large_oil_rig</code> Oil Rig (Large)</li></ul></li><li><b>returns</b>: <sup><code>array</code></sup> <code><a href="#Event">Event</a></code> array</li></ul><p><pre><code>// getEvents example
+var e = await this.app.getEvents();
+console.log(e);
+</code></pre></p></li>
+  <li><code>getInfo(callback)</code> Get information about the server<ul><li><b>callback(message)</b>: <sup><code>function</code></sup> The function to execute after getting the info (<code>message.response</code> contains <code><a href="#Info">Info</a></code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getInfo example
 var app = this.app;
 app.getInfo((message) => {
     if (message.response && message.response.info) {
@@ -120,7 +120,7 @@ app.getItemName("metal", (data) => {
     app.sendTeamMessage('Error obtaining the ItemName data: ' + error);
 });
 </code></pre></p></li>
-  <li><code>getMapInfo(callback)</code> Get information about the server's map<ul><li><b>callback(message)</b>: <sup><code>function</code></sup> The function to execute after getting the map info (<code>message</code> is <code>MapInfo</code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getMapInfo example
+  <li><code>getMapInfo(callback)</code> Get information about the server's map<ul><li><b>callback(message)</b>: <sup><code>function</code></sup> The function to execute after getting the map info (<code>message</code> is <code><a href="#MapInfo">MapInfo</a></code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getMapInfo example
 var app = this.app;
 app.getMapInfo((message) => {
     if (message && message.image) {
@@ -128,7 +128,7 @@ app.getMapInfo((message) => {
     }
 });
 </code></pre></p></li>
-  <li><code>getMapMarkers(callback)</code> Get information about all map markers<ul><li><b>callback(message)</b>: <sup><code>function</code></sup> The function to execute after getting the map markers (<code>message.response</code> contains <code>MapMarkers</code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getMapMarkers example
+  <li><code>getMapMarkers(callback)</code> Get information about all map markers<ul><li><b>callback(message)</b>: <sup><code>function</code></sup> The function to execute after getting the map markers (<code>message.response</code> contains <code><a href="#MapMarkers">MapMarkers</a></code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getMapMarkers example
 var app = this.app;
 app.getMapMarkers((message) => {
     if (message.response && message.response.mapMarkers && message.response.mapMarkers.markers) {
@@ -170,7 +170,7 @@ app.getSteamrep(123456789, (data) => {
     app.sendTeamMessage('Error obtaining the Steamrep data: ' + error);
 });
 </code></pre></p></li>
-  <li><code>getTeamChat(callback)</code> Get recent team chat messages<ul><li><b>callback(message)</b>: <sup><code>function</code></sup> The function to execute after getting the team chat messages (<code>message.response</code> contains <code>TeamChat</code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getTeamChat example
+  <li><code>getTeamChat(callback)</code> Get recent team chat messages<ul><li><b>callback(message)</b>: <sup><code>function</code></sup> The function to execute after getting the team chat messages (<code>message.response</code> contains <code><a href="#TeamChat">TeamChat</a></code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getTeamChat example
 const messages_max = 5;
 var app = this.app;
 app.getTeamChat((message) => {
@@ -199,7 +199,7 @@ app.getTeamData((data) => {
     }
 });
 </code></pre></p></li>
-  <li><code>getTeamInfo(callback)</code> Get information about the team (leader, members)<ul><li><b>callback(message)</b>: <sup><code>function</code></sup> The function to execute after getting the team info (<code>message.response</code> contains <code>TeamInfo</code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getTeamInfo example
+  <li><code>getTeamInfo(callback)</code> Get information about the team (leader, members)<ul><li><b>callback(message)</b>: <sup><code>function</code></sup> The function to execute after getting the team info (<code>message.response</code> contains <code><a href="#TeamInfo">TeamInfo</a></code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getTeamInfo example
 var app = this.app;
 app.getTeamInfo((message) => {
     if (message.response && message.response.teamInfo) {
@@ -211,7 +211,7 @@ app.getTeamInfo((message) => {
     }
 });
 </code></pre></p></li>
-  <li><code>getTime(callback)</code> Get information about the server time<ul><li><b>callback(message)</b>: <sup><code>function</code></sup> The function to execute after getting the time (<code>message.response</code> contains <code>Time</code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getTime example
+  <li><code>getTime(callback)</code> Get information about the server time<ul><li><b>callback(message)</b>: <sup><code>function</code></sup> The function to execute after getting the time (<code>message.response</code> contains <code><a href="#Time">Time</a></code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getTime example
 var app = this.app;
 app.getTime((message) => {
     if (message.response && message.response.time) {
@@ -230,7 +230,7 @@ app.getTime((message) => {
   <li><code>postDiscordMessage(msg)</code> Post a message to the bot's Main Discord channel<ul><li><b>msg</b>: <sup><code>string</code></sup> The message to post</li></ul><p><pre><code>// postDiscordMessage example
 this.app.postDiscordMessage('This is a message from a bot\'s plugin');
 </code></pre></p></li>
-  <li><code>postDiscordNotification(title, description, url, img, list)</code> Post a notification to the bot's Notification Discord channel<ul><li><b>title</b>: <sup><code>string</code></sup> The title of the notification</li><li><b>description</b>: <sup><code>string</code></sup> The description of the notification</li><li><b>url</b>: <sup><code>string</code></sup> The url of the notification (optional)</li><li><b>img</b>: <sup><code>string</code></sup> The image url of the notification (optional)</li><li><b>list</b>: <sup><code>array</code></sup> The item list data of the notification (optional; see <code>NotificationList</code> below)</li></ul><p><pre><code>// postDiscordNotification example
+  <li><code>postDiscordNotification(title, description, url, img, list)</code> Post a notification to the bot's Notification Discord channel<ul><li><b>title</b>: <sup><code>string</code></sup> The title of the notification</li><li><b>description</b>: <sup><code>string</code></sup> The description of the notification</li><li><b>url</b>: <sup><code>string</code></sup> The url of the notification (optional)</li><li><b>img</b>: <sup><code>string</code></sup> The image url of the notification (optional)</li><li><b>list</b>: <sup><code>array</code></sup> The item list data of the notification (optional; see <code><a href="#NotificationList">NotificationList</a></code> below)</li></ul><p><pre><code>// postDiscordNotification example
 this.app.postDiscordNotification('Plugin Alert Title', 'Plugin Alert Message');
 </code></pre></p></li>
   <li><code>postDiscordWebhook(url, msg)</code> Post a message to a Discord webhook<ul><li><b>url</b>: <sup><code>string</code></sup> The url of the Discord webhook</li><li><b>msg</b>: <sup><code>string</code></sup> The message to post to the Discord webhook</li></ul><p><pre><code>// postDiscordWebhook example
@@ -285,7 +285,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
   <li><code>interactiveMap.setMarkerColor(markerId<sup><code>int</code></sup>, color<sup><code>string</code></sup>)</code> Returns <code>true</code> if the custom map marker's color is updated</li>
   <li><code>interactiveMap.removeMarker(markerId<sup><code>int</code></sup>)</code> Returns <code>true</code> if the custom map marker matching markerId is removed</li>
   <li><code>interactiveMap.clearMarkers(steamId<sup><code>string</code></sup>)</code> Returns <code>true</code> if all custom map markers are removed for steamId</li>
-  <li><code>interactiveMap.getHeatmapData()</code> Returns an object containing the heatmap data (see <b>HeatmapData</b> below)</li>
+  <li><code>interactiveMap.getHeatmapData()</code> Returns an object containing the heatmap data (see <code><a href="#HeatmapData">HeatmapData</a></code> below)</li>
   <li><code>util.collides(x<sup><code>int</code></sup>, y<sup><code>int</code></sup>, rotation<sup><code>int</code></sup>, x1<sup><code>int</code></sup>, y1<sup><code>int</code></sup>, x2<sup><code>int</code></sup>, y2<sup><code>int</code></sup>)</code> Returns <code>true</code> if angled point x,y collides with rectangle x1,y1,x2,y2</li>
   <li><code>util.direction(x1<sup><code>int</code></sup>, y1<sup><code>int</code></sup>, x2<sup><code>int</code></sup>, y2<sup><code>int</code></sup>)</code> Get the direction from the first point facing the second</li>
   <li><code>util.distance(x1<sup><code>int</code></sup>, y1<sup><code>int</code></sup>, x2<sup><code>int</code></sup>, y2<sup><code>int</code></sup>)</code> Get the distance between two points in meters</li>
@@ -297,7 +297,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 
 <ul>
   <li>
-    <b>BattleMetrics Data</b>
+    <b>BattleMetrics Data</b><a name="BattleMetricsData"></a>
     <pre><code>{     
   "Name": "Server Name",
   "Rank": "#1",
@@ -318,7 +318,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 }</code></pre>
   </li>
   <li>
-    <b>Config</b>
+    <b>Config</b><a name="Config"></a>
     <pre><code>{     
   "lang": "en",
   "cmdPrefix": "!",
@@ -359,7 +359,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 }</code></pre>
   </li>
   <li>
-    <b>Device</b>
+    <b>Device</b><a name="Device"></a>
     <pre><code>{
   name: "MyDevice",
   id: 123456,
@@ -369,7 +369,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 }</code></pre>
   </li>
   <li>
-    <b>EntityInfo</b>
+    <b>EntityInfo</b><a name="EntityInfo"></a>
     <pre><code>{
   "type": "1",
   "payload": {} // see Payload below
@@ -380,7 +380,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 // 3 = Storage Monitor</code></pre>
   </li>
   <li>
-    <b>Event</b>
+    <b>Event</b><a name="Event"></a>
     <pre><code>{
   id: 123456789,
   type: "heli",
@@ -390,8 +390,8 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 }</code></pre>
   </li>
   <li>
-    <b>Heatmap Data</b>
-    <pre><code>{     
+    <b>Heatmap Data</b><a name="HeatmapData"></a>
+    <pre><code>{
   "deaths": [],
   "brad": [{
     "x": 2667.51416015625,
@@ -424,7 +424,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 }</code></pre>
   </li>
   <li>
-    <b>Info</b>
+    <b>Info</b><a name="Info"></a>
     <pre><code>{
   "name": "Rust Server Name",
   "headerImage": "",
@@ -440,7 +440,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 }</code></pre>
   </li>
   <li>
-    <b>MapInfo</b>
+    <b>MapInfo</b><a name="MapInfo"></a>
     <pre><code>{
   "width": 3125,
   "height": 3125,
@@ -464,7 +464,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 }</code></pre>
   </li>
   <li>
-    <b>LeaderMapNotes</b>
+    <b>LeaderMapNotes</b><a name="LeaderMapNotes"></a>
     <pre><code>[{
   "type": 1,
   "x": 1500.958740234375,
@@ -472,7 +472,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 }]</code></pre>
   </li>
   <li>
-    <b>MapMarkers</b>
+    <b>MapMarkers</b><a name="MapMarkers"></a>
     <pre><code>{
   markers: [{
     "id": 123456,
@@ -506,7 +506,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
     <blockquote>Find the item name with the itemId using <code>itemIds</code></blockquote>
   </li>
   <li>
-    <b>Members</b>
+    <b>Members</b><a name="Members"></a>
     <pre><code>[{
   "steamId": "123456789",
   "name": "RustPlayer1",
@@ -528,7 +528,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 }]</code></pre>
   </li>
   <li>
-    <b>Notification: Alarm</b>
+    <b>Notification: Alarm</b><a name="NotificationAlarm"></a>
     <pre><code>{
   "notification: {
     "type": "alarm",
@@ -541,7 +541,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 }</code></pre>
   </li>
   <li>
-    <b>Notification: Decaying TC</b>
+    <b>Notification: Decaying TC</b><a name="NotificationDecayingTC"></a>
     <pre><code>{
   "notification": {
     "type": "monitor",
@@ -558,7 +558,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 }</code></pre>
   </li>
   <li>
-    <b>Notification: Entity Pairing</b>
+    <b>Notification: Entity Pairing</b><a name="NotificationEntityPairing"></a>
     <pre><code>{
   "notification": {
     "type": "entity",
@@ -574,7 +574,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 // 3 = Storage Monitor</code></pre>
   </li>
   <li>
-    <b>Notification: Event</b>
+    <b>Notification: Event</b><a name="NotificationEvent"></a>
     <pre><code>{
   "notification": {
     "type": "event",
@@ -589,7 +589,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
   }
 }</code></pre>
   <li>
-    <b>Notification: Inactive Device</b>
+    <b>Notification: Inactive Device</b><a name="NotificationInactiveDevice"></a>
     <pre><code>{
   "notification": {
     "type": "inactive",
@@ -606,7 +606,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 }</code></pre>
   </li>
   <li>
-    <b>Notification: News</b>
+    <b>Notification: News</b><a name="NotificationNews"></a>
     <pre><code>{
   "notification: {
     "type": "news",
@@ -620,7 +620,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 }</code></pre>
   </li>
   <li>
-    <b>Notification: Player Death</b>
+    <b>Notification: Player Death</b><a name="NotificationPlayerDeath"></a>
     <pre><code>{
   "notification": {
     "type": "death",
@@ -631,7 +631,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 }</code></pre>
   </li>
   <li>
-    <b>Notification: Player Tracking</b>
+    <b>Notification: Player Tracking</b><a name="NotificationPlayerTracking"></a>
     <pre><code>{
   "notification": {
     "type": "tracking",
@@ -645,7 +645,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 }</code></pre>
   </li>
   <li>
-    <b>Notification: Team Login</b>
+    <b>Notification: Team Login</b><a name="NotificationTeamLogin"></a>
     <pre><code>{
   "notification": {
     "type": "login",
@@ -656,7 +656,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 }</code></pre>
   </li>
   <li>
-    <b>NotificationList</b>
+    <b>NotificationList</b><a name="NotificationList"></a>
     <pre><code>[{
   name: "Sub Item",
   value: "Sub Value",
@@ -664,7 +664,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 }]</code></pre>
   </li>
   <li>
-    <b>Payload: Smart Switch, Smart Alarm</b>
+    <b>Payload: Smart Switch, Smart Alarm</b><a name="Payload"></a>
     <pre><code>"payload": {
   "value": false,
   "capacity": 0,
@@ -674,7 +674,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 </code></pre>
   </li>
   <li>
-    <b>Payload: Storage Monitor</b>
+    <b>Payload: Storage Monitor</b><a name="PayloadStorageMonitor"></a>
     <pre><code>"payload": {
   "value": false,
   "items": [{
@@ -694,14 +694,14 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
     <blockquote>Find the item name with the itemId using <code>itemIds</code></blockquote>
   </li>
   <li>
-    <b>Point</b>
+    <b>Point</b><a name="Point"></a>
     <pre><code>{
   x: 100,
   y: 200
 }</code></pre>
   </li>
   <li>
-    <b>Time</b>
+    <b>Time</b><a name="Time"></a>
     <pre><code>{
   "dayLengthMinutes": 60,
   "timeScale": 1,
@@ -711,7 +711,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 }</code></pre>
   </li>
   <li>
-    <b>TeamChat</b>
+    <b>TeamChat</b><a name="TeamChat"></a>
     <pre><code>{
   "messages": [{
     "steamId": "123456789",
@@ -723,7 +723,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 }</code></pre>
   </li>
   <li>
-    <b>TeamData</b>
+    <b>TeamData</b><a name="TeamData"></a>
     <pre><code>{
   "leader": {
     "name": "RustPlayer1",
@@ -740,7 +740,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 }</code></pre>
   </li>
   <li>
-    <b>TeamInfo</b>
+    <b>TeamInfo</b><a name="TeamInfo"></a>
     <pre><code>{
   "leaderSteamId": 123456789,
   "members": [], // see Members
@@ -748,7 +748,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 }</code></pre>
   </li>
   <li>
-    <b>Time</b>
+    <b>Time</b><a name="Time"></a>
     <pre><code>{
   "dayLengthMinutes": 60,
   "timeScale": 1,
