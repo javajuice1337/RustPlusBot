@@ -6,7 +6,7 @@
 
 **RustPlusBot** plugins allow you to develop your own commands to add functionality to the bot. The plugin itself exposes many events for a programmer to attach to and execute code.
 
-The plugins are written in JavaScript and run in a NodeJS environment after they are published. During development, you host the plugin on your client machine and in your web-browser. Your plugin interfaces with the bot via a WebSocket connection.
+The plugins are written in JavaScript and run in a NodeJS environment after they are published. During development, you host the plugin on your client machine and in your web-browser. Your plugin interfaces with the bot via a WebSocket connection and communicates using the RustPlusBot api.
 
 You can load any of the official plugins and use them as a template for getting started in the Plugin Studio. The Plugin Studio can be accessed via a link in the Plugin settings tab on the RustPlusBot settings page for your Discord server.
 
@@ -184,7 +184,7 @@ app.getTeamChat((message) => {
     }
 });
 </code></pre></p></li>
-  <li><code>getTeamData(callback)</code> Get detailed information about the team (leader, members)<ul><li><b>callback(data)</b>: <sup><code>function</code></sup> The function to execute after getting the team data (<code>data</code> is <code>TeamData</code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getTeamData example
+  <li><code>getTeamData(callback)</code> Get detailed information about the team (leader, members)<ul><li><b>callback(data)</b>: <sup><code>function</code></sup> The function to execute after getting the team data (<code>data</code> is <code><a href="#TeamData">TeamData</a></code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getTeamData example
 var app = this.app;
 app.getTeamData((data) => {
     if (data && data.members) {
@@ -872,7 +872,7 @@ app.getEntityInfo(device.id, (message) => {
 
 ## Plugin Publishing
           
-You can publish your plugin when you are done making any major changes to it by clicking the Publish tab in the Plugin Studio. You have the option of making it a public plugin for others to use with their bot. There will be a review of your plugin after submitting which could take several days. If your plugin is accepted for publishing, you will then be able to select it in the Plugin settings for your bot and install it.
+You can publish your plugin when you are done making any major changes to it by clicking the Publish tab in the Plugin Studio. You have the option of making it a public plugin for others to use with their bot. There will be a review of your plugin after submitting which could take several days. If your plugin is accepted for publishing, you will then be able to select it in the Plugin settings for your bot and install it. Duplicates of official plugins will not be accepted.
 
 ## Links
 
