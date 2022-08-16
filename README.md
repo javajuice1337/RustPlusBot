@@ -736,6 +736,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
     "info": "last seen 5 hours ago",
     "infoText": "last seen",
     "infoValue": 1649959932,
+    "location": "G20",
     "x": 1932.2833251953125,
     "y": 2376.96240234375
   }]
