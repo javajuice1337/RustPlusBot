@@ -734,6 +734,8 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
     "steamId": "123456789",
     "status": "OFFLINE",
     "info": "last seen 5 hours ago",
+    "infoText": "last seen",
+    "infoValue": 1649959932,
     "x": 1932.2833251953125,
     "y": 2376.96240234375
   }]
