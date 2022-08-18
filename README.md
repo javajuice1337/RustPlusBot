@@ -86,6 +86,15 @@ app.getBattleMetrics('123456', 'Rust Player 2099', (data) => {
 var connected = await this.app.getConnected();
 console.log(new Date(connected));
 </code></pre></p></li>
+  <li><code>getDetailedInfo(callback)</code> Get detailed information about the server<ul><li><b>callback(data)</b>: <sup><code>function</code></sup> The function to execute after getting the detailed info (<code>data</code> is <code><a href="#DetailedInfo">DetailedInfo</a></code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getDetailedInfo example
+var app = this.app;
+app.getDetailedInfo((data) => {
+    if (data && data.players) {
+        app.sendTeamMessage('Current server population is ' + data.players);
+        app.sendTeamMessage('Current server time is ' + data.time);
+    }
+});
+</code></pre></p></li>
   <li><code>getEntityInfo(id, callback)</code> Get data from a Smart device<ul><li><b>id</b>: <sup><code>int</code></sup> The identifier of the Smart device</li><li><b>callback(message)</b>: <sup><code>function</code></sup> The function to execute after getting the entity info (<code>message.response</code> contains <code><a href="#EntityInfo">EntityInfo</a></code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getEntityInfo example
 var app = this.app;
 app.getEntityInfo(123456, (message) => {
@@ -357,6 +366,21 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
   "eventsDisplay": "heli,brad,cargo,oil,crate,ch47",
   "subEventsDisplay": "heli_lootable,brad_lootable,cargo_crates,oil_lootable"
 }</code></pre>
+  </li>
+  <li>
+    <b>DetailedInfo</b><a name="DetailedInfo"></a>
+    <pre><code>{
+  "players": "51/200",
+  "time": "16:23",
+  "wipe": 1147412,
+  "nextDay": 1453,
+  "nextNight": 775,
+  "nextWipe": 22
+}</code></pre>
+    <pre><code>// wipe usage: getTimeDisplay(wipe * 1000) + ' ago'
+// nextDay usage: getTimeDisplay(nextDay)
+// nextNight usage: getTimeDisplay(nextNight)
+// nextWipe usage: nextWipe + 'd'</code></pre>
   </li>
   <li>
     <b>Device</b><a name="Device"></a>
