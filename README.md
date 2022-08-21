@@ -295,13 +295,20 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
   <li><code>interactiveMap.removeMarker(markerId<sup><code>int</code></sup>)</code> Returns <code>true</code> if the custom map marker matching markerId is removed</li>
   <li><code>interactiveMap.clearMarkers(steamId<sup><code>string</code></sup>)</code> Returns <code>true</code> if all custom map markers are removed for steamId</li>
   <li><code>interactiveMap.getHeatmapData()</code> Returns an object containing the heatmap data (see <code><a href="#HeatmapData">HeatmapData</a></code> below)</li>
-  <li><code>registeredHandlers.add(type<sup><code>string</code></sup>, handler<sup><code>function</code></sup>)</code> Add a handler for a specific update event type: <ul><li><code>battlemetrics</code> Fires when the BattleMetrics ID is changed in the configuration</li><li><code>config</code> Fires when the configuration settings have changed</li><li><code>device</code> Fires when the paired devices has changed</li></ul></li>
-  <li><code>registeredHandlers.remove(type<sup><code>string</code></sup>, handler<sup><code>function</code></sup>)</code> Remove a handler for a specific update event type (see <code>registeredHandlers.add</code> above)</li>
   <li><code>util.collides(x<sup><code>int</code></sup>, y<sup><code>int</code></sup>, rotation<sup><code>int</code></sup>, x1<sup><code>int</code></sup>, y1<sup><code>int</code></sup>, x2<sup><code>int</code></sup>, y2<sup><code>int</code></sup>)</code> Returns <code>true</code> if angled point x,y collides with rectangle x1,y1,x2,y2</li>
   <li><code>util.direction(x1<sup><code>int</code></sup>, y1<sup><code>int</code></sup>, x2<sup><code>int</code></sup>, y2<sup><code>int</code></sup>)</code> Get the direction from the first point facing the second</li>
   <li><code>util.distance(x1<sup><code>int</code></sup>, y1<sup><code>int</code></sup>, x2<sup><code>int</code></sup>, y2<sup><code>int</code></sup>)</code> Get the distance between two points in meters</li>
   <li><code>util.getMapCoords(x<sup><code>int</code></sup>, y<sup><code>int</code></sup>)</code> Get the map coordinates for a point</li>
   <li><code>util.inRect(x<sup><code>int</code></sup>, y<sup><code>int</code></sup>, x1<sup><code>int</code></sup>, y1<sup><code>int</code></sup>, x2<sup><code>int</code></sup>, y2<sup><code>int</code></sup>)</code> Returns <code>true</code> if the point is inside the rectangle</li>
+</ul>
+
+### Other Methods
+
+Note: The following methods exist in the plugin's scope `this` (instead of in `app`).
+
+<ul>
+  <li><code>registeredHandlers.add(type<sup><code>string</code></sup>, handler<sup><code>function</code></sup>)</code> Add a handler for a specific update event type: <ul><li><code>battlemetrics</code> Fires when the BattleMetrics ID is changed in the configuration</li><li><code>config</code> Fires when the configuration settings have changed</li><li><code>device</code> Fires when the paired devices has changed</li></ul></li>
+  <li><code>registeredHandlers.remove(type<sup><code>string</code></sup>, handler<sup><code>function</code></sup>)</code> Remove a handler for a specific update event type (see <code>registeredHandlers.add</code> above)</li>
 </ul>
 
 ### Data Types
