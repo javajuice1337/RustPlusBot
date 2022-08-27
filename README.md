@@ -31,7 +31,7 @@ console.log(this.storage.myData);
   <li><code>onMessageReceive(obj)</code> Fires when a team chat message is received<ul><li><b>obj.message</b>: <sup><code>string</code></sup> The incoming team chat message</li><li><b>obj.name</b>: <sup><code>string</code></sup> The steam name of the sender</li><li><b>obj.steamId</b>: <sup><code>string</code></sup> The steam ID of the sender</li></ul></li>
   <li><code>onMessageSend(obj)</code> Fires when a team chat message is sent<ul><li><b>obj.message</b>: <sup><code>string</code></sup> The outgoing team chat message</li></ul></li>
   <li><code>onNotification(obj)</code> Fires when there is a bot notification (including game events)<ul><li><b>obj.notification</b>: <sup><code>object</code></sup> The notification data of the event (see all <code><a href="#NotificationAlarm">Notification</a></code> below)</li></ul></li>
-  <li><code>onTeamChanged(obj)</code> Fires when the team leader changes, or a team member is added or removed from the team<ul><li><b>obj.leaderSteamId</b>: <sup><code>object</code></sup> The steam ID of the team leader</li><li><b>obj.leaderMapNotes</b>: <sup><code>object</code></sup> The leader map notes data of the event (see <code><a href="#LeaderMapNotes">LeaderMapNotes</a></code> below)</li><li><b>obj.members</b>: <sup><code>object</code></sup> The members list data of the event (see <code><a href="#Members">Members</a></code> below)</li></ul></li>
+  <li><code>onTeamChanged(obj)</code> Fires when the team leader changes, or a team member is added or removed from the team<ul><li><b>obj.leaderSteamId</b>: <sup><code>object</code></sup> The steam ID of the team leader</li><li><b>obj.leaderMapNotes</b>: <sup><code>object</code></sup> The leader map notes data of the event (see <code><a href="#MapNotes">MapNotes</a></code> below)</li><li><b>obj.members</b>: <sup><code>object</code></sup> The members list data of the event (see <code><a href="#Members">Members</a></code> below)</li></ul></li>
 </ul>
 
 ## Plugin Interface
@@ -497,7 +497,7 @@ Note: The following methods exist in the plugin's scope `this` (instead of in `a
 }</code></pre>
   </li>
   <li>
-    <b>LeaderMapNotes</b><a name="LeaderMapNotes"></a>
+    <b>MapNotes</b><a name="MapNotes"></a>
     <pre><code>[{
   "type": 1,
   "x": 1500.958740234375,
@@ -780,7 +780,8 @@ Note: The following methods exist in the plugin's scope `this` (instead of in `a
     <pre><code>{
   "leaderSteamId": 123456789,
   "members": [], // see Members
-  "leaderMapNotes": [] // see LeaderMapNotes
+  "leaderMapNotes": [], // see MapNotes
+  "mapNotes": [] // see MapNotes
 }</code></pre>
   </li>
   <li>
