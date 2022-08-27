@@ -497,14 +497,6 @@ Note: The following methods exist in the plugin's scope `this` (instead of in `a
 }</code></pre>
   </li>
   <li>
-    <b>MapNotes</b><a name="MapNotes"></a>
-    <pre><code>[{
-  "type": 1,
-  "x": 1500.958740234375,
-  "y": 2551.239990234375
-}]</code></pre>
-  </li>
-  <li>
     <b>MapMarkers</b><a name="MapMarkers"></a>
     <pre><code>{
   markers: [{
@@ -537,6 +529,14 @@ Note: The following methods exist in the plugin's scope `this` (instead of in `a
 // 6 = Crate
 // 8 = PatrolHelicopter</code></pre>
     <blockquote>Find the item name with the itemId using <code>itemIds</code></blockquote>
+  </li>
+  <li>
+    <b>MapNotes</b><a name="MapNotes"></a>
+    <pre><code>[{
+  "type": 1,
+  "x": 1500.958740234375,
+  "y": 2551.239990234375
+}]</code></pre>
   </li>
   <li>
     <b>Members</b><a name="Members"></a>
