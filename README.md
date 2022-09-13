@@ -86,6 +86,10 @@ app.getBattleMetrics('123456', 'Rust Player 2099', (data) => {
 var connected = await this.app.getConnected();
 console.log(new Date(connected));
 </code></pre></p></li>
+  <li><code>getCrateTimer()</code> Get the configured crate unlock timer<ul><li><b>returns</b>: <sup><code>int</code></sup> value</li></ul><p><pre><code>// getCrateTimer example
+var timer = await this.app.getCrateTimer();
+console.log('Crate unlock timer is set to: ' + getTimeDisplay(timer));
+</code></pre></p></li>
   <li><code>getDetailedInfo(callback)</code> Get detailed information about the server<ul><li><b>callback(data)</b>: <sup><code>function</code></sup> The function to execute after getting the detailed info (<code>data</code> is <code><a href="#DetailedInfo">DetailedInfo</a></code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getDetailedInfo example
 var app = this.app;
 app.getDetailedInfo((data) => {
@@ -357,6 +361,7 @@ Note: The following methods exist in the plugin's scope `this` (instead of in `a
   "broadcastVending": true,
   "broadcastVendingName": true,
   "broadcastAmount": 1,
+  "respawnAmount": 1,
   "battlemetricsID": 0,
   "battlemetricsDiscord": true,
   "deathDiscord": true,
