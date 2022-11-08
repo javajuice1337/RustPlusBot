@@ -483,6 +483,7 @@ Note: The following methods exist in the plugin's scope `this` (instead of in `a
   "width": 3125,
   "height": 3125,
   "oceanMargin": 500,
+  "offset": 0,
   "background": "#12404D",
   "image": "",
   "cached": true,
