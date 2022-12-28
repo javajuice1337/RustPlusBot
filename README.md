@@ -44,6 +44,7 @@ The `app` object exists in the plugin's scope `this`, and exposes the following 
   <li><code>bmData</code> <sup><code>object</code></sup> An object containing the BattleMetrics data of the server (see <code><a href="#BattleMetricsData">BattleMetrics Data</a></code> below)</li>
   <li><code>cfg</code> <sup><code>object</code></sup> An object containing the configuration settings for the bot (see <code><a href="#Config">Config</a></code> below)</li>
   <li><code>devices</code> <sup><code>Map</code></sup> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the bot's paired devices (<b>key</b>: device name (lowercase only), <b>value</b>: Array of devices, see <code><a href="#Device">Device</a></code> below)</li>
+  <li><code>devices_auto</code> <sup><code>Map</code></sup> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the bot's automatic paired devices function (<b>key</b>: device name, <b>value</b>: An object containing the automatic function config (see <code><a href="#DeviceAuto">DeviceAuto</a></code> below))</li>
   <li><code>devices_map</code> <sup><code>Map</code></sup> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the bot's paired device names (<b>key</b>: device ID, <b>value</b>: Array of lowercased device names)</li>
   <li><code>event_types</code> <sup><code>Map</code></sup> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing game event names (<b>key</b>: event ID, <b>value</b>: event name)</li>
   <li><code>guild_token</code> <sup><code>string</code></sup> The unique token representing the Discord server</li>
@@ -404,6 +405,13 @@ Note: The following methods exist in the plugin's scope `this` (instead of in `a
   flag: false, // true if op is inverted
   type: "Smart Switch",
   time: 0 // timestamp of last state change
+}</code></pre>
+  </li>
+  <li>
+    <b>DeviceAuto</b><a name="DeviceAuto"></a>
+    <pre><code>{
+  state: true, // true for ON
+  time: 60 // auto time in seconds
 }</code></pre>
   </li>
   <li>
