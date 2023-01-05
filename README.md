@@ -386,7 +386,10 @@ Note: The following methods exist in the plugin's scope `this` (instead of in `a
     <b>DetailedInfo</b><a name="DetailedInfo"></a>
     <pre><code>{
   "players": "51/200",
+  "playersQueue": 0,
+  "playersChange": 0,
   "time": "16:23",
+  "timeValue": 16.38,
   "wipe": 1147412,
   "nextDay": 1453,
   "nextNight": 775,
