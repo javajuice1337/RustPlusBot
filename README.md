@@ -83,6 +83,17 @@ app.getBattleMetrics('123456', 'Rust Player 2099', (data) => {
     app.sendTeamMessage('Error obtaining the BattleMetrics data: ' + error);
 });
 </code></pre></p></li>
+  <li><code>getCameraPlayers(id, callback)</code> Get all player names visible on the specified camera<ul><li><b>id</b>: <sup><code>string</code></sup> The identifier of the camera</li><li><b>callback(list)</b>: <sup><code>function</code></sup> The function to execute after getting the player list (<code>list</code> is an <code>array</code> of player names)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getCameraPlayers example
+var app = this.app;
+app.getCameraPlayers('COMPOUNDSTREET', (list) => {
+    if (list && list.length > 0) {
+        app.sendTeamMessage('Detected these players: ' + list.join(', '));
+    }
+    else {
+        app.sendTeamMessage('No players detected on camera');
+    }
+});
+</code></pre></p></li>
   <li><code>getConnected()</code> Get the date of the server connection<ul><li><b>returns</b>: <sup><code>string</code></sup> a Date string</li></ul><p><pre><code>// getConnected example
 var connected = await this.app.getConnected();
 console.log(new Date(connected));
