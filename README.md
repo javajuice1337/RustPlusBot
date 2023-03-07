@@ -537,6 +537,7 @@ Note: The following methods exist in the plugin's scope `this` (instead of in `a
     "rotation": 0,
     "radius": 0,
     "name": "",
+    "outOfStock": false,
     sellOrders: [{ // sellOrders when type is 3
       "itemId": 123456,
       "quantity": 1,
@@ -544,7 +545,9 @@ Note: The following methods exist in the plugin's scope `this` (instead of in `a
       "costPerItem": 1,
       "amountInStock": 10,
       "itemIsBlueprint": false,
-      "currencyIsBlueprint": false
+      "currencyIsBlueprint": false,
+      "itemCondition": 42.75,
+      "itemConditionMax": 100
     }]
   }]
 }</code></pre>
