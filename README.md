@@ -252,8 +252,14 @@ app.getTime((message) => {
     }
 });
 </code></pre></p></li>
-  <li><code>postDiscordMessage(msg)</code> Post a message to the bot's Main Discord channel<ul><li><b>msg</b>: <sup><code>string</code></sup> The message to post</li></ul><p><pre><code>// postDiscordMessage example
+  <li><code>postDiscordMessage(msg)</code> Post a message to the bot's Main Discord channel or a custom channel<ul><li><b>msg</b>: <sup><code>string</code></sup> The message to post</li><li><b>msg</b>: <sup><code>object</code></sup> The message object containing the <code>message</code><sup><code>string</code></sup> and <code>channel</code><sup><code>string</code></sup>, optional <code>tts</code><sup><code>bool</code></sup> Note: <code>channel</code> is the channel ID</li></ul><p><pre><code>// postDiscordMessage example 1
 this.app.postDiscordMessage('This is a message from a bot\'s plugin');
+// postDiscordMessage example 2
+this.app.postDiscordMessage({
+    message: 'This is a message from a bot\'s plugin to a custom channel',
+    channel: '966820843924466774',
+    tts: false
+});
 </code></pre></p></li>
   <li><code>postDiscordNotification(title, description, url, img, list)</code> Post a notification to the bot's Notification Discord channel<ul><li><b>title</b>: <sup><code>string</code></sup> The title of the notification</li><li><b>description</b>: <sup><code>string</code></sup> The description of the notification</li><li><b>url</b>: <sup><code>string</code></sup> The url of the notification (optional)</li><li><b>img</b>: <sup><code>string</code></sup> The image url of the notification (optional)</li><li><b>list</b>: <sup><code>array</code></sup> The item list data of the notification (optional; see <code><a href="#NotificationList">NotificationList</a></code> below)</li></ul><p><pre><code>// postDiscordNotification example
 this.app.postDiscordNotification('Plugin Alert Title', 'Plugin Alert Message');
