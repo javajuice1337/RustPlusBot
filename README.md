@@ -330,7 +330,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 Note: The following methods exist in the plugin's scope `this` (instead of in `app`).
 
 <ul>
-  <li><code>registeredHandlers.add(type<sup><code>string</code></sup>, handler<sup><code>function</code></sup>)</code> Add a handler for a specific update event type: <ul><li><code>config</code> Fires when the configuration settings have changed</li><li><code>device</code> Fires when the paired devices has changed</li><li><code>wipe</code> Fires when the server has wiped</li></ul></li>
+  <li><code>registeredHandlers.add(type<sup><code>string</code></sup>, handler<sup><code>function</code></sup>)</code> Add a handler for a specific update event type: <ul><li><code>camera</code> Fires when the camera list has changed</li><li><code>config</code> Fires when the configuration settings have changed</li><li><code>device</code> Fires when the paired devices has changed</li><li><code>wipe</code> Fires when the server has wiped</li></ul></li>
   <li><code>registeredHandlers.remove(type<sup><code>string</code></sup>, handler<sup><code>function</code></sup>)</code> Remove a handler for a specific update event type (see <code>registeredHandlers.add</code> above)</li>
 </ul>
 
