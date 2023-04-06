@@ -42,6 +42,7 @@ The `app` object exists in the plugin's scope `this`, and exposes the following 
 
 <ul>
   <li><code>bmData</code> <sup><code>object</code></sup> An object containing the BattleMetrics data of the server (see <code><a href="#BattleMetricsData">BattleMetrics Data</a></code> below)</li>
+  <li><code>cameraList</code> <sup><code>array</code></sup> An array containing all camera indentifiers saved from the Camera Station</li>
   <li><code>cfg</code> <sup><code>object</code></sup> An object containing the configuration settings for the bot (see <code><a href="#Config">Config</a></code> below)</li>
   <li><code>devices</code> <sup><code>Map</code></sup> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the bot's paired devices (<b>key</b>: device name (lowercase only), <b>value</b>: Array of devices, see <code><a href="#Device">Device</a></code> below)</li>
   <li><code>devices_auto</code> <sup><code>Map</code></sup> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the bot's automatic paired devices function (<b>key</b>: device name, <b>value</b>: An object containing the automatic function config (see <code><a href="#DeviceAuto">DeviceAuto</a></code> below))</li>
