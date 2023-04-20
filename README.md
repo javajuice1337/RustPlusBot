@@ -84,11 +84,13 @@ app.getBattleMetrics('123456', 'Rust Player 2099', (data) => {
     app.sendTeamMessage('Error obtaining the BattleMetrics data: ' + error);
 });
 </code></pre></p></li>
-  <li><code>getCameraPlayers(id, callback)</code> Get all player names visible on the specified camera<ul><li><b>id</b>: <sup><code>string</code></sup> The identifier of the camera</li><li><b>callback(list)</b>: <sup><code>function</code></sup> The function to execute after getting the player list (<code>list</code> is an <code>array</code> of player names)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getCameraPlayers example
+  <li><code>getCameraPlayers(id, callback)</code> Get all player names visible on the specified camera<ul><li><b>id</b>: <sup><code>string</code></sup> The identifier of the camera</li><li><b>callback(players, playersDistances)</b>: <sup><code>function</code></sup> The function to execute after getting the players list and players distances list (<code>players</code> is an <code>array</code> of player names and <code>playersDistances</code> is an <code>array</code> of player distances in meters)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getCameraPlayers example
 var app = this.app;
-app.getCameraPlayers('COMPOUNDSTREET', (list) => {
-    if (list && list.length > 0) {
-        app.sendTeamMessage('Detected these players: ' + list.join(', '));
+app.getCameraPlayers('COMPOUNDSTREET', (players, playersDistances) => {
+    if (players && players.length > 0) {
+        for (var i = 0; i < players.length; i++)
+            players[i] += ' [' + playersDistances[i] + 'm]';
+        app.sendTeamMessage('Detected these players: ' + players.join(', '));
     }
     else {
         app.sendTeamMessage('No players detected on camera');
