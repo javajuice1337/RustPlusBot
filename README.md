@@ -97,6 +97,19 @@ app.getCameraPlayers('COMPOUNDSTREET', (players, playersDistances) => {
     }
 });
 </code></pre></p></li>
+  <li><code>getCameraPlayersFiltered(id, callback)</code> Get only non-team member player names visible on the specified camera<ul><li><b>id</b>: <sup><code>string</code></sup> The identifier of the camera</li><li><b>callback(players, playersDistances)</b>: <sup><code>function</code></sup> The function to execute after getting the players list and players distances list (<code>players</code> is an <code>array</code> of player names and <code>playersDistances</code> is an <code>array</code> of player distances in meters)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getCameraPlayersFiltered example
+var app = this.app;
+app.getCameraPlayersFiltered('OILRIG1HELI', (players, playersDistances) => {
+    if (players && players.length > 0) {
+        for (var i = 0; i < players.length; i++)
+            players[i] += ' [' + playersDistances[i] + 'm]';
+        app.sendTeamMessage('Detected these enemy players: ' + players.join(', '));
+    }
+    else {
+        app.sendTeamMessage('No enemy players detected on camera');
+    }
+});
+</code></pre></p></li>
   <li><code>getConnected()</code> Get the date of the server connection<ul><li><b>returns</b>: <sup><code>string</code></sup> a Date string</li></ul><p><pre><code>// getConnected example
 var connected = await this.app.getConnected();
 console.log(new Date(connected));
