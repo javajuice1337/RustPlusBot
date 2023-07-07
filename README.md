@@ -86,7 +86,7 @@ app.getBattleMetrics('123456', 'Rust Player 2099', (data) => {
 </code></pre></p></li>
   <li><code>getCameraPlayers(id, callback)</code> Get all player names visible on the specified camera<ul><li><b>id</b>: <sup><code>string</code></sup> The identifier of the camera</li><li><b>callback(players, playersDistances)</b>: <sup><code>function</code></sup> The function to execute after getting the players list and players distances list (<code>players</code> is an <code>array</code> of player names and <code>playersDistances</code> is an <code>array</code> of player distances in meters)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getCameraPlayers example
 var app = this.app;
-app.getCameraPlayers('COMPOUNDSTREET', (players, playersDistances) => {
+app.getCameraPlayers('CAMERA_ID', (players, playersDistances) => {
     if (players && players.length > 0) {
         for (var i = 0; i < players.length; i++)
             players[i] += ' [' + playersDistances[i] + 'm]';
@@ -99,7 +99,7 @@ app.getCameraPlayers('COMPOUNDSTREET', (players, playersDistances) => {
 </code></pre></p></li>
   <li><code>getCameraPlayersFiltered(id, callback)</code> Get only non-team member player names visible on the specified camera<ul><li><b>id</b>: <sup><code>string</code></sup> The identifier of the camera</li><li><b>callback(players, playersDistances)</b>: <sup><code>function</code></sup> The function to execute after getting the players list and players distances list (<code>players</code> is an <code>array</code> of player names and <code>playersDistances</code> is an <code>array</code> of player distances in meters)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getCameraPlayersFiltered example
 var app = this.app;
-app.getCameraPlayersFiltered('OILRIG1HELI', (players, playersDistances) => {
+app.getCameraPlayersFiltered('CAMERA_ID', (players, playersDistances) => {
     if (players && players.length > 0) {
         for (var i = 0; i < players.length; i++)
             players[i] += ' [' + playersDistances[i] + 'm]';
@@ -254,7 +254,7 @@ app.getTeamInfo((message) => {
 </code></pre></p></li>
   <li><code>getTime(callback)</code> Get information about the server time<ul><li><b>callback(message)</b>: <sup><code>function</code></sup> The function to execute after getting the time (<code>message.response</code> contains <code><a href="#Time">Time</a></code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getTime example
 var app = this.app;
-app.getTime((message) => {
+app.getTime(async (message) => {
     if (message.response && message.response.time) {
         app.sendTeamMessage('Current Rust time is ' + (await app.getTimeInfo(message.response.time)));
     }
@@ -262,7 +262,7 @@ app.getTime((message) => {
 </code></pre></p></li>
   <li><code>getTimeInfo(time)</code> Get the server time + day/night display text<ul><li><b>time</b>: <sup><code>object</code></sup> The time object from the getTime method</li><li><b>returns</b>: <sup><code>string</code></sup> the server time + day/night display text</li></ul><p><pre><code>// getTimeInfo example
 var app = this.app;
-app.getTime((message) => {
+app.getTime(async (message) => {
     if (message.response && message.response.time) {
         app.sendTeamMessage('Current Rust time is ' + (await app.getTimeInfo(message.response.time)));
     }
