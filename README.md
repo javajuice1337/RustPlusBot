@@ -279,15 +279,21 @@ this.app.postDiscordMessage({
 });
 </code></pre></p></li>
   <li><code>postDiscordNotification(title, description, url, img, list)</code> Post a notification to the bot's Notification Discord channel<ul><li><b>title</b>: <sup><code>string</code></sup> The title of the notification</li><li><b>description</b>: <sup><code>string</code></sup> The description of the notification</li><li><b>url</b>: <sup><code>string</code></sup> The url of the notification (optional)</li><li><b>img</b>: <sup><code>string</code></sup> The image url of the notification (optional)</li><li><b>list</b>: <sup><code>array</code></sup> The item list data of the notification (optional; see <code><a href="#NotificationList">NotificationList</a></code> below)</li></ul><p><pre><code>// postDiscordNotification example
-this.app.postDiscordNotification('Plugin Alert Title', 'Plugin Alert Message');
+var app = this.app;
+app.postDiscordNotification('Plugin Alert Title', 'Plugin Alert Message');
 </code></pre></p></li>
   <li><code>postDiscordWebhook(url, msg)</code> Post a message to a Discord webhook<ul><li><b>url</b>: <sup><code>string</code></sup> The url of the Discord webhook</li><li><b>msg</b>: <sup><code>string</code></sup> The message to post to the Discord webhook</li></ul><p><pre><code>// postDiscordWebhook example
-this.app.postDiscordWebhook('webhook url', 'Webhook Message');
+var app = this.app;
+app.postDiscordWebhook('webhook url', 'Webhook Message');
 </code></pre></p></li>
   <li><code>runCommand(cmd, steamId, steamName)</code> Run a team chat command as a specific player<ul><li><b>cmd</b>: <sup><code>string</code></sup> The command to run</li><li><b>steamId</b>: <sup><code>string</code></sup> The player's steamId (optional)</li><li><b>steamName</b>: <sup><code>string</code></sup> The player's steam name (optional)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// runCommand example
 var app = this.app,
     prefix = await app.getPrefix('all');
 app.runCommand(prefix + 'pop');
+</code></pre></p></li>
+  <li><code>sendDiscordVoiceMessage(msg)</code> Send a voice message to the RustPlusBot voice client<ul><li><b>msg</b>: <sup><code>string</code></sup> The voice message to send</li></ul><p><pre><code>// sendDiscordVoiceMessage example
+var app = this.app;
+app.sendDiscordVoiceMessage('Hello, this is a test voice message!');
 </code></pre></p></li>
   <li><code>sendTeamMessage(msg, callback, noTranslate)</code> Send a team chat message<ul><li><b>msg</b>: <sup><code>string</code></sup> The message to send</li><li><b>callback()</b>: <sup><code>function</code></sup> The function to execute after sending (optional)</li><li><b>noTranslate</b>: <sup><code>bool</code></sup> Set to <code>true</code> to disable message translation (optional)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// sendTeamMessage example
 var app = this.app;
@@ -377,6 +383,7 @@ Note: The following methods exist in the plugin's scope `this` (instead of in `a
     <b>Config</b><a name="Config"></a>
     <pre><code>{     
   "lang": "en",
+  "gender": "male",
   "cmdPrefix": "!",
   "requirePrefix": "all",
   "teamChatIncoming": "all",
@@ -389,6 +396,7 @@ Note: The following methods exist in the plugin's scope `this` (instead of in `a
   "shortTime": false,
   "nextTime": false,
   "altTime": false,
+  "dirAngle": true,
   "eventsDiscord": false,
   "broadcastEvents": true,
   "vendingDiscord": false,
@@ -411,6 +419,10 @@ Note: The following methods exist in the plugin's scope `this` (instead of in `a
   "decayOffset": 0,
   "streamerMode": false,
   "promoteStrict": false,
+  "voiceDevice": true,
+  "voiceEvent": true,
+  "voiceVending": true,
+  "voiceTracking": true,
   "eventsDisplay": "heli,brad,cargo,oil,crate,ch47",
   "subEventsDisplay": "heli_lootable,brad_lootable,cargo_crates,oil_lootable"
 }</code></pre>
