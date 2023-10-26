@@ -423,6 +423,7 @@ Note: The following methods exist in the plugin's scope `this` (instead of in `a
   "voiceEvent": true,
   "voiceVending": true,
   "voiceTracking": true,
+  "voicePlugin": true,
   "eventsDisplay": "heli,brad,cargo,oil,crate,ch47",
   "subEventsDisplay": "heli_lootable,brad_lootable,cargo_crates,oil_lootable"
 }</code></pre>
