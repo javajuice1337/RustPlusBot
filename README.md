@@ -931,7 +931,7 @@ app.getTeamInfo((message) => {
     }
 });
 </code></pre></p></li>
-  <li><code>getTime(timestr)</code> Convert a time string to seconds<ul><li><b>timestr</b>: <sup><code>string</code></sup> The time string (format: 1d1h1m1s)</li><li><b>returns</b>: <sup><code>int</code></sup> the total seconds of the timestr</li></ul><p><pre><code>// getTime example
+  <li><code>getTime(timestr, max_val)</code> Convert a time string to seconds<ul><li><b>timestr</b>: <sup><code>string</code></sup> The time string (format: 1d1h1m1s)</li><li><b>max_val</b>: <sup><code>int</code></sup> The maximum allowed time value to return (optional)</li><li><b>returns</b>: <sup><code>int</code></sup> the total seconds of the timestr</li></ul><p><pre><code>// getTime example
 var app = this.app;
 app.sendTeamMessage('The time in seconds for 1d1h1m1s is ' + getTime('1d1h1m1s'));
 </code></pre></p></li>
