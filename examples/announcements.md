@@ -8,7 +8,7 @@ In this plugin example, the following team chat commands are implemented:
 
 - `!announcement-interval` / `!announcementinterval` will show or set the interval for the announcement message.
 
-### Place the following code blocks in their respective events in the Plugin Studio to test this plugin.
+### Place the following code blocks in their respective events in the Plugin Studio to test this plugin:
 
 #### onConnected Event:
 
@@ -34,6 +34,16 @@ if (!this.announcementFunc) {
 }
 if (this.storage.interval > 0)
     this.announcementFunc();
+```
+
+#### onDisconnected Event:
+
+```
+console.log('onDisconnected Event');
+if (this.announcementTask) {
+    clearInterval(this.announcementTask);
+    this.announcementTask = null;
+}
 ```
 
 #### onMessageReceive Event:
@@ -66,15 +76,5 @@ else if (m == prefix + 'announcement-interval' || m == prefix + 'announcementint
         this.app.sendTeamMessage('The Announcement Message interval is configured for: ' + getTimeDisplay(this.storage.interval * 60));
     else
         this.app.sendTeamMessage('The Announcement Message interval has been disabled');
-}
-```
-
-#### onDisconnected Event:
-
-```
-console.log('onDisconnected Event');
-if (this.announcementTask) {
-    clearInterval(this.announcementTask);
-    this.announcementTask = null;
 }
 ```
