@@ -4,7 +4,7 @@ This example demonstrates how to automatically run the `!pop` command every 5 mi
 
 This plugin example does not create any team chat commands. Instead, it creates a timer that runs every 5 minutes executing the `!pop` command.
 
-### Place the following code blocks in their respective events in the Plugin Studio to test this plugin.
+### Place the following code blocks in their respective events in the Plugin Studio to test this plugin:
 
 #### onConnected Event:
 
