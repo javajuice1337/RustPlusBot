@@ -7,7 +7,7 @@ In this plugin example, the following team chat commands are implemented:
 - `!poptime` runs commands `!pop` and `!time`
 - `!daynight` runs commands `!day` and `!night`
 
-### Place the following code blocks in their respective events in the Plugin Studio to test this plugin.
+### Place the following code blocks in their respective events in the Plugin Studio to test this plugin:
 
 #### onMessageReceive Event:
 
