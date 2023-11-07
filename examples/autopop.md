@@ -12,10 +12,10 @@ This plugin example does not create any team chat commands. Instead, it creates 
 console.log('onConnected Event');
 if (!this.autopopTask) this.autopopTask = null;
 if (!this.autopopFunc) {
-    this.autopopFunc = async function() {
-        var self = this,
-            prefix = await self.app.getPrefix('all');
-        self.autopopTask = setInterval(function() {
+    this.autopopFunc = function() {
+        var self = this;
+        self.autopopTask = setInterval(async function() {
+            var prefix = await self.app.getPrefix('all');
             self.app.runCommand(prefix + 'pop');
         }, 5 * 60 * 1000); // 5 minutes
     };
