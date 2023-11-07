@@ -2,7 +2,7 @@
 
 This example demonstrates how to use the activation of a Smart Alarm to post a Discord message in a specific channel and ping a role.
 
-This plugin example does not create any team chat commands. Instead, it reacts to the activation of a Smart Alarm.
+This plugin example does not create any team chat commands. Instead, it reacts to the activation of a paired Smart Alarm.
 
 ### Place the following code blocks in their respective events in the Plugin Studio to test this plugin:
 
