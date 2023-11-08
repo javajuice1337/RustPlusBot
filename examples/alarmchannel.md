@@ -10,7 +10,7 @@ This plugin example does not create any team chat commands. Instead, it reacts t
 
 ```
 console.log('onEntityChanged Event:', obj);
-const deviceName = 'raidalarm'; // set the paired device name here
+const deviceName = 'raidalarm'; // set the lowercased paired device name here
 const roleName = 'alarm'; // set the role name to ping here
 const channelID = ''; // set the ID of the channel here; see: https://docs.statbot.net/docs/faq/general/how-find-id/
 const message = 'Your base is under attack!'; // set the custom message to post to Discord
