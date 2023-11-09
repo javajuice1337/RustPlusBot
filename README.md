@@ -10,6 +10,8 @@ The plugins are written in JavaScript and run in a NodeJS environment after they
 
 You can load any of the official plugins and use them as a template for getting started in the Plugin Studio. The Plugin Studio can be accessed via a link in the Plugin settings tab on the RustPlusBot settings page for your Discord server.
 
+You can also find complete plugin examples on github in the <a href="plugin examples/">plugin examples</a> folder.
+
 > Plugins are loaded when the bot is starting and lasts for its entire life-cycle. Restarting the bot also restarts all plugins.
 
 ## Plugin Storage
