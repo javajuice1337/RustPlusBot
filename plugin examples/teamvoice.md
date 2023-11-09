@@ -1,6 +1,6 @@
 # **RustPlusBot** plugin example: teamvoice
 
-This example demonstrates how to send voice messages to the **RustPlusBot** voice client. You can invite the voice client to your active voice channel using Discord command: `rp!voice_join`.
+This plugin example demonstrates how to send voice messages to the **RustPlusBot** voice client. You can invite the voice client to your active voice channel using Discord command: `rp!voice_join`.
 
 This plugin example does not create any team chat commands. Instead, it reacts to the team member online and offline messages sent from the **Team Activity Messages** plugin.
 
