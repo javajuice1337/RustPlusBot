@@ -1,6 +1,6 @@
 # **RustPlusBot** plugin example: announcements
 
-This example demonstrates how to automatically send pre-defined team chat announcements.
+This plugin example demonstrates how to automatically send pre-defined team chat announcements.
 
 You can define the announcements in the bot's config on the Commands tab, in the Alias section. Create an alias with the input `%ANNOUNCEMENT_0%` and output will be the message you want to display. Do this for announcements `0` - `9`.
 
@@ -36,7 +36,7 @@ if (this.storage.interval > 0)
     this.announcementFunc();
 ```
 
-> **Note:** After placing the *onConnected* code block in the plugin editor, you will need to press the Play button :arrow_forward: to simulate the event
+> **Note:** After placing the *onConnected* code block in the plugin editor, you will need to press the Play button :arrow_forward: to simulate the event.
 
 #### onDisconnected Event:
 
