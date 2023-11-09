@@ -1,6 +1,6 @@
 # **RustPlusBot** plugin example: alarmchannel
 
-This example demonstrates how to use the activation of a Smart Alarm to post a Discord message in a specific channel and ping a role.
+This plugin example demonstrates how to use the activation of a Smart Alarm to post a Discord message in a specific channel and ping a role.
 
 This plugin example does not create any team chat commands. Instead, it reacts to the activation of a paired Smart Alarm.
 
