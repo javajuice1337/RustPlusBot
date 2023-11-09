@@ -1,6 +1,6 @@
 # **RustPlusBot** plugin example: autopop
 
-This example demonstrates how to automatically run the `!pop` command every 5 minutes.
+This plugin example demonstrates how to automatically run the `!pop` command every 5 minutes.
 
 This plugin example does not create any team chat commands. Instead, it creates a timer that runs every 5 minutes executing the `!pop` command.
 
