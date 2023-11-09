@@ -1,6 +1,6 @@
 # **RustPlusBot** plugin example: macro
 
-This example demonstrates how to use a single team chat command to execute multiple chat commands.
+This plugin example demonstrates how to use a single team chat command to execute multiple chat commands.
 
 In this plugin example, the following team chat commands are implemented:
 
