@@ -898,7 +898,7 @@ app.webPost('https://www.iplocation.net/ip-lookup', encodeForm({ query: app.serv
     app.sendTeamMessage('Error posting: ' + error);
 });
 </code></pre></p></li>
-  <li><code>combineItems(items, itemIds)</code> Combine the items from a Storage Monitor payload<ul><li><b>items</b>: <sup><code>object</code></sup> The items from the payload</li><li><b>itemIds</b>: <sup><code>Map</code></sup> The item ID list to lookup item names</li><li><b>returns</b>: <sup><code>Map</code></sup> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the combined items and item quantities</li></ul><p><pre><code>// combineItems example
+  <li><code>combineItems(items, itemIds)</code> Combine the items from a Storage Monitor payload and resolve the item names<ul><li><b>items</b>: <sup><code>object</code></sup> The items from the payload</li><li><b>itemIds</b>: <sup><code>Map</code></sup> The item ID list to lookup item names</li><li><b>returns</b>: <sup><code>Map</code></sup> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the combined items and item quantities</li></ul><p><pre><code>// combineItems example
 var app = this.app,
     device = app.devices.get('BaseTC')[0];
 app.getEntityInfo(device.id, (message) => {
@@ -923,6 +923,17 @@ app.getEntityInfo(device.id, (message) => {
         }
     }
 });
+</code></pre></p></li>
+  <li><code>findClosestString(str, arr, threshold = 2)</code> Find the closest match for a string in an array using a threshold<ul><li><b>str</b>: <sup><code>string</code></sup> The input string</li><li><b>arr</b>: <sup><code>array</code></sup> The array of possible string matches</li><li><b>threshold</b>: <sup><code>int</code></sup> The threshold used for string matching (optional)</li><li><b>returns</b>: <sup><code>string</code></sup> The closest matched string found in the input array</li></ul><p><pre><code>// findClosestString example
+var app = this.app,
+    item = 'windturbine',
+    closest = findClosestString(item, Array.from(app.itemIds.values()));
+if (closest && closest != item) {
+    app.sendTeamMessage('Are you looking for this item? ' + closest);
+}
+else {
+    app.sendTeamMessage('This item name is a direct match: ' + item);
+}
 </code></pre></p></li>
   <li><code>getFriendlyDate(date)</code> Get a friendly representation of the date<ul><li><b>date</b>: <sup><code>date</code></sup> The date object</li><li><b>returns</b>: <sup><code>string</code></sup> a string containing the friendly representation of the date</li></ul><p><pre><code>// getFriendlyDate example
 var app = this.app;
