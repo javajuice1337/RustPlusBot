@@ -307,6 +307,7 @@ app.setEntityValue(123456, true, () => {
     app.sendTeamMessage('The smart switch is activated');
 });
 </code></pre></p></li>
+  <li><code>spawnTimers</code> <sup><code>object</code></sup> An object containing the respawn rates for server events in seconds (see <code><a href="#SpawnTimers">Spawn Timers</a></code> below)</li>
   <li><code>translateMessage(msg, lang, success, error)</code> Translate a message from English (default) to another language<ul><li><b>msg</b>: <sup><code>string</code></sup> The message to translate</li><li><b>lang</b>: <sup><code>string</code></sup> The language code to use for translation (see: <a href="https://bot.rustplus.io/languages">Language Codes</a>)</li><li><b>lang</b>: <sup><code>object</code></sup> The lang object containing the <code>from</code><sup><code>string</code></sup> and <code>to</code><sup><code>string</code></sup> language codes</li><li><b>success(res)</b>: <sup><code>function</code></sup> The function to execute after translating (optional)</li><li><b>error(err)</b>: <sup><code>function</code></sup> The function to execute when an error occurs (optional)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code></li></ul><p><pre><code>// translateMessage example 1
 this.app.translateMessage('Hello, how are you?', 'es', (res) => {
     app.sendTeamMessage(res);
@@ -807,6 +808,15 @@ Note: The following methods exist in the plugin's scope `this` (instead of in `a
     <pre><code>{
   x: 100,
   y: 200
+}</code></pre>
+  </li>
+  <li>
+    <b>Spawn Timers</b><a name="SpawnTimers"></a>
+    <pre><code>{     
+  "heli": 7200,
+  "crate": 7200,
+  "cargo": 14400,
+  "oilrig": 3600
 }</code></pre>
   </li>
   <li>
