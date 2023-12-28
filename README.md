@@ -51,6 +51,7 @@ The `app` object exists in the plugin's scope `this`, and exposes the following 
   <li><code>devices_icons</code> <sup><code>Map</code></sup> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the bot's paired device icons (<b>key</b>: device name, <b>value</b>: The icon name of the device)</li>
   <li><code>devices_map</code> <sup><code>Map</code></sup> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the bot's paired device names (<b>key</b>: device ID, <b>value</b>: Array of lowercased device names)</li>
   <li><code>event_types</code> <sup><code>Map</code></sup> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing server event names (<b>key</b>: event ID, <b>value</b>: event name)</li>
+  <li><code>eventTimers</code> <sup><code>object</code></sup> An object containing the respawn timers for server events in seconds (see <code><a href="#EventTimers">Event Timers</a></code> below)</li>
   <li><code>guild_token</code> <sup><code>string</code></sup> The unique token representing the Discord server</li>
   <li><code>guild_name</code> <sup><code>string</code></sup> The name of the Discord server</li>
   <li><code>itemIds</code> <sup><code>Map</code></sup> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the item names for all item IDs (<b>key</b>: item ID, <b>value</b>: item name)</li>
@@ -307,7 +308,6 @@ app.setEntityValue(123456, true, () => {
     app.sendTeamMessage('The smart switch is activated');
 });
 </code></pre></p></li>
-  <li><code>spawnTimers</code> <sup><code>object</code></sup> An object containing the respawn rates for server events in seconds (see <code><a href="#SpawnTimers">Spawn Timers</a></code> below)</li>
   <li><code>translateMessage(msg, lang, success, error)</code> Translate a message from English (default) to another language<ul><li><b>msg</b>: <sup><code>string</code></sup> The message to translate</li><li><b>lang</b>: <sup><code>string</code></sup> The language code to use for translation (see: <a href="https://bot.rustplus.io/languages">Language Codes</a>)</li><li><b>lang</b>: <sup><code>object</code></sup> The lang object containing the <code>from</code><sup><code>string</code></sup> and <code>to</code><sup><code>string</code></sup> language codes</li><li><b>success(res)</b>: <sup><code>function</code></sup> The function to execute after translating (optional)</li><li><b>error(err)</b>: <sup><code>function</code></sup> The function to execute when an error occurs (optional)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code></li></ul><p><pre><code>// translateMessage example 1
 this.app.translateMessage('Hello, how are you?', 'es', (res) => {
     app.sendTeamMessage(res);
@@ -493,6 +493,27 @@ Note: The following methods exist in the plugin's scope `this` (instead of in `a
   name: "Patrol Helicopter @ A1",
   start: new Date(),
   stop: null // null if active
+}</code></pre>
+  </li>
+  <li>
+    <b>Event Timers</b><a name="EventTimers"></a>
+    <pre><code>{
+  "cargo": {
+    "spawn": 14400,
+    "spread": 7200
+  },
+  "crate": {
+    "spawn": 7200,
+    "spread": 3600
+  },
+  "heli": {
+    "spawn": 7200,
+    "spread": 3600
+  },
+  "oilrig": {
+    "spawn": 3600,
+    "spread": 2400
+  }
 }</code></pre>
   </li>
   <li>
@@ -808,15 +829,6 @@ Note: The following methods exist in the plugin's scope `this` (instead of in `a
     <pre><code>{
   x: 100,
   y: 200
-}</code></pre>
-  </li>
-  <li>
-    <b>Spawn Timers</b><a name="SpawnTimers"></a>
-    <pre><code>{     
-  "heli": 7200,
-  "crate": 7200,
-  "cargo": 14400,
-  "oilrig": 3600
 }</code></pre>
   </li>
   <li>
