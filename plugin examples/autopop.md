@@ -14,6 +14,7 @@ if (!this.autopopTask) this.autopopTask = null;
 if (!this.autopopFunc) {
     this.autopopFunc = function() {
         var self = this;
+        if (self.autopopTask) clearInterval(self.autopopTask);
         self.autopopTask = setInterval(async function() {
             var prefix = await self.app.getPrefix('all');
             self.app.runCommand(prefix + 'pop');
