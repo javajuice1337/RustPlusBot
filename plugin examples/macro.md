@@ -16,12 +16,12 @@ console.log('onMessageReceive Event:', obj);
 var msg = obj.message,
     m = msg.toLowerCase(),
     prefix = await this.app.getPrefix('all');
-if (m.indexOf(prefix + 'poptime') == 0) {
+if (m == prefix + 'poptime') {
     var app = this.app;
     app.runCommand(prefix + 'pop');
     app.runCommand(prefix + 'time');
 }
-else if (m.indexOf(prefix + 'daynight') == 0) {
+else if (m == prefix + 'daynight') {
     var app = this.app;
     app.runCommand(prefix + 'day');
     app.runCommand(prefix + 'night');
