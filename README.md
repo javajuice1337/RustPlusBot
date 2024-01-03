@@ -16,7 +16,7 @@ You can also find complete plugin examples on github in the <a href="plugin exam
 
 ## Plugin Storage
 
-For data that persists beyond the bot's instance, use `this.storage`. This object loads with the bot and saves when it shuts down or restarts.
+For data that persists beyond the bot's instance, use `this.storage`. This object loads with the bot and saves when it stops or restarts.
 
 ```
 // store the myData variable
@@ -142,7 +142,7 @@ app.getEntityInfo(123456, (message) => {
     }
 });
 </code></pre></p></li>
-  <li><code>getEvents(type)</code> Get the most recent server events (ordered by newest to oldest)<ul><li><b>type</b>: <sup><code>string</code></sup> The event type (optional)<ul><li><code>heli</code> Patrol Helicopter</li><li><code>brad</code> Bradley Tank</li><li><code>cargo</code> Cargo Ship</li><li><code>crate</code> Locked Crate</li><li><code>ch47</code> CH-47 Chinook</li><li><code>oil_rig_small</code> Oil Rig (Small)</li><li><code>large_oil_rig</code> Oil Rig (Large)</li></ul></li><li><b>returns</b>: <sup><code>array</code></sup> <code><a href="#Event">Event</a></code> array</li></ul><p><pre><code>// getEvents example
+  <li><code>getEvents(type)</code> Get the most recent server events (ordered by newest to oldest)<ul><li><b>type</b>: <sup><code>string</code></sup> The event type (optional)<ul><li><code>heli</code> Patrol Helicopter</li><li><code>cargo</code> Cargo Ship</li><li><code>crate</code> Locked Crate</li><li><code>ch47</code> CH-47 Chinook</li><li><code>oil_rig_small</code> Oil Rig (Small)</li><li><code>large_oil_rig</code> Oil Rig (Large)</li></ul></li><li><b>returns</b>: <sup><code>array</code></sup> <code><a href="#Event">Event</a></code> array</li></ul><p><pre><code>// getEvents example
 var e = await this.app.getEvents();
 console.log(e);
 </code></pre></p></li>
@@ -358,6 +358,12 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
   <li><code>util.inRect(x<sup><code>int</code></sup>, y<sup><code>int</code></sup>, x1<sup><code>int</code></sup>, y1<sup><code>int</code></sup>, x2<sup><code>int</code></sup>, y2<sup><code>int</code></sup>)</code> Returns <code>true</code> if the point is inside the rectangle</li>
 </ul>
 
+```
+// get the map coordinates of a specific location
+var location = {x: 1000, y: 2000};
+console.log('map coordinates: ' + (await this.app.util.getMapCoords(location.x, location.y)));
+```
+
 ### Other Methods
 
 Note: The following methods exist in the plugin's scope `this` (instead of in `app`).
@@ -366,6 +372,17 @@ Note: The following methods exist in the plugin's scope `this` (instead of in `a
   <li><code>registeredHandlers.add(type<sup><code>string</code></sup>, handler<sup><code>function</code></sup>)</code> Add a handler for a specific update event type: <ul><li><code>camera</code> Fires when the camera list has changed</li><li><code>config</code> Fires when the configuration settings have changed</li><li><code>device</code> Fires when the paired devices has changed</li><li><code>wipe</code> Fires when the server has wiped</li></ul></li>
   <li><code>registeredHandlers.remove(type<sup><code>string</code></sup>, handler<sup><code>function</code></sup>)</code> Remove a handler for a specific update event type (see <code>registeredHandlers.add</code> above)</li>
 </ul>
+
+```
+// listen for a configuration change event
+if (!this.configFunc) {
+    var self = this;
+    self.configFunc = function() {
+        console.log(self.app.cfg);
+    };
+}
+this.registeredHandlers.add('config', this.configFunc);
+```
 
 ### Data Types
 
@@ -950,7 +967,7 @@ app.getEntityInfo(device.id, (message) => {
 var app = this.app,
     item = 'windturbine',
     closest = findClosestString(item, Array.from(app.itemIds.values()));
-if (closest && closest != item) {
+if (closest && closest.toLowerCase() != item.toLowerCase()) {
     app.sendTeamMessage('Are you looking for this item? ' + closest);
 }
 else {
