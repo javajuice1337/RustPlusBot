@@ -1005,7 +1005,7 @@ var app = this.app,
     connected = await app.getConnected();
 app.sendTeamMessage('The bot has been connected for ' + getTimeDisplay(Math.round(getTimeDifference(new Date(connected)))));
 </code></pre></p></li>
-  <li><code>multiLineFormat(msg, list, callback)</code> Format the message + list to fit the Rust message size using multiple lines<ul><li><b>msg</b>: <sup><code>string</code></sup> The message to prepend</li><li><b>list</b>: <sup><code>array</code></sup> The list of items to output</li><li><b>callback(line, msg, data)</b>: <sup><code>function</code></sup> The function to execute for each formatted line (optional)</li><li><b>returns</b>: <sup><code>array</code></sup> an Array containing the formatted lines</li></ul><p><pre><code>// multiLineFormat example
+  <li><code>multiLineFormat(msg, list, callback)</code> Format the message + list to fit the Rust message size using multiple lines<ul><li><b>msg</b>: <sup><code>string</code></sup> The message to prepend</li><li><b>list</b>: <sup><code>array</code></sup> The list of items to output</li><li><b>callback(line, msg, data, idx)</b>: <sup><code>function</code></sup> The function to execute for each formatted line (optional)</li><li><b>returns</b>: <sup><code>array</code></sup> an Array containing the formatted lines</li></ul><p><pre><code>// multiLineFormat example
 var app = this.app,
     device = app.devices.get('BaseTC')[0];
 app.getEntityInfo(device.id, (message) => {
@@ -1024,8 +1024,11 @@ app.getEntityInfo(device.id, (message) => {
             list.push(item.name + ' x ' + item.quantity.toLocaleString());
         });
         if (list.length > 0) {
-            multiLineFormat('Device \'' + cmdFormat(device.name) + '\' contents: ', list, function(line) {
-                app.sendTeamMessage(line);
+            multiLineFormat('Device \'' + cmdFormat(device.name) + '\' contents: ', list, function(line, msg, data, idx) {
+                if (idx == 0)
+                    app.sendTeamMessage(msg + data);
+                else
+                    app.sendTeamMessage(data);
             });
         }
     }
