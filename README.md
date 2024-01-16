@@ -154,17 +154,6 @@ app.getInfo((message) => {
     }
 });
 </code></pre></p></li>
-  <li><code>getItemName(item, success, error)</code> Lookup the full item name for a partial item name search<ul><li><b>item</b>: <sup><code>string</code></sup> The item name to search for</li><li><b>success(data)</b>: <sup><code>function</code></sup> The function to execute after receiving ItemName data (optional)</li><li><b>error(err)</b>: <sup><code>function</code></sup> The function to execute when an error occurs (optional)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code></li></ul><p><pre><code>// getItemName example
-var app = this.app;
-app.getItemName("metal", (data) => {
-    if (data) {
-        app.sendTeamMessage('Item \'metal\' matches: ' + data);
-    }
-    else app.sendTeamMessage('Unable to lookup ItemName data');
-}, (error) => {
-    app.sendTeamMessage('Error obtaining the ItemName data: ' + error);
-});
-</code></pre></p></li>
   <li><code>getMapInfo(callback)</code> Get information about the server's map<ul><li><b>callback(message)</b>: <sup><code>function</code></sup> The function to execute after getting the map info (<code>message</code> is <code><a href="#MapInfo">MapInfo</a></code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getMapInfo example
 var app = this.app;
 app.getMapInfo((message) => {
@@ -186,6 +175,12 @@ app.getMapMarkers((message) => {
         app.sendTeamMessage('There are this many active vending machines: ' + cnt);
     }
 });
+</code></pre></p></li>
+  <li><code>getMonumentName(x, y)</code> Get the name of the monument at the specified coordinates<ul><li><b>x</b>: <sup><code>int</code></sup> The x-coordinate of where the monument is located</li><li><b>y</b>: <sup><code>int</code></sup> The y-coordinate of where the monument is located</li><li><b>returns</b>: <sup><code>string</code></sup> The name of the monument</li></ul><p><pre><code>// getMonumentName example
+var app = this.app,
+    x = 1000,
+    y = 1000;
+app.sendTeamMessage('The monument located at ' + (await app.util.getMapCoords(x, y)) + ' is: ' + (await app.getMonumentName(x, y)));
 </code></pre></p></li>
   <li><code>getPrefix(type)</code> Get the command prefix for the bot<ul><li><b>type</b>: <sup><code>string</code></sup> The command type (optional)<ul><li><code>all</code> All Commands</li><li><code>device</code> Device Commands</li></ul></li><li><b>returns</b>: <sup><code>string</code></sup> The selected prefix if it's required</li></ul><p><pre><code>// getPrefix example
 var prefix = await this.app.getPrefix('all');
