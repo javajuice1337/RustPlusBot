@@ -19,7 +19,7 @@ Military Tunnel | 25 | Hazmat recommended / Wood helmet, bandana, burlap shirt, 
 Giant Excavator Pit | 10 | Headwrap, shirt, trousers, shoes, gloves | Yes | No | No | No | No |  | 
 Abandoned Military Base | 0 | None | No | No | No | No | No |  | 
 Arctic Research Base | 11 | Headwrap, shirt, trousers, shoes, gloves | Yes | No | No | No | No | Red | Green, Blue
-Missile Silo | 25 | Hazmat recommended / Wood helmet, bandana, burlap shirt, wooden chestplate, burlap trousers, wooden armor pants, burlap shoes, gloves | Yes | No | No | No | No |  | Blue, Red
+Missile Silo | 25 | Hazmat recommended / Wood helmet, bandana, burlap shirt, wooden chestplate, burlap trousers, wooden armor pants, burlap shoes, gloves | No | No | No | No | No | Red | Blue
 Underwater Lab | 10 | (Few Locations) Headwrap, shirt, trousers, shoes, gloves | No | No | No | No | No | Green | Blue, Red
 Lighthouse | 0 | None | Yes | No | No | No | No |  | 
 Oxum's Gas Station | 0 | None | Yes | No | No | No | No | Green | 
