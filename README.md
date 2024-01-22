@@ -523,8 +523,8 @@ this.registeredHandlers.add('config', this.configFunc);
     "spread": 3600
   },
   "oilrig": {
-    "spawn": 3600,
-    "spread": 2400
+    "spawn": 2700,
+    "spread": 2700
   }
 }</code></pre>
   </li>
