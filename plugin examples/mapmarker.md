@@ -46,8 +46,10 @@ if (m.indexOf(prefix + 'pin ') == 0) {
                 for (var i = 0; i < message.response.teamInfo.members.length; i++) {
                     if (message.response.teamInfo.members[i].steamId == obj.steamId) {
                         var margin = self.mapInfo.oceanMargin,
-                            diff = (self.mapInfo.width - (margin * 2)) / self.mapInfo.info.mapSize;
-                        self.app.interactiveMap.addMarker(id, obj.steamId, obj.name, pinmsg, margin + (message.response.teamInfo.members[i].x * diff), self.mapInfo.height - (margin + (message.response.teamInfo.members[i].y * diff)));
+                            diff = (self.mapInfo.width - (margin * 2)) / self.mapInfo.info.mapSize,
+                            x = margin + (message.response.teamInfo.members[i].x * diff),
+                            y = self.mapInfo.height - (margin + (message.response.teamInfo.members[i].y * diff));
+                        self.app.interactiveMap.addMarker(id, obj.steamId, obj.name, pinmsg, x, y);
                         self.app.sendTeamMessage('A marker was pinned at your location with message: ' + cmdFormat(pinmsg));
                         break;
                     }
