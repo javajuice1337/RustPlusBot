@@ -13,14 +13,13 @@ In this plugin example, the following team chat commands are implemented:
 
 ```
 console.log('onConnected Event');
-if (!this.mapSize) {
-    this.mapSize = 0;
+if (!this.mapInfo) {
     var self = this;
     setTimeout(function() {
-        if (self.app && self.app.getInfo) {
-            self.app.getInfo((message) => {
-                if (message.response && message.response.info) {
-                    self.mapSize = message.response.info.mapSize;
+        if (self.app && self.app.getMapInfo) {
+            self.app.getMapInfo((message) => {
+                if (message) {
+                    self.mapInfo = message;
                 }
             });
         }
@@ -46,7 +45,9 @@ if (m.indexOf(prefix + 'pin ') == 0) {
             if (message.response && message.response.teamInfo) {
                 for (var i = 0; i < message.response.teamInfo.members.length; i++) {
                     if (message.response.teamInfo.members[i].steamId == obj.steamId) {
-                        self.app.interactiveMap.addMarker(id, obj.steamId, obj.name, pinmsg, message.response.teamInfo.members[i].x, self.mapSize - message.response.teamInfo.members[i].y);
+                        var margin = self.mapInfo.oceanMargin,
+                            diff = (self.mapInfo.width - (margin * 2)) / self.mapInfo.info.mapSize;
+                        self.app.interactiveMap.addMarker(id, obj.steamId, obj.name, pinmsg, margin + (message.response.teamInfo.members[i].x * diff), self.mapInfo.height - (margin + (message.response.teamInfo.members[i].y * diff)));
                         self.app.sendTeamMessage('A marker was pinned at your location with message: ' + cmdFormat(pinmsg));
                         break;
                     }
