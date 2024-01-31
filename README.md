@@ -10,7 +10,7 @@ The plugins are written in JavaScript and run in a NodeJS environment after they
 
 You can load any of the official plugins and use them as a template for getting started in the Plugin Studio. The Plugin Studio can be accessed via a link in the Plugin settings tab on the RustPlusBot settings page for your Discord server.
 
-You can also find complete plugin examples on github in the <a href="plugin examples/">plugin examples</a> folder.
+You can also find complete plugin examples on github in the <a href="plugin%20examples/">plugin examples</a> folder.
 
 > Plugins are loaded when the bot is starting and lasts for its entire life-cycle. Restarting the bot also restarts all plugins.
 
@@ -341,7 +341,7 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
     app.sendTeamMessage('Error posting: ' + error);
 });
 </code></pre></p></li>
-  <li><code>interactiveMap.addMarker(markerId<sup><code>int</code></sup>, steamId<sup><code>string</code></sup>, name<sup><code>string</code></sup>, msg<sup><code>string</code></sup>, x<sup><code>int</code></sup>, y<sup><code>int</code></sup>)</code> Returns <code>true</code> if the custom map marker is added<blockquote>Refer to the <a href="https://github.com/javajuice1337/RustPlusBot/blob/main/plugin%20examples/mapmarker.md">mapmarkers</a> plugin example to see the correct usage for <i>addMarker</i></blockquote></li>
+  <li><code>interactiveMap.addMarker(markerId<sup><code>int</code></sup>, steamId<sup><code>string</code></sup>, name<sup><code>string</code></sup>, msg<sup><code>string</code></sup>, x<sup><code>int</code></sup>, y<sup><code>int</code></sup>)</code> Returns <code>true</code> if the custom map marker is added<blockquote>Refer to the <a href="plugin%20examples/mapmarker.md">mapmarkers</a> plugin example to see the correct usage for <i>addMarker</i></blockquote></li>
   <li><code>interactiveMap.setMarkerColor(markerId<sup><code>int</code></sup>, color<sup><code>string</code></sup>)</code> Returns <code>true</code> if the custom map marker's color is updated</li>
   <li><code>interactiveMap.removeMarker(markerId<sup><code>int</code></sup>)</code> Returns <code>true</code> if the custom map marker matching markerId is removed</li>
   <li><code>interactiveMap.clearMarkers(steamId<sup><code>string</code></sup>)</code> Returns <code>true</code> if all custom map markers are removed for steamId</li>
@@ -1040,4 +1040,5 @@ You can publish your plugin when you are done making any major changes to it by 
 <ul>
     <li>Website: https://bot.rustplus.io/</li>
     <li>Help & Documentation: https://bot.rustplus.io/help/</li>
+    <li>Plugin Examples: https://github.com/javajuice1337/RustPlusBot/blob/main/plugin%20examples</li>
 </ul>
