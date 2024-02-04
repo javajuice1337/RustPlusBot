@@ -658,7 +658,12 @@ this.registeredHandlers.add('config', this.configFunc);
   "isOnline": true,
   "spawnTime": 1638768666,
   "isAlive": true,
-  "deathTime": 1638768647
+  "deathTime": 1638768647,
+  "onlineTime": 1638768660,
+  "afk": {
+    "value": false,
+    "time": 0
+  }
 }, {
   "steamId": "123456799",
   "name": "RustPlayer2",
@@ -667,7 +672,12 @@ this.registeredHandlers.add('config', this.configFunc);
   "isOnline": true,
   "spawnTime": 1638768866,
   "isAlive": true,
-  "deathTime": 1638768847
+  "deathTime": 1638768847,
+  "onlineTime": 1638768660,
+  "afk": {
+    "value": false,
+    "time": 0
+  }
 }]</code></pre>
   </li>
   <li>
