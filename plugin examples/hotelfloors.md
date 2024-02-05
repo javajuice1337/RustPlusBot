@@ -2,7 +2,7 @@
 
 This plugin example demonstrates how to automatically activate multiple similarly named Smart Switches with a single command. This is the same plugin seen in the **MikeTheVike** YouTube video here: https://www.youtube.com/watch?v=ijdQ31TP0hk
 
-By default, the plugin controls paired Smart Switche devices beginning with `floor`. You can change this name by modifying the `device_name` constant.
+By default, the plugin controls paired Smart Switch devices beginning with `floor`. You can change this name by modifying the `device_name` constant.
 
 In this plugin example, the following team chat commands are implemented:
 
