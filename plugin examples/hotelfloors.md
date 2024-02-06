@@ -25,7 +25,7 @@ var msg = obj.message,
     m = msg.toLowerCase(),
     prefix = await this.app.getPrefix('all');
 if (m.indexOf(prefix + 'fopen ') == 0 || m.indexOf(prefix + 'fclose ') == 0) {
-    var q = msg.substr(msg.indexOf(' ') + 1);
+    var q = m.substr(m.indexOf(' ') + 1);
     if (q.length > 0) {
         var app = this.app,
             ids = (q != 'all') ? q.split(' ') : [],
