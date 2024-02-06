@@ -20,7 +20,7 @@ Plugin command examples:
 
 ```
 console.log('onMessageReceive Event:', obj);
-const device_name = 'floor';
+const device_name = 'floor'; // set the lowercased paired device name here
 var msg = obj.message,
     m = msg.toLowerCase(),
     prefix = await this.app.getPrefix('all');
