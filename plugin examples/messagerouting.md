@@ -8,7 +8,7 @@ Be sure to select the option to not post team chat messages to Discord in **Rust
 
 > Do not post team chat messages to the Main Discord Channel
 
-This plugin example does not create any team chat commands.
+This plugin example does not create any team chat commands. Instead, it reacts to receiving a team chat message.
 
 ### Place the following code blocks in their respective events in the Plugin Studio to test this plugin:
 
