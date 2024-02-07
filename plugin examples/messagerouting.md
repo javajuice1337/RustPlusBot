@@ -1,6 +1,6 @@
 # **RustPlusBot** plugin example: messagerouting
 
-This plugin example demonstrates how to route team chat messages to custom Discord channels. You can specify wildcard matches for the messages and have them posted in their own Discord channels.
+This plugin example demonstrates how to route team chat messages to custom Discord channels. You can specify wildcard matches for the messages and have them posted to their own Discord channels.
 
 To obtain the channel ID for a specific Discord channel, please follow this guide: https://turbofuture.com/internet/Discord-Channel-ID
 
@@ -19,8 +19,8 @@ console.log('onMessageReceive Event:', obj);
 const messageRouting = [
     // Add your team chat message routing rules below, before the '*' (catch all) routing rule.
     // Set the wildcard to match the routing rule, and then set the channel to the channel ID.
+    // Set ignore to true for the routing rule to throw out (ignore) the team chat message.
     // Routing rules are processed from top to bottom, and stops when a rule is matched.
-    // Set ignore to true for the routing rule to throw out the team chat message.
     // ----------------------------------------------------------------------------------------
     // Example: Post all Smart Alarm team chat messages to their own Discord channel.
     // { wildcard: '[ALARM]*', channel: '', ignore: false },
