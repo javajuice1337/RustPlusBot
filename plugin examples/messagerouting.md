@@ -23,10 +23,10 @@ const messageRouting = [
     // Routing rules are processed from top to bottom, and stops when a rule is matched.
     // ----------------------------------------------------------------------------------------
     // Example: Post all Smart Alarm team chat messages to their own Discord channel.
-    // { wildcard: '[ALARM]*', channel: '', ignore: false },
+    // { wildcard: '[ALARM]*', channel: '1234567890', ignore: false },
     // ----------------------------------------------------------------------------------------
     // Example: Post all Patrol Helicopter team chat messages to their own Discord channel.
-    // { wildcard: 'The Patrol Helicopter*', channel: '', ignore: false },
+    // { wildcard: 'The Patrol Helicopter*', channel: '1234567890', ignore: false },
     // ----------------------------------------------------------------------------------------
     { wildcard: '', channel: '', ignore: false },
     { wildcard: '*', channel: '', ignore: false },
