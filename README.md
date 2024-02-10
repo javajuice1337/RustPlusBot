@@ -894,8 +894,10 @@ this.registeredHandlers.add('config', this.configFunc);
     "steamId": "123456789",
     "status": "OFFLINE",
     "info": "last seen 5 hours ago",
-    "infoText": "last seen",
+    "infoText": "alive for",
     "infoValue": 1649959932,
+    "infoTextAlt": "online for",
+    "infoValueAlt": 1649959932,
     "location": "G20",
     "x": 1932.2833251953125,
     "y": 2376.96240234375
