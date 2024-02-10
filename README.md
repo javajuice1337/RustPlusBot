@@ -892,8 +892,9 @@ this.registeredHandlers.add('config', this.configFunc);
   "members": [{
     "name": "RustPlayer1",
     "steamId": "123456789",
-    "status": "OFFLINE",
-    "info": "last seen 5 hours ago",
+    "status": "ONLINE",
+    "info": "alive for 2 hours",
+    "infoAlt": "online for 2 hours",
     "infoText": "alive for",
     "infoValue": 1649959932,
     "infoTextAlt": "online for",
