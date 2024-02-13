@@ -73,12 +73,15 @@ console.log(this.app.cfg.lang);
 ### Methods
 
 <ul>
-  <li><code>getBattleMetrics(serverId, playerName, success, error)</code> Retrieve the BattleMetrics for a server player<ul><li><b>serverId</b>: <sup><code>string</code></sup> The BattleMetrics ID of the server</li><li><b>playerName</b>: <sup><code>string</code></sup> The name of the player</li><li><b>success(data)</b>: <sup><code>function</code></sup> The function to execute after receiving the BattleMetrics data (optional)</li><li><b>error(err)</b>: <sup><code>function</code></sup> The function to execute when an error occurs (optional)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code></li></ul><p><pre><code>// getBattleMetrics example
+  <li><code>getBattleMetrics(playerName, success, error)</code> Retrieve the BattleMetrics info for a server player using their player name<ul><li><b>playerName</b>: <sup><code>string</code></sup> The name of the player</li><li><b>success(data)</b>: <sup><code>function</code></sup> The function to execute after receiving the BattleMetrics data (optional)</li><li><b>error(err)</b>: <sup><code>function</code></sup> The function to execute when an error occurs (optional)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code></li></ul><p><pre><code>// getBattleMetrics example
 var app = this.app;
-app.getBattleMetrics('123456', 'Rust Player 2099', (data) => {
+app.getBattleMetrics('Rust Player 2099', (data) => {
     if (data && data.name) {
-        app.sendTeamMessage('Server player \'' + data.name + '\' is ' + ((data.online) ? 'ONLINE' : 'OFFLINE') + ' and was last seen ' + getTimeDifference(data.lastseen) + ' ago');
-        app.sendTeamMessage('Server player \'' + data.name + '\' was first seen ' + getTimeDifference(data.firstseen) + ' ago and has a time played of ' + getTimeDisplay(data.timeplayed));
+        if (data.online)
+            app.sendTeamMessage('Player ' + cmdFormat(data.id) + ' \'' + cmdFormat(data.name) + '\' is ONLINE and has been connected for ' + getTimeDisplay(getTimeDifference(new Date(data.lastseen)), true));
+        else
+            app.sendTeamMessage('Player ' + cmdFormat(data.id) + ' \'' + cmdFormat(data.name) + '\' is OFFLINE and was last seen ' + getFriendlyDate(data.lastseen));
+        app.sendTeamMessage('Player ' + cmdFormat(data.id) + ' was first seen ' + getFriendlyDate(data.firstseen) + ' and their time played is ' + getTimeDisplay(data.timeplayed, true));
     }
     else if (data && data.indexOf('unavailable') > 0) {
         app.sendTeamMessage(data);
@@ -86,6 +89,19 @@ app.getBattleMetrics('123456', 'Rust Player 2099', (data) => {
     else app.sendTeamMessage('Server player not found');
 }, (error) => {
     app.sendTeamMessage('Error obtaining the BattleMetrics data: ' + error);
+});
+</code></pre></p></li>
+  <li><code>getBattleMetricsId(playerId, success, error)</code> Retrieve the BattleMetrics info for a server player using their BattleMetrics ID<ul><li><b>playerId</b>: <sup><code>int</code></sup> The BattleMetrics ID of the player</li><li><b>success(data)</b>: <sup><code>function</code></sup> The function to execute after receiving the BattleMetricsId data (optional)</li><li><b>error(err)</b>: <sup><code>function</code></sup> The function to execute when an error occurs (optional)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code></li></ul><p><pre><code>// getBattleMetricsId example
+var app = this.app;
+app.getBattleMetricsId(123456789, (data) => {
+    if (data && data.name) {
+        app.sendTeamMessage('Player ' + cmdFormat(data.id) + ' \'' + cmdFormat(data.name) + '\' is ' + ((data.online) ? 'ONLINE' : 'OFFLINE'));
+        if (data.lastseen)
+            app.sendTeamMessage('Player ' + cmdFormat(data.id) + ' has been connected for ' + getTimeDisplay(getTimeDifference(new Date(data.lastseen)), true));
+    }
+    else app.sendTeamMessage('Server player not found');
+}, (error) => {
+    app.sendTeamMessage('Error obtaining the BattleMetricsId data: ' + error);
 });
 </code></pre></p></li>
   <li><code>getCameraPlayers(id, callback)</code> Get all player names visible on the specified camera<ul><li><b>id</b>: <sup><code>string</code></sup> The identifier of the camera</li><li><b>callback(players, playersDistances)</b>: <sup><code>function</code></sup> The function to execute after getting the players list and players distances list (<code>players</code> is an <code>array</code> of player names and <code>playersDistances</code> is an <code>array</code> of player distances in meters)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getCameraPlayers example
@@ -796,7 +812,8 @@ this.registeredHandlers.add('config', this.configFunc);
   "notification": {
     "type": "tracking",
     "tracking": {
-      "id": "12345",
+      "bm_id": "1234",
+      "player_id": "123456789",
       "name": "Tracked player \"Rust Player\" has joined the server",
       "status": "joined"
     },
