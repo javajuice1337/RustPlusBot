@@ -202,7 +202,7 @@ app.sendTeamMessage('The monument located at ' + (await app.util.getMapCoords(x,
   <li><code>getPrefix(type)</code> Get the command prefix for the bot<ul><li><b>type</b>: <sup><code>string</code></sup> The command type (optional)<ul><li><code>all</code> All Commands</li><li><code>device</code> Device Commands</li></ul></li><li><b>returns</b>: <sup><code>string</code></sup> The selected prefix if it's required</li></ul><p><pre><code>// getPrefix example
 var prefix = await this.app.getPrefix('all');
 </code></pre></p></li>
-  <li><code>getRecyclerItems(items, success, error)</code> Retrieve the recycled items for the input items<ul><li><b>items</b>: <sup><code>object</code></sup> An object containing the item names and item values</li><li><b>success(data)</b>: <sup><code>function</code></sup> The function to execute after receiving recycle data (optional)</li><li><b>error(err)</b>: <sup><code>function</code></sup> The function to execute when an error occurs (optional)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code></li></ul><p><pre><code>// getRecyclerItems example
+  <li><code>getRecyclerItems(items, success, error, opts)</code> Retrieve the recycled items for the input items<ul><li><b>items</b>: <sup><code>object</code></sup> An object containing the item names and item values</li><li><b>success(data)</b>: <sup><code>function</code></sup> The function to execute after receiving recycle data (optional)</li><li><b>error(err)</b>: <sup><code>function</code></sup> The function to execute when an error occurs (optional)</li><li><b>opts</b>: <sup><code>object</code></sup> The opts object containing the <code>emoji</code><sup><code>bool</code></sup> property (optional)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code></li></ul><p><pre><code>// getRecyclerItems example
 var app = this.app;
 app.getRecyclerItems({'Sheet Metal Door': 1}, (data) => {
     var keys = Object.keys(data),
@@ -213,7 +213,7 @@ app.getRecyclerItems({'Sheet Metal Door': 1}, (data) => {
     if (recycle.length > 0) app.sendTeamMessage('Recyclables: ' + recycle.join(', '));
 }, (error) => {
     app.sendTeamMessage('Error obtaining the recyle items: ' + error);
-});
+}, { emoji: false });
 </code></pre></p></li>
   <li><code>getSteamrep(steamId, success, error)</code> Retrieve the Steamrep data for a Steam member<ul><li><b>steamId</b>: <sup><code>string</code></sup> The steam ID of the Steam member</li><li><b>success(data)</b>: <sup><code>function</code></sup> The function to execute after receiving Steamrep data (optional)</li><li><b>error(err)</b>: <sup><code>function</code></sup> The function to execute when an error occurs (optional)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code></li></ul><p><pre><code>// getSteamrep example
 var app = this.app;
