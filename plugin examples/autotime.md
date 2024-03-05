@@ -6,8 +6,8 @@ You can change the *until daytime* and *until nighttime* offsets using the imple
 
 In this plugin example, the following team chat commands are implemented:
 
-- `offset-daytime` will show or set the until daytime announcement message.
-- `offset-nighttime` will show or set the until nighttime announcement message.
+- `offset-daytime` will show or set the until daytime announcement message offset.
+- `offset-nighttime` will show or set the until nighttime announcement message offset.
 - `autotime-voice` will enable / disable voice feedback for the announcement message.
 
 ### Place the following code blocks in their respective events in the Plugin Studio to test this plugin:
