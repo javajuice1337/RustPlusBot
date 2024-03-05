@@ -28,8 +28,8 @@ if (!this.timeFunc) {
         self.timeTask = setInterval(function() {
             self.app.getDetailedInfo((data) => {
                 if (data.time) {
-                    if ((self.storage.offset_daytime > 0 && data.nextDay == self.storage.offset_daytime) ||
-                        (self.storage.offset_nighttime > 0 && data.nextNight == self.storage.offset_nighttime)) {
+                    if ((self.storage.offset_daytime > 0 && data.nextDay >= self.storage.offset_daytime * 60 && data.nextDay < (self.storage.offset_daytime + 1) * 60) ||
+                        (self.storage.offset_nighttime > 0 && data.nextNight >= self.storage.offset_nighttime * 60 && data.nextNight < (self.storage.offset_nighttime + 1) * 60)) {
                         var nexttime = (data.nextDay >= data.nextNight) ? data.nextNight : data.nextDay,
                             nexttext = (data.nextDay >= data.nextNight) ? 'night' : 'day';
                         self.app.sendTeamMessage('The current server time is ' + cmdFormat(data.time) + ', with ' + formatTimeLong(nexttime) + ' remaining until ' + nexttext + 'time', null, false, self.storage.voice_feedback);
