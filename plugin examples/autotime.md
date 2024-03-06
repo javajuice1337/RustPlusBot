@@ -16,11 +16,12 @@ In this plugin example, the following team chat commands are implemented:
 
 ```
 console.log('onConnected Event');
-const offset_daytime = 3; // default offset until daytime
-const offset_nighttime = 3; // default offset until nighttime
+const offset_daytime = 3; // default offset until daytime in minutes
+const offset_nighttime = 3; // default offset until nighttime in minutes
 if (this.storage.offset_daytime == null) this.storage.offset_daytime = offset_daytime;
 if (this.storage.offset_nighttime == null) this.storage.offset_nighttime = offset_nighttime;
 if (this.storage.voice_feedback == null) this.storage.voice_feedback = true;
+if (!this.timeData) this.timeData = { daytime: false, nighttime: false };
 if (!this.timeTask) this.timeTask = null;
 if (!this.timeFunc) {
     this.timeFunc = function() {
@@ -28,11 +29,19 @@ if (!this.timeFunc) {
         self.timeTask = setInterval(function() {
             self.app.getDetailedInfo((data) => {
                 if (data.time) {
-                    if ((self.storage.offset_daytime > 0 && data.nextDay >= self.storage.offset_daytime * 60 && data.nextDay < (self.storage.offset_daytime + 1) * 60) ||
-                        (self.storage.offset_nighttime > 0 && data.nextNight >= self.storage.offset_nighttime * 60 && data.nextNight < (self.storage.offset_nighttime + 1) * 60)) {
+                    if ((self.storage.offset_daytime > 0 && !self.timeData.daytime && data.nextDay < (self.storage.offset_daytime * 60) + 30) ||
+                        (self.storage.offset_nighttime > 0 && !self.timeData.nighttime && data.nextNight < (self.storage.offset_nighttime * 60) + 30)) {
+                        if (self.storage.offset_daytime > 0 && !self.timeData.daytime && data.nextDay < (self.storage.offset_daytime * 60) + 30) {
+                            self.timeData.daytime = true;
+                            self.timeData.nighttime = false;
+                        }
+                        else if (self.storage.offset_nighttime > 0 && !self.timeData.nighttime && data.nextNight < (self.storage.offset_nighttime * 60) + 30) {
+                            self.timeData.nighttime = true;
+                            self.timeData.daytime = false;
+                        }
                         var nexttime = (data.nextDay >= data.nextNight) ? data.nextNight : data.nextDay,
                             nexttext = (data.nextDay >= data.nextNight) ? 'night' : 'day';
-                        self.app.sendTeamMessage('The current server time is ' + cmdFormat(data.time) + ', with ' + formatTimeLong(nexttime) + ' remaining until ' + nexttext + 'time', null, false, self.storage.voice_feedback);
+                        self.app.sendTeamMessage('The current server time is ' + cmdFormat(data.time) + ', with ' + formatTimeLong(nexttime, false, true) + ' remaining until ' + nexttext + 'time', null, false, self.storage.voice_feedback);
                     }
                 }
             });
