@@ -29,13 +29,13 @@ if (!this.timeFunc) {
         self.timeTask = setInterval(function() {
             self.app.getDetailedInfo((data) => {
                 if (data.time) {
-                    if ((self.storage.offset_daytime > 0 && !self.timeData.daytime && data.nextDay < (self.storage.offset_daytime * 60) + 30) ||
-                        (self.storage.offset_nighttime > 0 && !self.timeData.nighttime && data.nextNight < (self.storage.offset_nighttime * 60) + 30)) {
-                        if (self.storage.offset_daytime > 0 && !self.timeData.daytime && data.nextDay < (self.storage.offset_daytime * 60) + 30) {
+                    if ((self.storage.offset_daytime > 0 && !self.timeData.daytime && data.nextDay < self.storage.offset_daytime * 60) ||
+                        (self.storage.offset_nighttime > 0 && !self.timeData.nighttime && data.nextNight < self.storage.offset_nighttime * 60)) {
+                        if (self.storage.offset_daytime > 0 && !self.timeData.daytime && data.nextDay < self.storage.offset_daytime * 60) {
                             self.timeData.daytime = true;
                             self.timeData.nighttime = false;
                         }
-                        else if (self.storage.offset_nighttime > 0 && !self.timeData.nighttime && data.nextNight < (self.storage.offset_nighttime * 60) + 30) {
+                        else if (self.storage.offset_nighttime > 0 && !self.timeData.nighttime && data.nextNight < self.storage.offset_nighttime * 60) {
                             self.timeData.nighttime = true;
                             self.timeData.daytime = false;
                         }
@@ -45,7 +45,7 @@ if (!this.timeFunc) {
                     }
                 }
             });
-        }, 60000);
+        }, 30000);
     };
 }
 this.timeFunc();
