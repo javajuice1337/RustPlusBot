@@ -193,7 +193,7 @@ app.getMapMarkers((message) => {
     }
 });
 </code></pre></p></li>
-  <li><code>getMonumentName(x, y)</code> Get the name of the monument at the specified coordinates<ul><li><b>x</b>: <sup><code>int</code></sup> The x-coordinate of where the monument is located</li><li><b>y</b>: <sup><code>int</code></sup> The y-coordinate of where the monument is located</li><li><b>returns</b>: <sup><code>string</code></sup> The name of the monument</li></ul><p><pre><code>// getMonumentName example
+  <li><code>getMonumentName(x, y, noSmall)</code> Get the name of the monument at the specified coordinates<ul><li><b>x</b>: <sup><code>int</code></sup> The x-coordinate of where the monument is located</li><li><b>y</b>: <sup><code>int</code></sup> The y-coordinate of where the monument is located</li><li><b>noSmall</b>: <sup><code>bool</code></sup> Set to <code>true</code> to exclude small monuments (optional)</li><li><b>returns</b>: <sup><code>string</code></sup> The name of the monument</li></ul><p><pre><code>// getMonumentName example
 var app = this.app,
     x = 1000,
     y = 1000;
