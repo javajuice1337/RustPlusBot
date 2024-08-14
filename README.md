@@ -137,7 +137,7 @@ console.log(new Date(connected));
 </code></pre></p></li>
   <li><code>getCrateTimer()</code> Get the configured crate unlock timer<ul><li><b>returns</b>: <sup><code>int</code></sup> value</li></ul><p><pre><code>// getCrateTimer example
 var timer = await this.app.getCrateTimer();
-console.log('Crate unlock timer is set to: ' + getTimeDisplay(timer));
+this.app.sendTeamMessage('Crate unlock timer is set to: ' + getTimeDisplay(timer));
 </code></pre></p></li>
   <li><code>getDetailedInfo(callback)</code> Get detailed information about the server<ul><li><b>callback(data)</b>: <sup><code>function</code></sup> The function to execute after getting the detailed info (<code>data</code> is <code><a href="#DetailedInfo">DetailedInfo</a></code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getDetailedInfo example
 var app = this.app;
@@ -254,6 +254,13 @@ app.getTeamData((data) => {
         }
         app.sendTeamMessage('Team leader \'' + data.leader.name + '\' is ' + info);
     }
+});
+</code></pre></p></li>
+  <li><code>getTeamDeaths()</code> Gets the last 5 snapshots for all team members taken when they died<ul><li><b>returns</b>: A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the team member data snapshots (<b>key</b>: The steam ID of the team member, <b>value</b>: Array of Member, see <code><a href="#Members">Members</a></code> below)</ul><p><pre><code>// getTeamDeaths example
+var app = this.app,
+    deaths = await app.getTeamDeaths();
+deaths.forEach(async (value, key) => {
+    app.sendTeamMessage('Team member \'' + cmdFormat(value[0].name) + '\' last death was ' + ((value[0].deathTime > 0) ? getFriendlyDate(value[0].deathTime * 1000).replace('less than one', '< 1').replace('about an', '1') : 'unknown') + ' and is located ' + cmdFormat('@ ' + (await app.util.getMapCoords(value[0].x, value[0].y))));
 });
 </code></pre></p></li>
   <li><code>getTeamInfo(callback)</code> Get information about the team (leader, members)<ul><li><b>callback(message)</b>: <sup><code>function</code></sup> The function to execute after getting the team info (<code>message.response</code> contains <code><a href="#TeamInfo">TeamInfo</a></code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getTeamInfo example
