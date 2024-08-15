@@ -256,13 +256,6 @@ app.getTeamData((data) => {
     }
 });
 </code></pre></p></li>
-  <li><code>getTeamDeaths()</code> Gets the last 5 snapshots for all team members taken when they died<ul><li><b>returns</b>: A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the team member data snapshots (<b>key</b>: The steam ID of the team member, <b>value</b>: Array of Member, see <code><a href="#Members">Members</a></code> below)</ul><p><pre><code>// getTeamDeaths example
-var app = this.app,
-    deaths = await app.getTeamDeaths();
-deaths.forEach(async (value, key) => {
-    app.sendTeamMessage('Team member \'' + cmdFormat(value[0].name) + '\' last death was ' + ((value[0].deathTime > 0) ? getFriendlyDate(value[0].deathTime * 1000).replace('less than one', '< 1').replace('about an', '1') : 'unknown') + ' and is located ' + cmdFormat('@ ' + (await app.util.getMapCoords(value[0].x, value[0].y))));
-});
-</code></pre></p></li>
   <li><code>getTeamInfo(callback)</code> Get information about the team (leader, members)<ul><li><b>callback(message)</b>: <sup><code>function</code></sup> The function to execute after getting the team info (<code>message.response</code> contains <code><a href="#TeamInfo">TeamInfo</a></code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getTeamInfo example
 var app = this.app;
 app.getTeamInfo((message) => {
@@ -274,6 +267,19 @@ app.getTeamInfo((message) => {
         app.sendTeamMessage('There are this many alive team members: ' + cnt);
     }
 });
+</code></pre></p></li>
+  <li><code>getTeamMemberDeaths(steamId)</code> Gets the last 5 snapshots for a specific team member taken when they died<ul><li><b>steamId</b>: <sup><code>string</code></sup> The player's steamId</li><li><b>returns</b>: <sup><code>array</code></sup> <code><a href="#Members">Members</a></code> array of team member death snapshots</ul><p><pre><code>// getTeamMemberDeaths example
+var app = this.app,
+    deaths = await app.getTeamMemberDeaths(obj.steamId),
+    idx = 1;
+if (deaths && deaths.length > 0) {
+    for (var i = 0; i < deaths.length; i++) {
+        app.sendTeamMessage('Team member \'' + cmdFormat(deaths[i].name) + '\' death #' + idx + ' was ' + ((deaths[i].deathTime > 0) ? getFriendlyDate(deaths[i].deathTime * 1000).replace('less than one', '< 1').replace('about an', '1') : 'unknown') + ' and is located ' + cmdFormat('@ ' + (await app.util.getMapCoords(deaths[i].x, deaths[i].y))));
+        idx++;
+    }
+}
+else
+    app.sendTeamMessage('No death info found for team member: ' + cmdFormat(obj.name));
 </code></pre></p></li>
   <li><code>getTime(callback)</code> Get information about the server time<ul><li><b>callback(message)</b>: <sup><code>function</code></sup> The function to execute after getting the time (<code>message.response</code> contains <code><a href="#Time">Time</a></code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getTime example
 var app = this.app;
