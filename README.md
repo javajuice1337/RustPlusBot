@@ -159,7 +159,7 @@ app.getEntityInfo(123456, (message) => {
     }
 });
 </code></pre></p></li>
-  <li><code>getEvents(type)</code> Get the most recent server events (ordered by newest to oldest)<ul><li><b>type</b>: <sup><code>string</code></sup> The event type (optional)<ul><li><code>heli</code> Patrol Helicopter</li><li><code>cargo</code> Cargo Ship</li><li><code>crate</code> Locked Crate</li><li><code>ch47</code> CH-47 Chinook</li><li><code>oil_rig_small</code> Oil Rig (Small)</li><li><code>large_oil_rig</code> Oil Rig (Large)</li></ul></li><li><b>returns</b>: <sup><code>array</code></sup> <code><a href="#Event">Event</a></code> array</li></ul><p><pre><code>// getEvents example
+  <li><code>getEvents(type)</code> Get the most recent server events (ordered by newest to oldest)<ul><li><b>type</b>: <sup><code>string</code></sup> The event type (optional)<ul><li><code>heli</code> Patrol Helicopter</li><li><code>cargo</code> Cargo Ship</li><li><code>crate</code> Locked Crate</li><li><code>ch47</code> CH-47 Chinook</li><li><code>oil_rig_small</code> Oil Rig (Small)</li><li><code>large_oil_rig</code> Oil Rig (Large)</li><li><code>vendor</code> Travelling Vendor</li></ul></li><li><b>returns</b>: <sup><code>array</code></sup> <code><a href="#Event">Event</a></code> array</li></ul><p><pre><code>// getEvents example
 var e = await this.app.getEvents();
 console.log(e);
 </code></pre></p></li>
@@ -484,8 +484,8 @@ this.registeredHandlers.add('config', this.configFunc);
   "voiceVending": true,
   "voiceTracking": true,
   "voicePlugin": true,
-  "eventsDisplay": "heli,brad,cargo,oil,crate,ch47",
-  "subEventsDisplay": "heli_lootable,brad_lootable,cargo_crates,oil_lootable"
+  "eventsDisplay": "heli,brad,cargo,oil,crate,ch47,ch47b,vendor",
+  "subEventsDisplay": "heli_lootable,brad_lootable,cargo_docked,oil_lootable,oil_cams"
 }</code></pre>
   </li>
   <li>
@@ -562,6 +562,10 @@ this.registeredHandlers.add('config', this.configFunc);
   "oilrig": {
     "spawn": 2700,
     "spread": 2700
+  },
+  "vendor": {
+    "spawn": 14400,
+    "spread": 7200
   }
 }</code></pre>
   </li>
@@ -674,7 +678,8 @@ this.registeredHandlers.add('config', this.configFunc);
 // 4 = CH47
 // 5 = CargoShip
 // 6 = Crate
-// 8 = PatrolHelicopter</code></pre>
+// 8 = PatrolHelicopter
+// 9 = TravellingVendor</code></pre>
     <blockquote>Find the item name with the itemId using <code>itemIds</code></blockquote>
   </li>
   <li>
