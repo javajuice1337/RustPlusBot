@@ -548,7 +548,7 @@ this.registeredHandlers.add('config', this.configFunc);
     <b>Event Timers</b><a name="EventTimers"></a>
     <pre><code>{
   "cargo": {
-    "spawn": 14400,
+    "spawn": 7200,
     "spread": 7200
   },
   "crate": {
@@ -564,7 +564,7 @@ this.registeredHandlers.add('config', this.configFunc);
     "spread": 2700
   },
   "vendor": {
-    "spawn": 14400,
+    "spawn": 7200,
     "spread": 7200
   }
 }</code></pre>
@@ -679,7 +679,7 @@ this.registeredHandlers.add('config', this.configFunc);
 // 5 = CargoShip
 // 6 = Crate
 // 8 = PatrolHelicopter
-// 9 = TravellingVendor</code></pre>
+// 9 = TravelingVendor</code></pre>
     <blockquote>Find the item name with the itemId using <code>itemIds</code></blockquote>
   </li>
   <li>
