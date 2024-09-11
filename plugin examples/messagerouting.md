@@ -2,7 +2,7 @@
 
 This plugin example demonstrates how to route team chat messages to custom Discord channels. You can specify wildcard matches for the messages and have them posted to their own Discord channels.
 
-To obtain the channel ID for a specific Discord channel, please follow this guide: https://turbofuture.com/internet/Discord-Channel-ID
+To obtain the channel ID for a specific Discord channel, please follow this guide: https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID
 
 Be sure to select the option to not post team chat messages to Discord in **RustPlusBot** settings, otherwise the messages will be duplicated.
 
