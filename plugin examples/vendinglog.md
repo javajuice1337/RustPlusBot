@@ -1,10 +1,10 @@
 # **RustPlusBot** plugin example: vendinglog
 
-This plugin example demonstrates how to log all vending machine item changes on the server to a Discord channel.
+This plugin example demonstrates how to log all vending machine item changes on the server to the Notifications Discord Channel (or the Plugin Notification channel if set in the bot's config).
 
-> Note: Vending machine item changes at safe zones will be ignored.
+> Note: Any vending machine item changes at safe zones will be ignored.
 
-This plugin example does not create any team chat commands. Instead, it creates a timer that runs every 30 seconds and analyzes all map markers.
+This plugin example does not create any team chat commands. Instead, it creates a timer that runs every 30 seconds and analyzes all vending machine map markers for changes.
 
 ### Place the following code blocks in their respective events in the Plugin Studio to test this plugin:
 
