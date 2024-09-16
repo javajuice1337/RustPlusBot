@@ -299,6 +299,7 @@ app.getTime(async (message) => {
 </code></pre></p></li>
   <li><code>postDiscordMessage(msg)</code> Post a message to the bot's Main Discord channel or a custom channel<ul><li><b>msg</b>: <sup><code>string</code></sup> The message to post</li><li><b>msg</b>: <sup><code>object</code></sup> The message object containing the <code>message</code><sup><code>string</code></sup> and <code>channel</code><sup><code>string</code></sup>, optional <code>tts</code><sup><code>bool</code></sup> Note: <code>channel</code> is the channel ID</li></ul><p><pre><code>// postDiscordMessage example 1
 this.app.postDiscordMessage('This is a message from a bot\'s plugin');
+<br/>
 // postDiscordMessage example 2
 this.app.postDiscordMessage({
     message: 'This is a message from a bot\'s plugin to a custom channel',
@@ -339,6 +340,7 @@ this.app.translateMessage('Hello, how are you?', 'es', (res) => {
 }, (error) => {
     app.sendTeamMessage('Error: ' + error);
 });
+<br/>
 // translateMessage example 2
 this.app.translateMessage('Hola, como estas?', {
     from: 'es',
@@ -679,7 +681,7 @@ this.registeredHandlers.add('config', this.configFunc);
 // 5 = CargoShip
 // 6 = Crate
 // 8 = PatrolHelicopter
-// 9 = TravelingVendor</code></pre>
+// 9 = TravellingVendor</code></pre>
     <blockquote>Find the item name with the itemId using <code>itemIds</code></blockquote>
   </li>
   <li>
