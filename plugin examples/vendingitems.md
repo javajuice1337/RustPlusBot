@@ -15,8 +15,8 @@ In this plugin example, the following team chat commands are implemented:
 console.log('onMessageReceive Event:', obj);
 var msg = obj.message,
     m = msg.toLowerCase(),
-    prefix = await this.app.getPrefix('all'),
     app = this.app,
+    prefix = await app.getPrefix('all'),
     processMarkers = function(markers) {
     var items = [];
     for (var i = 0; i < markers.length; i++) {
