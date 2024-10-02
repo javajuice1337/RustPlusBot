@@ -727,7 +727,7 @@ this.registeredHandlers.add('config', this.configFunc);
   <li>
     <b>Notification: Alarm</b><a name="NotificationAlarm"></a>
     <pre><code>{
-  "notification: {
+  "notification": {
     "type": "alarm",
     "alarm": {
       "title": "Smart Alarm Title",
@@ -805,7 +805,7 @@ this.registeredHandlers.add('config', this.configFunc);
   <li>
     <b>Notification: News</b><a name="NotificationNews"></a>
     <pre><code>{
-  "notification: {
+  "notification": {
     "type": "news",
     "news": {
       "title": "Rust Update News",
