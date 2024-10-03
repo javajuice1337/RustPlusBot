@@ -20,8 +20,7 @@ var msg = obj.message,
     processMarkers = function(markers) {
     var items = [];
     for (var i = 0; i < markers.length; i++) {
-        if (markers[i].type == 3) // 'VendingMachine'
-        {
+        if (markers[i].type == 3) { // 'VendingMachine'
             if (markers[i].sellOrders && markers[i].sellOrders.length) {
                 for (var x = 0; x < markers[i].sellOrders.length; x++) {
                     var id = markers[i].sellOrders[x].itemId + '';
@@ -57,13 +56,14 @@ if (m == prefix + 'vending-csv') {
         }
     });
 }
-else if (m == prefix + 'vending-csv') {
+else if (m == prefix + 'vending-json') {
     app.getMapMarkers((message) => {
         if (message.response && message.response.mapMarkers && message.response.mapMarkers.markers) {
             var items = processMarkers(message.response.mapMarkers.markers);
             if (items.length > 0) {
                 app.sendTeamMessage('Logging ' + items.length + ' vending item(s) to the plugin console (json format)');
-                console.log(JSON.stringify(items));
+                items = JSON.stringify(items);
+                console.log(items);
             }
             else
                 app.sendTeamMessage('No vending items were found on the server');
