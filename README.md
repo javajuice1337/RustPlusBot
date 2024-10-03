@@ -215,18 +215,7 @@ app.getRecyclerItems({'Sheet Metal Door': 1}, (data) => {
     app.sendTeamMessage('Error obtaining the recyle items: ' + error);
 }, { emoji: false });
 </code></pre></p></li>
-  <li><code>getSteamrep(steamId, success, error)</code> Retrieve the Steamrep data for a Steam member<ul><li><b>steamId</b>: <sup><code>string</code></sup> The steam ID of the Steam member</li><li><b>success(data)</b>: <sup><code>function</code></sup> The function to execute after receiving Steamrep data (optional)</li><li><b>error(err)</b>: <sup><code>function</code></sup> The function to execute when an error occurs (optional)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code></li></ul><p><pre><code>// getSteamrep example
-var app = this.app;
-app.getSteamrep(123456789, (data) => {
-    if (data && data.membersince) {
-        app.sendTeamMessage('This player has been a member of Steam since ' + data.membersince);
-        app.sendTeamMessage('This player has ' + ((data.vacbanned != 'None' || data.communitybanned != 'None' || data.tradebanstate != 'None') ? 'bans: ' + ((data.vacbanned != 'None') ? 'VAC ' : '') + ((data.communitybanned != 'None') ? 'Community ' : '') + ((data.tradebanstate != 'None') ? 'Trade ' : '') : 'NO bans'));
-    }
-    else app.sendTeamMessage('Unable to lookup Steamrep data');
-}, (error) => {
-    app.sendTeamMessage('Error obtaining the Steamrep data: ' + error);
-});
-</code></pre></p></li>
+  <li><code>getSteamrep(steamId, success, error)</code> Retrieve the Steamrep data for a Steam member<ul><li><b>steamId</b>: <sup><code>string</code></sup> The steam ID of the Steam member</li><li><b>success(data)</b>: <sup><code>function</code></sup> The function to execute after receiving Steamrep data (optional)</li><li><b>error(err)</b>: <sup><code>function</code></sup> The function to execute when an error occurs (optional)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code></li></ul><blockquote><p>⚠️ Unfortunately this plugin method no longer works since Steamrep has shutdown at the end of 2024</p></blockquote></li>
   <li><code>getTeamChat(callback)</code> Get recent team chat messages<ul><li><b>callback(message)</b>: <sup><code>function</code></sup> The function to execute after getting the team chat messages (<code>message.response</code> contains <code><a href="#TeamChat">TeamChat</a></code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getTeamChat example
 const messages_max = 5;
 var app = this.app;
