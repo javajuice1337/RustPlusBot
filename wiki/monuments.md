@@ -21,10 +21,11 @@ Missile Silo | 25 | Hazmat recommended / Wood helmet, bandana, burlap shirt, woo
 Outpost | 0 | None | Yes | Yes | Yes | Yes | No | Blue | 
 Oxum's Gas Station | 0 | None | Yes | No | No | No | No | Green | 
 Power Plant | 25 | Hazmat recommended / Wood helmet, bandana, burlap shirt, wooden chestplate, burlap trousers, wooden armor pants, burlap shoes, gloves | Yes | Yes | No | No | Yes | Red | Green, Blue
+Radtown | 25 | Hazmat recommended in buildings / No radiation outside buildings | Yes | No | No | No | No |  | 
 Satellite Dish | 10 | Headwrap, shirt, trousers, shoes, gloves | Yes | Yes | No | Yes | No | Blue | Green
 Sewer Branch | 10 | Headwrap, shirt, trousers, shoes, gloves | Yes | No | No | Yes | No | Blue | Green
 Small Oil Rig | 0 | None | No | No | No | No | Yes |  | Blue, Red
 The Dome | 10 | Headwrap, shirt, trousers, shoes, gloves | Yes | No | No | Yes | No |  | 
-Train Yard | 10 | Headwrap, shirt, trousers, shoes, gloves | Yes | No | No | No | No | Red | Green, Blue
+Train Yard | 10 | Headwrap, shirt, trousers, shoes, gloves / Hazmat recommended in buildings | Yes | No | No | No | No | Red | Green, Blue
 Water Treatment Plant | 0 | No clothing required except for the water tower | Yes | No | No | Yes | Yes | Red | Blue
 Underwater Lab | 10 | (Few Locations) Headwrap, shirt, trousers, shoes, gloves | No | No | No | No | No | Green | Blue, Red
