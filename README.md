@@ -14,6 +14,17 @@ You can load any of the official plugins and use them as a template for getting 
 
 You can find the list of plugin examples in the <a href="#plugin-examples">plugin examples</a> section.
 
+## Plugin Reference
+
+<ul>
+  <li><a href="#plugin-storage">Plugin Storage</a></li>
+  <li><a href="#plugin-events">Plugin Events</a></li>
+  <li><a href="#plugin-interface">Plugin Interface</a><ul><li><a href="#properties">Properties</a></li><li><a href="#methods">Methods</a></li><li><a href="#other-methods">Other Methods</a></li><li><a href="#data-types">Data Types</a></li></ul></li>
+  <li><a href="#plugin-globals">Plugin Globals</a></li>
+  <li><a href="#plugin-publishing">Plugin Publishing</a></li>
+  <li><a href="#plugin-examples">Plugin Examples</a></li>
+</ul>
+
 ## Plugin Storage
 
 For data that persists beyond the bot's instance, use `this.storage`. This object loads with the bot and saves when it stops or restarts.
