@@ -8,11 +8,11 @@
 
 The plugins are written in JavaScript and run in a NodeJS environment after they are published. During development, you host the plugin on your client machine and in your web-browser. Your plugin interfaces with the bot via a WebSocket connection and communicates using the RustPlusBot api.
 
+> Plugins are loaded when the bot is starting and lasts for its entire life-cycle. Restarting the bot also restarts all plugins.
+
 You can load any of the official plugins and use them as a template for getting started in the Plugin Studio. The Plugin Studio can be accessed via a link in the Plugin settings tab on the RustPlusBot settings page for your Discord server.
 
-You can also find complete plugin examples on github in the <a href="plugin%20examples/">plugin examples</a> folder.
-
-> Plugins are loaded when the bot is starting and lasts for its entire life-cycle. Restarting the bot also restarts all plugins.
+You can find the list of plugin examples in the <a href="#plugin-examples">plugin examples</a> section.
 
 ## Plugin Storage
 
@@ -1081,6 +1081,25 @@ app.getEntityInfo(device.id, (message) => {
 ## Plugin Publishing
           
 You can publish your plugin when you are done making any major changes to it by clicking the Publish tab in the Plugin Studio. You have the option of making it a public plugin for others to use with their bot. There will be a review of your plugin after submitting which could take several days. If your plugin is accepted for publishing, you will then be able to select it in the Plugin settings for your bot and install it. Duplicates of official plugins will not be accepted.
+
+## Plugin Examples
+
+<ul>
+    <li><a href="https://github.com/javajuice1337/RustPlusBot/blob/main/plugin%20examples/alarmchannel.md"><b>alarmchannel</b></a><ul><li>This plugin example demonstrates how to use the activation of a Smart Alarm to post a Discord message in a specific channel and ping a role.</li></ul></li>
+    <li><a href="https://github.com/javajuice1337/RustPlusBot/blob/main/plugin%20examples/announcements.md"><b>announcements</b></a><ul><li>This plugin example demonstrates how to automatically send pre-defined team chat announcements.</li></ul></li>
+    <li><a href="https://github.com/javajuice1337/RustPlusBot/blob/main/plugin%20examples/autopop.md"><b>autopop</b></a><ul><li>This plugin example demonstrates how to automatically run the <code>!pop</code> command every 5 minutes.</li></ul></li>
+    <li><a href="https://github.com/javajuice1337/RustPlusBot/blob/main/plugin%20examples/autotime.md"><b>autotime</b></a><ul><li>This plugin example demonstrates how to automatically send until daytime / until nighttime team chat announcements.</li></ul></li>
+    <li><a href="https://github.com/javajuice1337/RustPlusBot/blob/main/plugin%20examples/hotelfloors.md"><b>hotelfloors</b></a><ul><li>This plugin example demonstrates how to automatically activate multiple similarly named Smart Switches with a single command. This is the same plugin seen in the <b>MikeTheVike</b> YouTube video here: https://www.youtube.com/watch?v=ijdQ31TP0hk</li></ul></li>
+    <li><a href="https://github.com/javajuice1337/RustPlusBot/blob/main/plugin%20examples/macro.md"><b>macro</b></a><ul><li>This plugin example demonstrates how to use a single team chat command to execute multiple chat commands.</li></ul></li>
+    <li><a href="https://github.com/javajuice1337/RustPlusBot/blob/main/plugin%20examples/mapmarker.md"><b>mapmarker</b></a><ul><li>This plugin example demonstrates how to pin a custom map marker to the Interactive Map.</li></ul></li>
+    <li><a href="https://github.com/javajuice1337/RustPlusBot/blob/main/plugin%20examples/messagerouting.md"><b>messagerouting</b></a><ul><li>This plugin example demonstrates how to route team chat messages to custom Discord channels. You can specify wildcard matches for the messages and have them posted to their own Discord channels.</li></ul></li>
+    <li><a href="https://github.com/javajuice1337/RustPlusBot/blob/main/plugin%20examples/mirrormessages.md"><b>mirrormessages</b></a><ul><li>This plugin example demonstrates how to mirror all team chat messages by posting them to another Discord server via a webhook.</li></ul></li>
+    <li><a href="https://github.com/javajuice1337/RustPlusBot/blob/main/plugin%20examples/teamvoice.md"><b>teamvoice</b></a><ul><li>This plugin example demonstrates how to send voice messages to the RustPlusBot voice client. You can invite the voice client to your active voice channel using Discord command: <code>rp!voice_join</code>.</li></ul></li>
+    <li><a href="https://github.com/javajuice1337/RustPlusBot/blob/main/plugin%20examples/timedfireworks.md"><b>timedfireworks</b></a><ul><li>This plugin example demonstrates how to activate multiple Smart Switches with different delays, allowing you to create a timed firework show. The Smart Switches should be directly wired to Igniters near the fireworks.</li></ul></li>
+    <li><a href="https://github.com/javajuice1337/RustPlusBot/blob/main/plugin%20examples/turretrotation.md"><b>turretrotation</b></a><ul><li>The plugins works by rotating turret segments, or sections, with a total of 9 segments supported. Each turret segment is controlled by a single smart switch. Each turret in the segment has their Has Target output combined to a single smart alarm. When a turret segment is active, and if its related smart alarm is activated from the combined Has Target output, then the turret segment timer is reset keeping the segment active for longer.</li></ul></li>
+    <li><a href="https://github.com/javajuice1337/RustPlusBot/blob/main/plugin%20examples/vendingitems.md"><b>vendingitems</b></a><ul><li>This plugin example demonstrates how to output all vending machine items in CSV or JSON format.</li></ul></li>
+    <li><a href="https://github.com/javajuice1337/RustPlusBot/blob/main/plugin%20examples/vendinglog.md"><b>vendinglog</b></a><ul><li>This plugin example demonstrates how to log all vending machine item changes on the server to the Notifications Discord Channel (or the Plugin Notification channel if set in the bot's config).</li></ul></li>
+</ul>
 
 ## Links
 
