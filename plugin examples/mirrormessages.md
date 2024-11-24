@@ -10,7 +10,7 @@ This plugin example does not create any team chat commands. Instead, it reacts t
 
 #### onMessageReceive Event:
 
-```
+```js
 console.log('onMessageReceive Event:', obj);
 const webhook_url = "https://"; // create a webhook in your Discord server and paste the url here
 this.app.postDiscordWebhook(webhook_url, obj.name + ': ' + obj.message);
