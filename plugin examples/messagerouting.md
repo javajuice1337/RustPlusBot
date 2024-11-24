@@ -14,7 +14,7 @@ This plugin example does not create any team chat commands. Instead, it reacts t
 
 #### onMessageReceive Event:
 
-```
+```js
 console.log('onMessageReceive Event:', obj);
 const messageRouting = [
     // Add your team chat message routing rules below, before the '*' (catch all) routing rule.
