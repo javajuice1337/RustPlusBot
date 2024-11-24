@@ -11,7 +11,7 @@ In this plugin example, the following team chat commands are implemented:
 
 #### onMessageReceive Event:
 
-```
+```js
 console.log('onMessageReceive Event:', obj);
 var msg = obj.message,
     m = msg.toLowerCase(),
