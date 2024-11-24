@@ -8,7 +8,7 @@ This plugin example does not create any team chat commands. Instead, it reacts t
 
 #### onMessageSend Event:
 
-```
+```js
 console.log('onMessageSend Event:', obj);
 if (obj.message.indexOf('Team member ') == 0 &&
     (obj.message.indexOf(' is now online') > 0 || obj.message.indexOf(' is now offline') > 0)) {
