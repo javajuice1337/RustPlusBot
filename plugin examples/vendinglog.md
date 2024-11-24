@@ -10,7 +10,7 @@ This plugin example does not create any team chat commands. Instead, it creates 
 
 #### onConnected Event:
 
-```
+```js
 console.log('onConnected Event');
 if (!this.mapMarkers) this.mapMarkers = [];
 if (!this.vendingTask) this.vendingTask = null;
@@ -117,7 +117,7 @@ this.vendingFunc();
 
 #### onDisconnected Event:
 
-```
+```js
 console.log('onDisconnected Event');
 if (this.vendingTask) {
     clearInterval(this.vendingTask);
