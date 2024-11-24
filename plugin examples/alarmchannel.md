@@ -8,7 +8,7 @@ This plugin example does not create any team chat commands. Instead, it reacts t
 
 #### onEntityChanged Event:
 
-```
+```js
 console.log('onEntityChanged Event:', obj);
 const deviceName = 'raidalarm'; // set the lowercased paired device name here
 const roleName = 'alarm'; // set the role name to ping here
