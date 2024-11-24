@@ -12,7 +12,7 @@ In this plugin example, the following team chat commands are implemented:
 
 #### onConnected Event:
 
-```
+```js
 console.log('onConnected Event');
 const announcements_amount = 9; // total number of announcements
 const announcements_interval = 20; // default interval (in minutes)
@@ -40,7 +40,7 @@ if (this.storage.interval > 0)
 
 #### onDisconnected Event:
 
-```
+```js
 console.log('onDisconnected Event');
 if (this.announcementTask) {
     clearInterval(this.announcementTask);
@@ -50,7 +50,7 @@ if (this.announcementTask) {
 
 #### onMessageReceive Event:
 
-```
+```js
 console.log('onMessageReceive Event:', obj);
 var m = obj.message.toLowerCase(),
     prefix = await this.app.getPrefix('all');
