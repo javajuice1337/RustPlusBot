@@ -19,7 +19,7 @@ The plugin implements the following team chat commands allowing you to configure
 
 #### onConnected Event:
 
-```
+```js
 console.log('onConnected Event');
 const seq_max = 9,
     seq_timer = 60; // 1 minute
@@ -52,7 +52,7 @@ if (this.storage.seq_active) this.func();
 
 #### onDisconnected Event:
 
-```
+```js
 console.log('onDisconnected Event');
 if (this.func) this.func = null;
 if (this.task) clearInterval(this.task);
@@ -60,7 +60,7 @@ if (this.task) clearInterval(this.task);
 
 #### onEntityChanged Event:
 
-```
+```js
 console.log('onEntityChanged Event:', obj);
 if (this.storage.seq_active && this.storage.seq_timer > 0 && this.app.devices_map.has(obj.entityId + '') && obj.payload && obj.payload.value) {
     var devices = this.app.devices_map.get(obj.entityId + '');
@@ -78,7 +78,7 @@ else if (this.storage.seq_active && this.storage.seq_timer > 0 && this.app.devic
 
 #### onMessageReceive Event:
 
-```
+```js
 console.log('onMessageReceive Event:', obj);
 const seq_max = 9,
     timer_max = 3600; // 1 hour
