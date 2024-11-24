@@ -14,7 +14,7 @@ In this plugin example, the following team chat commands are implemented:
 
 #### onConnected Event:
 
-```
+```js
 console.log('onConnected Event');
 const offset_daytime = 3; // default offset until daytime in minutes
 const offset_nighttime = 3; // default offset until nighttime in minutes
@@ -55,7 +55,7 @@ this.timeFunc();
 
 #### onDisconnected Event:
 
-```
+```js
 console.log('onDisconnected Event');
 if (this.timeTask) {
     clearInterval(this.timeTask);
@@ -65,7 +65,7 @@ if (this.timeTask) {
 
 #### onMessageReceive Event:
 
-```
+```js
 console.log('onMessageReceive Event:', obj);
 var m = obj.message.toLowerCase(),
     prefix = await this.app.getPrefix('all');
