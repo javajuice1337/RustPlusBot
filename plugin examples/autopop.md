@@ -8,7 +8,7 @@ This plugin example does not create any team chat commands. Instead, it creates 
 
 #### onConnected Event:
 
-```
+```js
 console.log('onConnected Event');
 if (!this.autopopTask) this.autopopTask = null;
 if (!this.autopopFunc) {
@@ -28,7 +28,7 @@ this.autopopFunc();
 
 #### onDisconnected Event:
 
-```
+```js
 console.log('onDisconnected Event');
 if (this.autopopTask) {
     clearInterval(this.autopopTask);
