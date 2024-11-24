@@ -18,7 +18,7 @@ Plugin command examples:
 
 #### onMessageReceive Event:
 
-```
+```js
 console.log('onMessageReceive Event:', obj);
 const device_name = 'floor'; // set the lowercased paired device name here
 var msg = obj.message,
