@@ -11,7 +11,7 @@ In this plugin example, the following team chat commands are implemented:
 
 #### onConnected Event:
 
-```
+```js
 console.log('onConnected Event');
 if (!this.mapInfo) {
     var self = this;
@@ -31,7 +31,7 @@ if (!this.mapInfo) {
 
 #### onMessageReceive Event:
 
-```
+```js
 console.log('onMessageReceive Event:', obj);
 var msg = obj.message,
     m = msg.toLowerCase(),
