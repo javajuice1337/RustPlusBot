@@ -20,19 +20,21 @@ const messageRouting = [
     // Add your team chat message routing rules below, before the '*' (catch all) routing rule.
     // Set the wildcard to match the routing rule, and then set the channel to the channel ID.
     // Set ignore to true for the routing rule to throw out (ignore) the team chat message.
+    // Set tts to true to have the message spoken using the Discord TTS functionality.
+    // Set voice to true to have the message spoken using the RustPlusBot voice client.
     // Routing rules are processed from top to bottom, and stops when a rule is matched.
-    // ----------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------------------------
     // Example 1: Post all Smart Alarm team chat messages to their own Discord channel.
-    // { wildcard: "[ALARM]*", channel: "1234567890", tts: false, ignore: false },
-    // ----------------------------------------------------------------------------------------
+    // { wildcard: "[ALARM]*", channel: "1234567890", ignore: false, tts: false, voice: false },
+    // ------------------------------------------------------------------------------------------------------
     // Example 2: Post all Patrol Helicopter team chat messages to their own Discord channel.
-    // { wildcard: "The Patrol Helicopter*", channel: "1234567890", tts: false, ignore: false },
-    // ----------------------------------------------------------------------------------------
+    // { wildcard: "The Patrol Helicopter*", channel: "1234567890", ignore: false, tts: false, voice: false },
+    // ------------------------------------------------------------------------------------------------------
     // Example 3: Ignore all team member AFK team chat messages (do not post)
-    // { wildcard: "Team Member '*' is*AFK*", channel: "", tts: false, ignore: true },
-    // ----------------------------------------------------------------------------------------
-    { wildcard: "", channel: "", tts: false, ignore: false },
-    { wildcard: "*", channel: "", tts: false, ignore: false },
+    // { wildcard: "Team Member '*' is*AFK*", channel: "", ignore: true, tts: false, voice: false },
+    // ------------------------------------------------------------------------------------------------------
+    { wildcard: "", channel: "", ignore: false, tts: false, voice: false },
+    { wildcard: "*", channel: "", ignore: false, tts: false, voice: false },
 ];
 const wildcardToRegExp = (s) => {
     const regExpEscape = (s) => {
@@ -48,6 +50,8 @@ for (var i = 0; i < messageRouting.length; i++) {
                 channel: messageRouting[i].channel,
                 tts: messageRouting[i].tts
             });
+            if (messageRouting[i].voice)
+                this.app.sendDiscordVoiceMessage(obj.message);
         }
         break;
     }
