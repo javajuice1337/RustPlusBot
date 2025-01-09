@@ -23,16 +23,16 @@ const messageRouting = [
     // Routing rules are processed from top to bottom, and stops when a rule is matched.
     // ----------------------------------------------------------------------------------------
     // Example 1: Post all Smart Alarm team chat messages to their own Discord channel.
-    // { wildcard: "[ALARM]*", channel: "1234567890", ignore: false },
+    // { wildcard: "[ALARM]*", channel: "1234567890", tts: false, ignore: false },
     // ----------------------------------------------------------------------------------------
     // Example 2: Post all Patrol Helicopter team chat messages to their own Discord channel.
-    // { wildcard: "The Patrol Helicopter*", channel: "1234567890", ignore: false },
+    // { wildcard: "The Patrol Helicopter*", channel: "1234567890", tts: false, ignore: false },
     // ----------------------------------------------------------------------------------------
     // Example 3: Ignore all team member AFK team chat messages (do not post)
-    // { wildcard: "Team Member '*' is*AFK*", channel: "", ignore: true },
+    // { wildcard: "Team Member '*' is*AFK*", channel: "", tts: false, ignore: true },
     // ----------------------------------------------------------------------------------------
-    { wildcard: "", channel: "", ignore: false },
-    { wildcard: "*", channel: "", ignore: false },
+    { wildcard: "", channel: "", tts: false, ignore: false },
+    { wildcard: "*", channel: "", tts: false, ignore: false },
 ];
 const wildcardToRegExp = (s) => {
     const regExpEscape = (s) => {
@@ -42,11 +42,11 @@ const wildcardToRegExp = (s) => {
 };
 for (var i = 0; i < messageRouting.length; i++) {
     if (messageRouting[i].wildcard.length > 0 && wildcardToRegExp(messageRouting[i].wildcard).test(obj.message)) {
-        if (messageRouting[i].channel.length > 0 && !messageRouting[i].wildcard.ignore) {
+        if (messageRouting[i].channel.length > 0 && !messageRouting[i].ignore) {
             this.app.postDiscordMessage({
                 message: obj.name + ': ' + obj.message,
                 channel: messageRouting[i].channel,
-                tts: false
+                tts: messageRouting[i].tts
             });
         }
         break;
