@@ -320,11 +320,11 @@ var app = this.app,
     prefix = await app.getPrefix('all');
 app.runCommand(prefix + 'pop');
 </code></pre></p></li>
-  <li><code>sendDiscordVoiceMessage(msg)</code> Send a voice message to the RustPlusBot voice client<ul><li><b>msg</b>: <sup><code>string</code></sup> The voice message to send</li></ul><p><pre><code>// sendDiscordVoiceMessage example
+  <li><code>sendDiscordVoiceMessage(msg, noChime)</code> Send a voice message to the RustPlusBot voice client<ul><li><b>msg</b>: <sup><code>string</code></sup> The voice message to send</li><li><b>noChime</b>: <sup><code>bool</code></sup> Set to <code>true</code> to disable the voice client chime (optional)</li></ul><p><pre><code>// sendDiscordVoiceMessage example
 var app = this.app;
 app.sendDiscordVoiceMessage('Hello, this is a test voice message!');
 </code></pre></p></li>
-  <li><code>sendTeamMessage(msg, callback, noTranslate, sendVoice)</code> Send a team chat message<ul><li><b>msg</b>: <sup><code>string</code></sup> The message to send</li><li><b>callback()</b>: <sup><code>function</code></sup> The function to execute after sending (optional)</li><li><b>noTranslate</b>: <sup><code>bool</code></sup> Set to <code>true</code> to disable message translation (optional)</li><li><b>sendVoice</b>: <sup><code>bool</code></sup> Set to <code>true</code> to send the message to the voice client (optional)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// sendTeamMessage example
+  <li><code>sendTeamMessage(msg, callback, noTranslate, sendVoice, noChime)</code> Send a team chat message<ul><li><b>msg</b>: <sup><code>string</code></sup> The message to send</li><li><b>callback()</b>: <sup><code>function</code></sup> The function to execute after sending (optional)</li><li><b>noTranslate</b>: <sup><code>bool</code></sup> Set to <code>true</code> to disable message translation (optional)</li><li><b>sendVoice</b>: <sup><code>bool</code></sup> Set to <code>true</code> to send the message to the voice client (optional)</li><li><b>noChime</b>: <sup><code>bool</code></sup> Set to <code>true</code> to disable the voice client chime (optional)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// sendTeamMessage example
 var app = this.app;
 app.sendTeamMessage('This is a team message');
 </code></pre></p></li>
