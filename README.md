@@ -8,6 +8,7 @@
 
 The plugins are written in JavaScript and run in a NodeJS environment after they are published. During development, you host the plugin on your client machine and in your web-browser. Your plugin interfaces with the bot via a WebSocket connection and communicates using the RustPlusBot api.
 
+> [!NOTE]
 > Plugins are loaded when the bot is starting and lasts for its entire life-cycle. Restarting the bot also restarts all plugins.
 
 You can load any of the official plugins and use them as a template for getting started in the Plugin Studio. The Plugin Studio can be accessed via a link in the Plugin settings tab on the RustPlusBot settings page for your Discord server.
@@ -393,7 +394,8 @@ console.log('map coordinates: ' + (await this.app.util.getMapCoords(location.x, 
 
 ### Other Methods
 
-Note: The following methods exist in the plugin's scope `this` (instead of in `app`).
+> [!NOTE]
+> The following methods exist in the plugin's scope `this` (instead of in `app`).
 
 <ul>
   <li><code>registeredHandlers.add(type<sup><code>string</code></sup>, handler<sup><code>function</code></sup>)</code> Add a handler for a specific update event type: <ul><li><code>camera</code> Fires when the camera list has changed</li><li><code>config</code> Fires when the configuration settings have changed</li><li><code>device</code> Fires when the paired devices has changed</li><li><code>wipe</code> Fires when the server has wiped</li></ul></li>
