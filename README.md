@@ -967,6 +967,16 @@ this.registeredHandlers.add('config', this.configFunc);
 ## Plugin Globals
 
 <ul>
+    <li><code>abbreviateNumber(value)</code> Abbreviate a number for a compact display<ul><li><b>value</b>: <sup><code>int</code></sup> The number to abbreviate</li><li><b>returns</b>: <sup><code>string</code></sup> an abbreviated number</li></ul><p><pre><code>// abbreviateNumber example
+var app = this.app,
+    stat_wood = 132000,
+    stat_stones = 63000,
+    stat_sulfur = 23000,
+    stat_mf = 56000,
+    stat_hqm = 1200,
+    msg = ':wood: ' + abbreviateNumber(stat_wood) + ' | :stones: ' + abbreviateNumber(stat_wood) + ' | :sulfur: ' + abbreviateNumber(stat_sulfur) + ' | :metal.fragments: ' + abbreviateNumber(stat_mf) + ' | :hq.metal.ore: ' + abbreviateNumber(stat_hqm);
+app.sendTeamMessage(msg);
+</code></pre></p></li>
   <li><code>cmdFormat(str)</code> Convert a string into a non-translatable string<ul><li><b>str</b>: <sup><code>string</code></sup> The string to convert</li><li><b>returns</b>: <sup><code>string</code></sup> a non-translatable string</li></ul><p><pre><code>// cmdFormat example
 var app = this.app,
     msg = 'Here is the url: ' + cmdFormat('https://www.google.com');
@@ -1058,7 +1068,7 @@ var app = this.app,
     connected = await app.getConnected();
 app.sendTeamMessage('The bot has been connected for ' + getTimeDisplay(Math.round(getTimeDifference(new Date(connected)))));
 </code></pre></p></li>
-  <li><code>multiLineFormat(msg, list, callback, all)</code> Format the message + list to fit the Rust message size using multiple lines<ul><li><b>msg</b>: <sup><code>string</code></sup> The message to prepend</li><li><b>list</b>: <sup><code>array</code></sup> The list of items to output</li><li><b>callback(line, msg, data, idx)</b>: <sup><code>function</code></sup> The function to execute for each formatted line (optional)</li><li><b>all</b>: <sup><code>bool</code></sup> Set to true if all lines should include the msg (optional)</li><li><b>returns</b>: <sup><code>array</code></sup> an Array containing the formatted lines</li></ul><p><pre><code>// multiLineFormat example
+  <li><code>multiLineFormat(msg, list, callback, all, separator)</code> Format the message + list to fit the Rust message size using multiple lines<ul><li><b>msg</b>: <sup><code>string</code></sup> The message to prepend</li><li><b>list</b>: <sup><code>array</code></sup> The list of items to output</li><li><b>callback(line, msg, data, idx)</b>: <sup><code>function</code></sup> The function to execute for each formatted line (optional)</li><li><b>all</b>: <sup><code>bool</code></sup> Set to true if all lines should include the msg (optional)</li><li><b>separator</b>: <sup><code>string</code></sup> The list separator; default: ", " (optional)</li><li><b>returns</b>: <sup><code>array</code></sup> an Array containing the formatted lines</li></ul><p><pre><code>// multiLineFormat example
 var app = this.app,
     device = app.devices.get('BaseTC')[0];
 app.getEntityInfo(device.id, (message) => {
