@@ -27,7 +27,8 @@ if (!this.mapInfo) {
 }
 ```
 
-> **Note:** After placing the *onConnected* code block in the plugin editor, you will need to press the Play button :arrow_forward: to simulate the event.
+> [!NOTE]
+> After placing the *onConnected* code block in the plugin editor, you will need to press the Play button :arrow_forward: to simulate the event.
 
 #### onMessageReceive Event:
 
