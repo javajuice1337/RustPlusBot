@@ -2,7 +2,8 @@
 
 This plugin example demonstrates how to log all vending machine item changes on the server to the Notifications Discord Channel (or the Plugin Notification channel if set in the bot's config).
 
-> Note: Any vending machine item changes at safe zones will be ignored.
+> [!NOTE]
+> Any vending machine item changes at safe zones will be ignored.
 
 This plugin example does not create any team chat commands. Instead, it creates a timer that runs every 30 seconds and analyzes all vending machine map markers for changes.
 
@@ -113,7 +114,8 @@ if (!this.vendingFunc) {
 this.vendingFunc();
 ```
 
-> **Note:** After placing the *onConnected* code block in the plugin editor, you will need to press the Play button :arrow_forward: to simulate the event.
+> [!NOTE]
+> After placing the *onConnected* code block in the plugin editor, you will need to press the Play button :arrow_forward: to simulate the event.
 
 #### onDisconnected Event:
 
