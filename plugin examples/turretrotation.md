@@ -7,7 +7,8 @@ You will need to pair the following named devices to the bot:
 - Smart Switches named `TurretSwitch1` through `TurretSwitch9`
 - Smart Alarms named `TurretAlarm1` through  `TurretAlarm9`
 
-> Note: For a setup that has less than 9 switches and alarms, use team chat command `!seqmax` to set the amount.
+> [!NOTE]
+> For a setup that has less than 9 switches and alarms, use team chat command `!seqmax` to set the amount.
 
 The plugin implements the following team chat commands allowing you to configure it:
 
@@ -48,7 +49,8 @@ if (!this.func) this.func = async function() {
 if (this.storage.seq_active) this.func();
 ```
 
-> **Note:** After placing the *onConnected* code block in the plugin editor, you will need to press the Play button :arrow_forward: to simulate the event.
+> [!NOTE]
+> After placing the *onConnected* code block in the plugin editor, you will need to press the Play button :arrow_forward: to simulate the event.
 
 #### onDisconnected Event:
 
