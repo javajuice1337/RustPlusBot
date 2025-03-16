@@ -1,6 +1,6 @@
 # **RustPlusBot** plugin example: turretrotation
 
-The plugins works by rotating auto turret segments, or sections, aka turret flip flop, with a total of 9 segments supported. Each turret segment is controlled by a single smart switch. Each turret in the segment has their Has Target output combined to a single smart alarm. When a turret segment is active, and if its related smart alarm is activated from the combined Has Target output, then the turret segment timer is reset keeping the segment active for longer.
+This plugin implements auto turret flip flop for your bot. It works by rotating auto turret segments, or sections, with a total of 9 segments supported. Each turret segment is controlled by a single smart switch. Each turret in the segment has their Has Target output combined to a single smart alarm. When a turret segment is active, and if its related smart alarm is activated from the combined Has Target output, then the turret segment timer is reset keeping the segment active for longer.
 
 You will need to pair the following named devices to the bot:
 
