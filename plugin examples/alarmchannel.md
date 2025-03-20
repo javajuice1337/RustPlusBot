@@ -1,6 +1,6 @@
 # **RustPlusBot** plugin example: alarmchannel
 
-This plugin example demonstrates how to use the activation of a Smart Alarm to post a Discord message in a specific channel and ping a role.
+This plugin example demonstrates how to use the activation of a Smart Alarm to post a Discord message in a specific channel and ping a role every 30 seconds.
 
 This plugin example does not create any team chat commands. Instead, it reacts to the activation of a paired Smart Alarm.
 
@@ -17,11 +17,16 @@ const message = 'Your base is under attack!'; // set the custom message to post 
 if (obj.payload && obj.payload.value && this.app.devices_map.has(obj.entityId + '')) {
     var id = this.app.devices_map.get(obj.entityId + '');
     if (id == deviceName) {
-        this.app.postDiscordMessage({
-            message: '@' + roleName + ' ' + message,
-            channel: channelID,
-            tts: false
-        });
+        if (!this.alarmNotifyDate)
+            this.alarmNotifyDate = {};
+        if (!this.alarmNotifyDate[id] || getTimeDifference(this.alarmNotifyDate[id]) > 30) {
+            this.alarmNotifyDate[id] = new Date();
+            this.app.postDiscordMessage({
+                message: '@' + roleName + ' ' + message,
+                channel: channelID,
+                tts: false
+            });
+        }
     }
 }
 ```
