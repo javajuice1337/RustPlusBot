@@ -48,6 +48,9 @@ console.log(this.storage.myData);
   <li><code>onTeamChanged(obj)</code> Fires when the team leader changes, or a team member is added or removed from the team<ul><li><b>obj.leaderSteamId</b>: <sup><code>object</code></sup> The steam ID of the team leader</li><li><b>obj.leaderMapNotes</b>: <sup><code>object</code></sup> The leader map notes data of the event (see <code><a href="#MapNotes">MapNotes</a></code> below)</li><li><b>obj.members</b>: <sup><code>object</code></sup> The members list data of the event (see <code><a href="#Members">Members</a></code> below)</li></ul></li>
 </ul>
 
+> [!NOTE]
+> To handle bot configuration changes or other update events, take a look at <a href="#other-methods">registeredHandlers</a>.
+
 ## Plugin Interface
 
 The `app` object exists in the plugin's scope `this`, and exposes the following properties and methods:
