@@ -25,7 +25,7 @@ Radtown | 25 | Hazmat recommended in buildings / No radiation outside buildings 
 Satellite Dish | 10 | Headwrap, shirt, trousers, shoes, gloves | Yes | Yes | No | Yes | No | Blue | Green | 1
 Sewer Branch | 10 | Headwrap, shirt, trousers, shoes, gloves | Yes | No | No | Yes | No | Blue | Green | 1
 Small Oil Rig | 0 | None | No | No | No | No | Yes |  | Blue, Red | 
-The Dome | 10 | Headwrap, shirt, trousers, shoes, gloves | Yes | No | No | Yes | Yes |  |  | 
+The Dome | 10 | Headwrap, shirt, trousers, shoes, gloves | No | No | No | Yes | Yes |  |  | 
 Train Yard | 10 | Headwrap, shirt, trousers, shoes, gloves / Hazmat recommended in buildings | Yes | No | No | No | No | Red | Green, Blue | 1
 Water Treatment Plant | 0 | No clothing required except for the water tower | Yes | No | No | Yes | Yes | Red | Blue | 1
 Underwater Lab | 10 | (Few Locations) Headwrap, shirt, trousers, shoes, gloves | No | No | No | No | No | Green | Blue, Red | 2
