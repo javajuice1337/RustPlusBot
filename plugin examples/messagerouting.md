@@ -31,7 +31,7 @@ const messageRouting = [
     // { wildcard: "The Patrol Helicopter*", channel: "1234567890", ignore: false, tts: false, voice: false },
     // ------------------------------------------------------------------------------------------------------
     // Example 3: Ignore all team member AFK team chat messages (do not post)
-    // { wildcard: "Team Member '*' is*AFK*", channel: "", ignore: true, tts: false, voice: false },
+    // { wildcard: "Team member '*' is*AFK*", channel: "", ignore: true, tts: false, voice: false },
     // ------------------------------------------------------------------------------------------------------
     { wildcard: "", channel: "", ignore: false, tts: false, voice: false },
     { wildcard: "*", channel: "", ignore: false, tts: false, voice: false },
