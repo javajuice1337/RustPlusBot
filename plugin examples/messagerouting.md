@@ -57,3 +57,6 @@ for (var i = 0; i < messageRouting.length; i++) {
     }
 }
 ```
+
+> [!IMPORTANT]
+> Make sure you set the channel ID for the catch all routing rule `"*"`, otherwise all non-routed messages will be ignored by default.
