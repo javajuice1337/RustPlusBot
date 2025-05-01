@@ -11,7 +11,8 @@ Ferry Terminal | 0 | None | No | No | No | No | No |  |  |  | None
 Fishing Village | 0 | None | No | No | No | No | No |  |  |  | None
 Giant Excavator Pit | 10 | Headwrap, shirt, trousers, shoes, gloves | Yes | No | No | No | No |  |  |  | 18 Blue Scientists
 Harbor | 0 | None | Yes | No | No | Yes | No | Blue | Green | 1 | None
-Junkyard | 0 | None | No | No | No | No | Yes | Green |  |  | None
+Jungle Ziggurat | 0 | None | Yes | No | No | No | No |  |  |  | None
+Junkyard | 0 | None | Yes | No | No | No | Yes | Green |  |  | None
 Large Oil Rig | 0 | None | No | Yes | No | No | Yes |  | Red |  | 26 Blue Scientists, 10 Heavy Scientists
 Launch Site | 25 | Hazmat recommended / Wood helmet, bandana, burlap shirt, wooden chestplate, burlap trousers, wooden armor pants, burlap shoes, gloves | Yes | Yes | No | No | No |  | Green, Red | 2 | None
 Lighthouse | 0 | None | Yes | No | No | No | No | Green |  |  | None
