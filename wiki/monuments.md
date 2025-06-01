@@ -4,7 +4,7 @@ Monument | Radiation | Armor Req. | Recycler | Research Table | Workbench | Oil 
 Abandoned Cabins | 0 | None | No | No | No | No | No | Green |  |  | Brown | None
 Abandoned Military Base | 0 | None | No | No | No | No | No |  |  |  | Military | 5-10 Blue Scientists
 Abandoned Supermarket | 0 | None | Yes | No | No | No | No | Green |  |  | Military | None
-Airfield | 10 | Headwrap, shirt, trousers, shoes, gloves | Yes | Yes | No | Yes | No | Red | Green, Blue | 2 | Military | None
+Airfield | 10 | Headwrap, shirt, trousers, shoes, gloves | Yes | Yes | No | Yes | Yes | Red | Green, Blue | 2 | Military | None
 Arctic Research Base | 10 | Headwrap, shirt, trousers, shoes, gloves | Yes | No | No | No | No | Red | Green, Blue |  | Military | 10-20 Blue Scientists
 Bandit Camp | 0 | None | Yes | Yes | Yes | No | No |  |  |  | None | None
 Ferry Terminal | 0 | None | Yes | No | No | No | No |  |  |  | Military | None
@@ -16,7 +16,7 @@ Junkyard | 0 | None | Yes | No | No | No | Yes | Green |  |  | Military | None
 Large Oil Rig | 0 | None | No | Yes | No | No | Yes |  | Red |  | Military, Elite | 26 Blue Scientists, 10 Heavy Scientists
 Launch Site | 10-25 | Hazmat recommended inside the main building / only 10 radiation outside | Yes | Yes | No | No | No |  | Green, Red | 2 | Military, Elite | None
 Lighthouse | 0 | None | Yes | No | No | No | No | Green |  |  | Military | None
-Military Tunnel | 25 | Hazmat recommended / Wood helmet, bandana, burlap shirt, wooden chestplate, burlap trousers, wooden armor pants, burlap shoes, gloves | Yes | Yes | No | No | No |  | Green, Blue, Red | 1 | Military, Elite | 29 Blue Scientists
+Military Tunnel | 25 | Hazmat recommended / Wood helmet, bandana, burlap shirt, wooden chestplate, burlap trousers, wooden armor pants, burlap shoes, gloves | Yes | Yes | No | No | Yes |  | Green, Blue, Red | 1 | Military, Elite | 29 Blue Scientists
 Mining Outpost | 0 | None | Yes | No | No | No | No |  |  |  | Military | None
 Missile Silo | 10-25 | Hazmat recommended inside the silo / only 10 radiation at the surface | No | No | No | No | No | Red | Blue | 1 | Military, Elite | 24 NVG Scientists
 Outpost | 0 | None | Yes | Yes | Yes | Yes | No | Blue |  |  | None | None
