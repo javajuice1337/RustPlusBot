@@ -50,7 +50,11 @@ if (m.indexOf(prefix + 'pin ') == 0) {
                             diff = (self.mapInfo.width - (margin * 2)) / self.mapInfo.info.mapSize,
                             x = margin + (message.response.teamInfo.members[i].x * diff),
                             y = self.mapInfo.height - (margin + (message.response.teamInfo.members[i].y * diff));
-                        self.app.interactiveMap.addMarker(id, obj.steamId, obj.name, pinmsg, x, y);
+                        self.app.interactiveMap.addMarker(id, obj.steamId, obj.name, pinmsg + ' (' + (new Date()).toISOString() + ')', x, y);
+                        //uncomment the line below to set the marker color to red (available colors are: blue, red, green, purple, gray)
+                        //self.app.interactiveMap.setMarkerColor(id, 'red');
+                        //uncomment the line below to set the marker expiration to 60 seconds in the future
+                        //self.app.interactiveMap.setMarkerExpiration(id, Math.floor((new Date()).getTime() / 1000) + 60);
                         self.app.sendTeamMessage('A marker was pinned at your location with message: ' + cmdFormat(pinmsg));
                         break;
                     }
