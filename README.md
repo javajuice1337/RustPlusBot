@@ -378,7 +378,8 @@ app.webPost('https://httpbin.org/post', 'test data', null, (data) => {
 });
 </code></pre></p></li>
   <li><code>interactiveMap.addMarker(markerId<sup><code>string</code></sup>, steamId<sup><code>string</code></sup>, name<sup><code>string</code></sup>, msg<sup><code>string</code></sup>, x<sup><code>int</code></sup>, y<sup><code>int</code></sup>)</code> Returns <code>true</code> if the custom map marker is added<blockquote>Refer to the <a href="plugin%20examples/mapmarker.md">mapmarkers</a> plugin example to see the correct usage for <i>addMarker</i></blockquote></li>
-  <li><code>interactiveMap.setMarkerColor(markerId<sup><code>string</code></sup>, color<sup><code>string</code></sup>)</code> Returns <code>true</code> if the custom map marker's color is updated</li>
+  <li><code>interactiveMap.setMarkerColor(markerId<sup><code>string</code></sup>, color<sup><code>string</code></sup>)</code> Returns <code>true</code> if the custom map marker's color is updated<blockquote>Available colors are: <code>blue</code>, <code>red</code>, <code>green</code>, <code>purple</code>, <code>gray</code></blockquote></li>
+  <li><code>interactiveMap.setMarkerExpiration(markerId<sup><code>string</code></sup>, expires<sup><code>int</code></sup>)</code> Returns <code>true</code> if the custom map marker's expiration is updated<blockquote><code>expires</code> is a unix timestamp</blockquote></li>
   <li><code>interactiveMap.removeMarker(markerId<sup><code>string</code></sup>)</code> Returns <code>true</code> if the custom map marker matching markerId is removed</li>
   <li><code>interactiveMap.clearMarkers(steamId<sup><code>string</code></sup>)</code> Returns <code>true</code> if all custom map markers are removed for steamId</li>
   <li><code>interactiveMap.getHeatmapData()</code> Returns an object containing the heatmap data (see <code><a href="#HeatmapData">HeatmapData</a></code> below)</li>
