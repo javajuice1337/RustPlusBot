@@ -402,7 +402,7 @@ console.log('map coordinates: ' + (await this.app.util.getMapCoords(location.x, 
 > The following methods exist in the plugin's scope `this` (instead of in `app`).
 
 <ul>
-  <li><code>registeredHandlers.add(type<sup><code>string</code></sup>, handler<sup><code>function</code></sup>)</code> Add a handler for a specific update event type: <ul><li><code>camera</code> Fires when the camera list has changed</li><li><code>config</code> Fires when the configuration settings have changed</li><li><code>device</code> Fires when the paired devices has changed</li><li><code>wipe</code> Fires when the server has wiped</li></ul></li>
+  <li><code>registeredHandlers.add(type<sup><code>string</code></sup>, handler<sup><code>function</code></sup>)</code> Add a handler for a specific update event type: <ul><li><code>camera</code> Fires when the camera list has changed</li><li><code>config</code> Fires when the configuration settings have changed</li><li><code>device</code> Fires when the paired devices has changed or loaded</li><li><code>wipe</code> Fires when the server has wiped</li></ul></li>
   <li><code>registeredHandlers.remove(type<sup><code>string</code></sup>, handler<sup><code>function</code></sup>)</code> Remove a handler for a specific update event type (see <code>registeredHandlers.add</code> above)</li>
 </ul>
 
@@ -1116,6 +1116,7 @@ You can publish your plugin when you are done making any major changes to it by 
     <li><a href="https://github.com/javajuice1337/RustPlusBot/blob/main/plugin%20examples/announcements.md"><b>announcements</b></a><ul><li>This plugin example demonstrates how to automatically send pre-defined team chat announcements.</li></ul></li>
     <li><a href="https://github.com/javajuice1337/RustPlusBot/blob/main/plugin%20examples/autopop.md"><b>autopop</b></a><ul><li>This plugin example demonstrates how to automatically run the <code>!pop</code> command every 5 minutes.</li></ul></li>
     <li><a href="https://github.com/javajuice1337/RustPlusBot/blob/main/plugin%20examples/autotime.md"><b>autotime</b></a><ul><li>This plugin example demonstrates how to automatically send until daytime / until nighttime team chat announcements.</li></ul></li>
+    <li><a href="https://github.com/javajuice1337/RustPlusBot/blob/main/plugin%20examples/eventstimestamp.md"><b>eventstimestamp</b></a><ul><li>This plugin example demonstrates how to add timestamps to server event messages sent to team chat.</li></ul></li>
     <li><a href="https://github.com/javajuice1337/RustPlusBot/blob/main/plugin%20examples/hotelfloors.md"><b>hotelfloors</b></a><ul><li>This plugin example demonstrates how to automatically activate multiple similarly named Smart Switches with a single command. This is the same plugin seen in the <b>MikeTheVike</b> YouTube video here: https://www.youtube.com/watch?v=ijdQ31TP0hk</li></ul></li>
     <li><a href="https://github.com/javajuice1337/RustPlusBot/blob/main/plugin%20examples/macro.md"><b>macro</b></a><ul><li>This plugin example demonstrates how to use a single team chat command to execute multiple chat commands.</li></ul></li>
     <li><a href="https://github.com/javajuice1337/RustPlusBot/blob/main/plugin%20examples/mapmarker.md"><b>mapmarker</b></a><ul><li>This plugin example demonstrates how to pin a custom map marker to the Interactive Map.</li></ul></li>
