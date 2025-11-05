@@ -19,7 +19,7 @@ Lighthouse | 0 | None | Yes | No | No | No | No | Green |  |  | Military | None
 Military Tunnel | 25 | Hazmat recommended / Wood helmet, bandana, burlap shirt, wooden chestplate, burlap pants, wooden armor pants, burlap shoes, gloves | Yes | No | No | No | Yes |  | Green, Blue, Red | 1 | Military, Elite | 29 Blue Scientists
 Mining Outpost | 0 | None | Yes | No | No | No | No |  |  |  | Military | None
 Missile Silo | 10-25 | Hazmat recommended inside the silo / only 10 radiation at the surface | No | No | No | No | Yes |  | Red | 1 | Military, Elite | 24 NVG Scientists
-Outpost | 0 | None | Yes | Yes | Yes | Yes | No | Blue |  |  | None | None
+Outpost | 0 | None | Yes | Yes | Yes | Yes | No |  |  |  | None | None
 Oxum's Gas Station | 0 | None | Yes | No | No | No | No | Green |  |  | Military | None
 Power Plant | 0-25 | No clothing required except for the main building and stacks | Yes | Yes | No | Yes | Yes | Red | Green, Blue | 1 | Military | None
 Radtown | 0-25 | No clothing required except in buildings and radioactive pools | Yes | No | No | No | No | Blue | Green | 1 | Military | None
