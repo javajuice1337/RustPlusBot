@@ -13,7 +13,7 @@ Giant Excavator Pit | 10 | Headwrap, shirt, pants, shoes, gloves | Yes | No | No
 Harbor | 0 | None | Yes | No | No | Yes | No | Blue | Green | 1 | Military | None
 Jungle Ziggurat | 0 | None | Yes | No | No | No | No |  |  |  | Brown | None
 Junkyard | 0 | None | Yes | No | No | No | Yes | Green |  |  | Military | None
-Large Oil Rig | 0 | None | No | Yes | No | No | Yes |  | Red |  | Military, Elite | 26 Blue Scientists, 10 Heavy Scientists
+Large Oil Rig | 0 | None | No | Yes | Yes | No | Yes |  | Red |  | Military, Elite | 26 Blue Scientists, 10 Heavy Scientists
 Launch Site | 10-25 | Hazmat recommended inside the main building / only 10 radiation outside | Yes | Yes | No | Yes | No |  | Green, Red | 2 | Military, Elite | 10-20 Blue Scientists
 Lighthouse | 0 | None | Yes | No | No | No | No | Green |  |  | Military | None
 Military Tunnel | 25 | Hazmat recommended / Wood helmet, bandana, burlap shirt, wooden chestplate, burlap pants, wooden armor pants, burlap shoes, gloves | Yes | No | No | No | Yes |  | Green, Blue, Red | 1 | Military, Elite | 29 Blue Scientists
