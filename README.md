@@ -1008,7 +1008,7 @@ app.webPost('https://www.iplocation.net/ip-lookup', encodeForm({ query: app.serv
 </code></pre></p></li>
   <li><code>combineItems(items, itemIds)</code> Combine the items from a Storage Monitor payload and resolve the item names<ul><li><b>items</b>: <sup><code>object</code></sup> The items from the payload</li><li><b>itemIds</b>: <sup><code>Map</code></sup> The item ID list to lookup item names</li><li><b>returns</b>: <sup><code>Map</code></sup> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the combined items and item quantities</li></ul><p><pre><code>// combineItems example
 var app = this.app,
-    device = app.devices.get('BaseTC')[0];
+    device = app.devices.get('basetc')[0];
 app.getEntityInfo(device.id, (message) => {
     if (message.response && message.response.entityInfo && message.response.entityInfo.payload && message.response.entityInfo.payload.capacity > 0 && message.response.entityInfo.payload.items) {
         var items = combineItems(message.response.entityInfo.payload.items, app.itemIds),
@@ -1076,7 +1076,7 @@ app.sendTeamMessage('The bot has been connected for ' + getTimeDisplay(Math.roun
 </code></pre></p></li>
   <li><code>multiLineFormat(msg, list, callback, all, separator)</code> Format the message + list to fit the Rust message size using multiple lines<ul><li><b>msg</b>: <sup><code>string</code></sup> The message to prepend</li><li><b>list</b>: <sup><code>array</code></sup> The list of items to output</li><li><b>callback(line, msg, data, idx)</b>: <sup><code>function</code></sup> The function to execute for each formatted line (optional)</li><li><b>all</b>: <sup><code>bool</code></sup> Set to true if all lines should include the msg (optional)</li><li><b>separator</b>: <sup><code>string</code></sup> The list separator; default: ", " (optional)</li><li><b>returns</b>: <sup><code>array</code></sup> an Array containing the formatted lines</li></ul><p><pre><code>// multiLineFormat example
 var app = this.app,
-    device = app.devices.get('BaseTC')[0];
+    device = app.devices.get('basetc')[0];
 app.getEntityInfo(device.id, (message) => {
     if (message.response && message.response.entityInfo && message.response.entityInfo.payload && message.response.entityInfo.payload.capacity > 0 && message.response.entityInfo.payload.items) {
         var items = combineItems(message.response.entityInfo.payload.items, app.itemIds),
