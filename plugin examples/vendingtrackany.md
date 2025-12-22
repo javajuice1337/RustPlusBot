@@ -92,7 +92,7 @@ if (!this.vendingFunc) {
                         var observed = [];
                         for (var i = 0; i < message.response.mapMarkers.markers.length; i++) {
                             if (message.response.mapMarkers.markers[i].type == 3) { // 'VendingMachine'
-                                if (self.storage.mapLocation.length > 0 && self.storage.mapLocation != 'none' && message.response.mapMarkers.markers[i].location == self.storage.mapLocation) {
+                                if (self.storage.mapLocation.length > 0 && self.storage.mapLocation != 'none' && message.response.mapMarkers.markers[i].location.toUpperCase() == self.storage.mapLocation.toUpperCase()) {
                                     var prevMarker = getMapMarker(message.response.mapMarkers.markers[i].id, self.mapMarkers);
                                     if (!prevMarker) {
                                         var items = processVending(message.response.mapMarkers.markers[i].sellOrders);
@@ -108,7 +108,7 @@ if (!this.vendingFunc) {
                         }
                         for (var i = 0; i < self.mapMarkers.length; i++) {
                             if (observed.indexOf(self.mapMarkers[i].id) == -1) {
-                                if (self.storage.mapLocation.length > 0 && self.storage.mapLocation != 'none' && self.mapMarkers[i].location == self.storage.mapLocation) {
+                                if (self.storage.mapLocation.length > 0 && self.storage.mapLocation != 'none' && self.mapMarkers[i].location.toUpperCase() == self.storage.mapLocation.toUpperCase()) {
                                     var items = processVending(self.mapMarkers[i].sellOrders);
                                     await processItems('Removed Vending Machine @ ' + self.mapMarkers[i].location, self.mapMarkers[i].name, items, self.mapMarkers[i].x, self.mapMarkers[i].y);
                                 }
