@@ -9,7 +9,8 @@ In this plugin example, the following team chat commands are implemented:
 
 - `!vendtrackany` sets the map location to monitor vending machine item changes (set to `none` to disable)
 
-Example command usage: `!vendtrackany G6`
+> [!TIP]
+> Example command usage: `!vendtrackany G6`
 
 ### Place the following code blocks in their respective events in the Plugin Studio to test this plugin:
 
