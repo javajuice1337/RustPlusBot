@@ -23,7 +23,8 @@ if (obj.notification && obj.notification.event && this.app.cfg.eventsDisplay) {
         (oil_rig_keys.indexOf(obj.notification.event.type) >= 0 && this.app.cfg.eventsDisplay.indexOf('oil') >= 0) ||
         (obj.notification.event.type == 'crate' && this.app.cfg.eventsDisplay.indexOf('crate') >= 0) ||
         (obj.notification.event.type == 'ch47' && this.app.cfg.eventsDisplay.indexOf('ch47') >= 0) ||
-        (obj.notification.event.type == 'vendor' && this.app.cfg.eventsDisplay.indexOf('vendor') >= 0)) {
+        (obj.notification.event.type == 'vendor' && this.app.cfg.eventsDisplay.indexOf('vendor') >= 0) ||
+        (obj.notification.event.type == 'deepsea' && this.app.cfg.eventsDisplay.indexOf('deepsea') >= 0)) {
         if (!obj.notification.event.subtype || (this.app.cfg.subEventsDisplay && this.app.cfg.subEventsDisplay.indexOf(obj.notification.event.subtype) >= 0)) {
             var date = new Date(new Date().toLocaleString(locale, {timeZone: timestamp})),
                 hour = date.getHours(),
