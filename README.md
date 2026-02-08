@@ -576,8 +576,8 @@ this.registeredHandlers.add('config', this.configFunc);
     "spread": 3600
   },
   "deepsea": {
-    "spawn": 14400,
-    "spread": 3600
+    "spawn": 16200,
+    "spread": 1800
   }
 }</code></pre>
   </li>
