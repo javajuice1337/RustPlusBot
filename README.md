@@ -997,19 +997,6 @@ var app = this.app,
     msg = 'Here is the url: ' + cmdFormat('https://www.google.com');
 console.log(cmdFormatUndo(msg));
 </code></pre></p></li>
-  <li><code>encodeForm(data)</code> Convert an object to form data for a webPost<ul><li><b>data</b>: <sup><code>object</code></sup> The object to convert</li><li><b>returns</b>: <sup><code>string</code></sup> a string of encoded names and values</li></ul><p><pre><code>// encodeForm example
-var app = this.app;
-app.webPost('https://www.iplocation.net/ip-lookup', encodeForm({ query: app.server_ip }), null, (data) => {
-    var regex = new RegExp('&lt;tr&gt;&lt;td&gt;' + app.server_ip + '&lt;/td&gt;&lt;td&gt;([^<]+)<', 'g'),
-        match = regex.exec(data);
-    if (match)
-        app.sendTeamMessage('GeoIP location of the server: ' + match[1]);
-    else
-        app.sendTeamMessage('Unable to get the GeoIP location of the server');
-}, (error) => {
-    app.sendTeamMessage('Error posting: ' + error);
-});
-</code></pre></p></li>
   <li><code>combineItems(items, itemIds)</code> Combine the items from a Storage Monitor payload and resolve the item names<ul><li><b>items</b>: <sup><code>object</code></sup> The items from the payload</li><li><b>itemIds</b>: <sup><code>Map</code></sup> The item ID list to lookup item names</li><li><b>returns</b>: <sup><code>Map</code></sup> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the combined items and item quantities</li></ul><p><pre><code>// combineItems example
 var app = this.app,
     device = app.devices.get('basetc')[0];
@@ -1034,6 +1021,19 @@ app.getEntityInfo(device.id, (message) => {
             });
         }
     }
+});
+</code></pre></p></li>
+  <li><code>encodeForm(data)</code> Convert an object to form data for a webPost<ul><li><b>data</b>: <sup><code>object</code></sup> The object to convert</li><li><b>returns</b>: <sup><code>string</code></sup> a string of encoded names and values</li></ul><p><pre><code>// encodeForm example
+var app = this.app;
+app.webPost('https://www.iplocation.net/ip-lookup', encodeForm({ query: app.server_ip }), null, (data) => {
+    var regex = new RegExp('&lt;tr&gt;&lt;td&gt;' + app.server_ip + '&lt;/td&gt;&lt;td&gt;([^<]+)<', 'g'),
+        match = regex.exec(data);
+    if (match)
+        app.sendTeamMessage('GeoIP location of the server: ' + match[1]);
+    else
+        app.sendTeamMessage('Unable to get the GeoIP location of the server');
+}, (error) => {
+    app.sendTeamMessage('Error posting: ' + error);
 });
 </code></pre></p></li>
   <li><code>findClosestString(str, arr, threshold = 2)</code> Find the closest match for a string in an array using a threshold<ul><li><b>str</b>: <sup><code>string</code></sup> The input string</li><li><b>arr</b>: <sup><code>array</code></sup> The array of possible string matches</li><li><b>threshold</b>: <sup><code>int</code></sup> The threshold used for string matching (optional)</li><li><b>returns</b>: <sup><code>string</code></sup> The closest matched string found in the input array</li></ul><p><pre><code>// findClosestString example
@@ -1078,6 +1078,10 @@ var app = this.app,
     connected = await app.getConnected();
 app.sendTeamMessage('The bot has been connected for ' + getTimeDisplay(Math.round(getTimeDifference(new Date(connected)))));
 </code></pre></p></li>
+  <li><code>isMapObject(obj)</code> Determine if the passed object is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object<ul><li><b>obj</b>: <sup><code>object</code></sup> The object to validate</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// isMapObject example
+if (!isMapObject(this.storage.mapVar))
+    this.storage.mapVar = new Map();
+</code></pre></p></li>
   <li><code>multiLineFormat(msg, list, callback, all, separator)</code> Format the message + list to fit the Rust message size using multiple lines<ul><li><b>msg</b>: <sup><code>string</code></sup> The message to prepend</li><li><b>list</b>: <sup><code>array</code></sup> The list of items to output</li><li><b>callback(line, msg, data, idx)</b>: <sup><code>function</code></sup> The function to execute for each formatted line (optional)</li><li><b>all</b>: <sup><code>bool</code></sup> Set to true if all lines should include the msg (optional)</li><li><b>separator</b>: <sup><code>string</code></sup> The list separator; default: ", " (optional)</li><li><b>returns</b>: <sup><code>array</code></sup> an Array containing the formatted lines</li></ul><p><pre><code>// multiLineFormat example
 var app = this.app,
     device = app.devices.get('basetc')[0];
@@ -1111,7 +1115,7 @@ app.getEntityInfo(device.id, (message) => {
 
 ## Plugin Publishing
           
-You can publish your plugin when you are done making any major changes to it by clicking the Publish tab in the Plugin Studio. You have the option of making it a public plugin for others to use with their bot. There will be a review of your plugin after submitting which could take several days. If your plugin is accepted for publishing, you will then be able to select it in the Plugin settings for your bot and install it. Duplicates of official plugins will not be accepted.
+You can publish your plugin when you are done making any major changes to it by clicking the Publish tab in the Plugin Studio. There will be a review of your plugin after submitting which could take several days. If your plugin is accepted for publishing, you will then be able to select it in the Plugin settings for your bot and install it. Duplicates of official plugins will not be accepted.
 
 ## Plugin Examples
 
