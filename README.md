@@ -913,16 +913,6 @@ this.registeredHandlers.add('config', this.configFunc);
 }</code></pre>
   </li>
   <li>
-    <b>Time</b><a name="Time"></a>
-    <pre><code>{
-  "dayLengthMinutes": 60,
-  "timeScale": 1,
-  "sunrise": 7,
-  "sunset": 20,
-  "time": 12
-}</code></pre>
-  </li>
-  <li>
     <b>TeamChat</b><a name="TeamChat"></a>
     <pre><code>{
   "messages": [{
