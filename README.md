@@ -71,6 +71,7 @@ The `app` object exists in the plugin's scope `this`, and exposes the following 
   <li><code>guild_name</code> <sup><code>string</code></sup> The name of the Discord server</li>
   <li><code>itemIds</code> <sup><code>Map</code></sup> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the item names for all item IDs (<b>key</b>: item ID, <b>value</b>: item name)</li>
   <li><code>itemShortnames</code> <sup><code>Map</code></sup> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the item shortnames for all item IDs (<b>key</b>: item ID, <b>value</b>: item shortname)</li>
+  <li><code>itemMatchIgnore</code> <sup><code>array</code></sup> An array containing all the item names that should be ignored when suggesting item names</li>
   <li><code>monuments</code> <sup><code>Map</code></sup> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing all monument tokens  and locations (<b>key</b>: monument token, <b>value</b>: Array of monument locations, see <code><a href="#Point">Point</a></code> below)</li>
   <li><code>tokenMap</code> <sup><code>Map</code></sup> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> object containing the monument names for all monument tokens (<b>key</b>: monument token, <b>value</b>: monument name)</li>
   <li><code>player_id</code> <sup><code>string</code></sup> The steam ID of the bot's connected player</li>
@@ -459,6 +460,9 @@ this.registeredHandlers.add('config', this.configFunc);
   "teamChatResponses": false,
   "teamChatSilenced": false,
   "teamChatDelay": 0,
+  "teamChatDelayLazy": false,
+  "teamChatFiltered": false,
+  "teamChatLowercase": false,
   "teamChatTTS": false,
   "teamChatMentions": true,
   "shortTime": false,
