@@ -959,11 +959,11 @@ this.registeredHandlers.add('config', this.configFunc);
   <li>
     <b>Time</b><a name="Time"></a>
     <pre><code>{
-  "dayLengthMinutes": 60,
+  "dayLengthMinutes": 80,
   "timeScale": 1,
-  "sunrise": 7,
-  "sunset": 20,
-  "time": 12
+  "sunrise": 7.25677490234375,
+  "sunset": 19.769290924072266,
+  "time": 11.310050010681152
 }</code></pre>
   </li>
 </ul>
