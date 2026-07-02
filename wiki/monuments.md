@@ -6,6 +6,7 @@ Abandoned Military Base | 0 | None | No | No | No | No | No |  |  |  | Military 
 Abandoned Supermarket | 0 | None | Yes | No | No | No | No | Green |  |  | Military | None
 Airfield | 10 | Headwrap, shirt, pants, shoes, gloves | Yes | Yes | No | Yes | Yes | Red | Green, Blue | 2 | Military | None
 Arctic Research Base | 10 | Headwrap, shirt, pants, shoes, gloves | Yes | No | No | No | No | Red | Blue |  | Military | 10-20 Blue Scientists
+Apartment Complex | 0 | None | No | Yes | No | No | No |  |  |  | None | None
 Bandit Camp | 0 | None | Yes | Yes | Yes | No | No |  |  |  | None | None
 Ferry Terminal | 0 | None | Yes | No | No | No | No | Green, Blue | Green | 1 | Military | None
 Fishing Village | 0 | None | No | No | No | No | No |  |  |  | None | None
