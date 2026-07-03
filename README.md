@@ -629,11 +629,6 @@ this.registeredHandlers.add('config', this.configFunc);
     <b>Heatmap Data</b><a name="HeatmapData"></a>
     <pre><code>{
   "deaths": [],
-  "brad": [{
-    "x": 2667.51416015625,
-    "y": 2336.646240234375,
-    "count": 1
-  }],
   "heli": [{
     "x": 688.2880859375,
     "y": 922.4451904296875,
