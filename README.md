@@ -147,6 +147,20 @@ app.getCameraPlayersFiltered('CAMERA_ID', (players, playersDistances) => {
     }
 });
 </code></pre></p></li>
+  <li><code>getClanChat(callback)</code> Get recent clan chat messages<ul><li><b>callback(message)</b>: <sup><code>function</code></sup> The function to execute after getting the clan chat messages (<code>message.response</code> contains <code><a href="#ChatMessage">ChatMessage</a></code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getClanChat example
+const messages_max = 5;
+var app = this.app;
+app.getClanChat((message) => {
+    if (message.response && message.response.clanChat) {
+        var cnt = message.response.clanChat.messages.length,
+            max = (cnt > messages_max) ? messages_max : cnt;
+        app.sendTeamMessage('Showing the last ' + cnt + ' clan chat messages:');
+        for (var i = 0; i < cnt; i++) {
+            app.sendTeamMessage('(' + getFriendlyDate(new Date(message.response.clanChat.messages[cnt - i - 1].time * 1000)) + ') ' + message.response.clanChat.messages[cnt - i - 1].message);
+        }
+    }
+});
+</code></pre></p></li>
   <li><code>getConnected()</code> Get the date of the server connection<ul><li><b>returns</b>: <sup><code>string</code></sup> a Date string</li></ul><p><pre><code>// getConnected example
 var connected = await this.app.getConnected();
 console.log(new Date(connected));
@@ -232,7 +246,7 @@ app.getRecyclerItems({'Sheet Metal Door': 1}, (data) => {
 }, { emoji: false });
 </code></pre></p></li>
   <li><code>getSteamrep(steamId, success, error)</code> Retrieve the Steamrep data for a Steam member<ul><li><b>steamId</b>: <sup><code>string</code></sup> The steam ID of the Steam member</li><li><b>success(data)</b>: <sup><code>function</code></sup> The function to execute after receiving Steamrep data (optional)</li><li><b>error(err)</b>: <sup><code>function</code></sup> The function to execute when an error occurs (optional)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code></li></ul><blockquote><p>⚠️ Unfortunately this plugin method no longer works since Steamrep has shutdown at the end of 2024</p></blockquote></li>
-  <li><code>getTeamChat(callback)</code> Get recent team chat messages<ul><li><b>callback(message)</b>: <sup><code>function</code></sup> The function to execute after getting the team chat messages (<code>message.response</code> contains <code><a href="#TeamChat">TeamChat</a></code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getTeamChat example
+  <li><code>getTeamChat(callback)</code> Get recent team chat messages<ul><li><b>callback(message)</b>: <sup><code>function</code></sup> The function to execute after getting the team chat messages (<code>message.response</code> contains <code><a href="#ChatMessage">ChatMessage</a></code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getTeamChat example
 const messages_max = 5;
 var app = this.app;
 app.getTeamChat((message) => {
@@ -325,13 +339,17 @@ var app = this.app,
     prefix = await app.getPrefix('all');
 app.runCommand(prefix + 'pop');
 </code></pre></p></li>
+  <li><code>sendClanMessage(msg, callback)</code> Send a clan chat message<ul><li><b>msg</b>: <sup><code>string</code></sup> The message to send</li><li><b>callback()</b>: <sup><code>function</code></sup> The function to execute after sending (optional)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// sendClanMessage example
+var app = this.app;
+app.sendClanMessage('This is a clan chat message');
+</code></pre></p></li>
   <li><code>sendDiscordVoiceMessage(msg, noChime)</code> Send a voice message to the RustPlusBot voice client<ul><li><b>msg</b>: <sup><code>string</code></sup> The voice message to send</li><li><b>noChime</b>: <sup><code>bool</code></sup> Set to <code>true</code> to disable the voice client chime (optional)</li></ul><p><pre><code>// sendDiscordVoiceMessage example
 var app = this.app;
 app.sendDiscordVoiceMessage('Hello, this is a test voice message!');
 </code></pre></p></li>
   <li><code>sendTeamMessage(msg, callback, noTranslate, sendVoice, noChime)</code> Send a team chat message<ul><li><b>msg</b>: <sup><code>string</code></sup> The message to send</li><li><b>callback()</b>: <sup><code>function</code></sup> The function to execute after sending (optional)</li><li><b>noTranslate</b>: <sup><code>bool</code></sup> Set to <code>true</code> to disable message translation (optional)</li><li><b>sendVoice</b>: <sup><code>bool</code></sup> Set to <code>true</code> to send the message to the voice client (optional)</li><li><b>noChime</b>: <sup><code>bool</code></sup> Set to <code>true</code> to disable the voice client chime (optional)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// sendTeamMessage example
 var app = this.app;
-app.sendTeamMessage('This is a team message');
+app.sendTeamMessage('This is a team chat message');
 </code></pre></p></li>
   <li><code>setEntityValue(id, value, callback)</code> Set the value of a Smart Switch<ul><li><b>id</b>: <sup><code>int</code></sup> The identifier of the Smart Switch</li><li><b>value</b>: <sup><code>bool</code></sup> The value (true or false)</li><li><b>callback()</b>: <sup><code>function</code></sup> The function to execute after setting the value (optional)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// setEntityValue example
 var app = this.app;
@@ -446,6 +464,18 @@ this.registeredHandlers.add('config', this.configFunc);
   "updatedAt": "2024-02-08T18:25:13.509Z",
   "id": 546784,
   "time": 1640108040219
+}</code></pre>
+  </li>
+  <li>
+    <b>ChatMessage</b><a name="ChatMessage"></a>
+    <pre><code>{
+  "messages": [{
+    "steamId": "123456789",
+    "name": "RustPlayer1",
+    "message": "A Locked Crate has been dropped @ M13 (Airfield)",
+    "color": "#5af",
+    "time": 1649959932
+  }]
 }</code></pre>
   </li>
   <li>
@@ -910,18 +940,6 @@ this.registeredHandlers.add('config', this.configFunc);
     <pre><code>{
   x: 100,
   y: 200
-}</code></pre>
-  </li>
-  <li>
-    <b>TeamChat</b><a name="TeamChat"></a>
-    <pre><code>{
-  "messages": [{
-    "steamId": "123456789",
-    "name": "RustPlayer1",
-    "message": "A Locked Crate has been dropped @ M13 (Airfield)",
-    "color": "#5af",
-    "time": 1649959932
-  }]
 }</code></pre>
   </li>
   <li>
