@@ -156,7 +156,7 @@ app.getClanChat((message) => {
             max = (cnt > messages_max) ? messages_max : cnt;
         app.sendTeamMessage('Showing the last ' + cnt + ' clan chat messages:');
         for (var i = 0; i < cnt; i++) {
-            app.sendTeamMessage('(' + getFriendlyDate(new Date(message.response.clanChat.messages[cnt - i - 1].time * 1000)) + ') ' + message.response.clanChat.messages[cnt - i - 1].message);
+            app.sendTeamMessage('(' + getFriendlyDate(new Date(parseInt(message.response.clanChat.messages[cnt - i - 1].time))) + ') ' + message.response.clanChat.messages[cnt - i - 1].message);
         }
     }
 });
@@ -483,18 +483,23 @@ this.registeredHandlers.add('config', this.configFunc);
     <pre><code>{     
   "lang": "en",
   "gender": "male",
+  "chime": "three_low_hollow_tones",
   "cmdPrefix": "!",
   "requirePrefix": "all",
   "teamChatIncoming": "all",
   "teamChatOutgoing": true,
+  "teamChatClanChat": true,
   "teamChatResponses": false,
   "teamChatSilenced": false,
+  "teamChatSilencedPlus": false,
   "teamChatDelay": 0,
   "teamChatDelayLazy": false,
   "teamChatFiltered": false,
   "teamChatLowercase": false,
   "teamChatTTS": false,
   "teamChatMentions": true,
+  "clanChatCommands": true,
+  "clanChatSync": true,
   "shortTime": false,
   "nextTime": false,
   "altTime": false,
@@ -504,6 +509,7 @@ this.registeredHandlers.add('config', this.configFunc);
   "vendingDiscord": false,
   "broadcastVending": true,
   "broadcastVendingName": true,
+  "broadcastVendingIgnore": true,
   "broadcastAmount": 1,
   "respawnAmount": 1,
   "battlemetricsID": 0,
@@ -511,23 +517,27 @@ this.registeredHandlers.add('config', this.configFunc);
   "deathDiscord": true,
   "loginDiscord": true,
   "aliasesFullMatch": false,
+  "aliasesIncomingOnly": false,
   "accessOnlyCommands": false,
   "deviceTTS": false,
   "autoCleanDevices": false,
+  "autoClearDevices": true,
   "autoDeviceCommand": true,
   "showDevicePlayer": false,
   "alwaysPostAlarms": true,
   "alwaysPostDecay": true,
   "decayOffset": 0,
+  "upkeepMultiplier": 1,
   "streamerMode": false,
   "promoteStrict": false,
+  "voiceAssistant": true,
   "voiceDevice": true,
   "voiceEvent": true,
   "voiceVending": true,
   "voiceTracking": true,
   "voicePlugin": true,
-  "eventsDisplay": "heli,brad,cargo,oil,crate,ch47,ch47b,vendor,deepsea",
-  "subEventsDisplay": "heli_lootable,brad_lootable,cargo_docked,oil_lootable,oil_cams"
+  "eventsDisplay": "heli,cargo,oil,crate,ch47,ch47b,deepsea,vendor",
+  "subEventsDisplay": "heli_lootable,cargo_docked,oil_lootable,vendor_restock"
 }</code></pre>
   </li>
   <li>
