@@ -351,6 +351,10 @@ app.sendDiscordVoiceMessage('Hello, this is a test voice message!');
 var app = this.app;
 app.sendTeamMessage('This is a team chat message');
 </code></pre></p></li>
+  <li><code>setClanMotd(msg, callback)</code> Set the clan's message of the day (MOTD)<ul><li><b>msg</b>: <sup><code>string</code></sup> The message of the day</li><li><b>callback()</b>: <sup><code>function</code></sup> The function to execute after setting (optional)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// setClanMotd example
+var app = this.app;
+app.setClanMotd('Have a fun time in Rust!');
+</code></pre></p></li>
   <li><code>setEntityValue(id, value, callback)</code> Set the value of a Smart Switch<ul><li><b>id</b>: <sup><code>int</code></sup> The identifier of the Smart Switch</li><li><b>value</b>: <sup><code>bool</code></sup> The value (true or false)</li><li><b>callback()</b>: <sup><code>function</code></sup> The function to execute after setting the value (optional)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// setEntityValue example
 var app = this.app;
 app.setEntityValue(123456, true, () => {
