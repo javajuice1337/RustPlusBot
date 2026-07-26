@@ -71,3 +71,6 @@ else if (m == prefix + 'vending-json') {
     });
 }
 ```
+
+> [!NOTE]
+> This plugin is intended for use in the Plugin Studio since it outputs to the plugin console. Do NOT attempt to publish this plugin.
