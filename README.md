@@ -44,7 +44,7 @@ console.log(this.storage.myData);
   <li><code>onEntityChanged(obj)</code> Fires when a paired Smart Device is changed<ul><li><b>obj.entityId</b>: <sup><code>int</code></sup> The entity ID of the Smart device</li><li><b>obj.payload</b>: <sup><code>object</code></sup> The payload data of the event (see <code><a href="#Payload">Payload</a></code> below)</li></ul></li>
   <li><code>onMessageReceive(obj)</code> Fires when a team chat message is received<ul><li><b>obj.message</b>: <sup><code>string</code></sup> The incoming team chat message</li><li><b>obj.name</b>: <sup><code>string</code></sup> The steam name of the sender</li><li><b>obj.steamId</b>: <sup><code>string</code></sup> The steam ID of the sender</li></ul></li>
   <li><code>onMessageSend(obj)</code> Fires when a team chat message is sent<ul><li><b>obj.message</b>: <sup><code>string</code></sup> The outgoing team chat message</li></ul></li>
-  <li><code>onNotification(obj)</code> Fires when there is a bot notification (including server events)<ul><li><b>obj.notification</b>: <sup><code>object</code></sup> The notification data of the event (see all <code><a href="#NotificationAlarm">Notification</a></code> below)</li></ul></li>
+  <li><code>onNotification(obj)</code> Fires when there is a bot notification<ul><li><b>obj.notification</b>: <sup><code>object</code></sup> The notification data of the event (see all <code><a href="#NotificationAlarm">Notification</a></code> below)</li></ul></li>
   <li><code>onTeamChanged(obj)</code> Fires when the team leader changes, or a team member is added or removed from the team<ul><li><b>obj.leaderSteamId</b>: <sup><code>object</code></sup> The steam ID of the team leader</li><li><b>obj.leaderMapNotes</b>: <sup><code>object</code></sup> The leader map notes data of the event (see <code><a href="#MapNotes">MapNotes</a></code> below)</li><li><b>obj.members</b>: <sup><code>object</code></sup> The members list data of the event (see <code><a href="#Members">Members</a></code> below)</li></ul></li>
 </ul>
 
@@ -189,7 +189,7 @@ app.getEntityInfo(123456, (message) => {
     }
 });
 </code></pre></p></li>
-  <li><code>getEvents(type)</code> Get the most recent server events (ordered by newest to oldest)<ul><li><b>type</b>: <sup><code>string</code></sup> The event type (optional)<ul><li><code>heli</code> Patrol Helicopter</li><li><code>cargo</code> Cargo Ship</li><li><code>crate</code> Locked Crate</li><li><code>ch47</code> CH-47 Chinook</li><li><code>oil_rig_small</code> Oil Rig (Small)</li><li><code>large_oil_rig</code> Oil Rig (Large)</li><li><code>vendor</code> Travelling Vendor</li><li><code>deepsea</code> Deep Sea</li></ul></li><li><b>returns</b>: <sup><code>array</code></sup> <code><a href="#Event">Event</a></code> array</li></ul><p><pre><code>// getEvents example
+  <li><code>getEvents(type)</code> Get the most recent server events (ordered by newest to oldest)<ul><li><b>type</b>: <sup><code>string</code></sup> The event type (optional)</li><li><b>returns</b>: <sup><code>array</code></sup> <code><a href="#Event">Event</a></code> array</li></ul><p><pre><code>// getEvents example
 var e = await this.app.getEvents();
 console.log(e);
 </code></pre></p></li>
@@ -539,9 +539,7 @@ this.registeredHandlers.add('config', this.configFunc);
   "voiceEvent": true,
   "voiceVending": true,
   "voiceTracking": true,
-  "voicePlugin": true,
-  "eventsDisplay": "heli,cargo,oil,crate,ch47,ch47b,deepsea,vendor",
-  "subEventsDisplay": "heli_lootable,cargo_docked,oil_lootable,vendor_restock"
+  "voicePlugin": true
 }</code></pre>
   </li>
   <li>
@@ -594,8 +592,8 @@ this.registeredHandlers.add('config', this.configFunc);
     <b>Event</b><a name="Event"></a>
     <pre><code>{
   id: 123456789,
-  type: "heli",
-  name: "Patrol Helicopter @ A1",
+  type: "Event type",
+  name: "Event name",
   start: new Date(),
   stop: null // null if active
 }</code></pre>
@@ -632,22 +630,7 @@ this.registeredHandlers.add('config', this.configFunc);
   <li>
     <b>Heatmap Data</b><a name="HeatmapData"></a>
     <pre><code>{
-  "deaths": [],
-  "heli": [{
-    "x": 688.2880859375,
-    "y": 922.4451904296875,
-    "count": 1
-  }],
-  "crate": [{
-    "x": 2047.0020751953125,
-    "y": 2884.339111328125,
-    "count": 6
-  }],
-  "cargo": [{
-    "x": -1775,
-    "y": 2098.646240234375,
-    "count": 8
-  },{
+  "deaths": [{
     "x": -1684.09814453125,
     "y": 2145.852783203125,
     "count": 2
@@ -727,14 +710,7 @@ this.registeredHandlers.add('config', this.configFunc);
   }]
 }</code></pre>
     <pre><code>// marker types:
-// 1 = Player
-// 2 = Explosion
-// 3 = VendingMachine
-// 4 = CH47
-// 5 = CargoShip
-// 6 = Crate
-// 8 = PatrolHelicopter
-// 9 = TravellingVendor</code></pre>
+// 1 = Player</code></pre>
     <blockquote>Find the item name with the itemId using <code>itemIds</code></blockquote>
   </li>
   <li>
@@ -823,21 +799,6 @@ this.registeredHandlers.add('config', this.configFunc);
 // 2 = Smart Alarm
 // 3 = Storage Monitor</code></pre>
   </li>
-  <li>
-    <b>Notification: Event</b><a name="NotificationEvent"></a>
-    <pre><code>{
-  "notification": {
-    "type": "event",
-    "event": {
-      "type": "heli",
-      "title": "Patrol Helicopter",
-      "message": "The Patrol Helicopter has exploded @ A1",
-      "x": 100.543565665,
-      "y": 200.345765755
-    },
-    "server_name": "Rust Server Name"
-  }
-}</code></pre>
   <li>
     <b>Notification: Inactive Device</b><a name="NotificationInactiveDevice"></a>
     <pre><code>{
