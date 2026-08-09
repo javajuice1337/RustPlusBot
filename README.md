@@ -161,6 +161,18 @@ app.getClanChat((message) => {
     }
 });
 </code></pre></p></li>
+  <li><code>getClanInfo(callback)</code> Get information about the clan (creator, motd, logo, members, roles, invites, score)<ul><li><b>callback(message)</b>: <sup><code>function</code></sup> The function to execute after getting the clan info (<code>message.response</code> contains <code><a href="#ClanInfo">ClanInfo</a></code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getClanInfo example
+var app = this.app;
+app.getClanInfo((message) => {
+    if (message.response && message.response.clanInfo) {
+        var cnt = 0;
+        for (var i = 0; i < message.response.clanInfo.members.length; i++) {
+            if (message.response.clanInfo.members[i].online) cnt++;
+        }
+        app.sendTeamMessage('There are this many online clan members: ' + cnt);
+    }
+});
+</code></pre></p></li>
   <li><code>getConnected()</code> Get the date of the server connection<ul><li><b>returns</b>: <sup><code>string</code></sup> a Date string</li></ul><p><pre><code>// getConnected example
 var connected = await this.app.getConnected();
 console.log(new Date(connected));
@@ -209,17 +221,16 @@ app.getMapInfo((message) => {
     }
 });
 </code></pre></p></li>
-  <li><code>getMapMarkers(callback)</code> Get information about all map markers<ul><li><b>callback(message)</b>: <sup><code>function</code></sup> The function to execute after getting the map markers (<code>message.response</code> contains <code><a href="#MapMarkers">MapMarkers</a></code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getMapMarkers example
-var app = this.app;
+  <li><code>getMapMarkers(callback)</code> Get information about all map markers<ul><li><b>callback(message)</b>: <sup><code>function</code></sup> The function to execute after getting the map markers (<code>message.response</code> contains <code><a href="#CustomMarkers">CustomMarkers</a></code> and <code><a href="#MapMarkers">MapMarkers</a></code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getMapMarkers example
+var app = this.app,
+    caller_steamId = obj.steamId;
 app.getMapMarkers((message) => {
-    if (message.response && message.response.mapMarkers && message.response.mapMarkers.markers) {
+    if (message.response && message.response.customMarkers) {
         var cnt = 0;
-        for (var i = 0; i < message.response.mapMarkers.markers.length; i++) {
-            if (message.response.mapMarkers.markers[i].type == 3) { // 'VendingMachine'
-                if (message.response.mapMarkers.markers[i].sellOrders.length > 0) cnt++;
-            }
+        for (var i = 0; i < message.response.customMarkers.length; i++) {
+            if (message.response.customMarkers[i].steamId == caller_steamId) cnt++;
         }
-        app.sendTeamMessage('There are this many active vending machines: ' + cnt);
+        app.sendTeamMessage('You have this many active custom markers: ' + cnt);
     }
 });
 </code></pre></p></li>
@@ -245,7 +256,7 @@ app.getRecyclerItems({'Sheet Metal Door': 1}, (data) => {
     app.sendTeamMessage('Error obtaining the recyle items: ' + error);
 }, { emoji: false });
 </code></pre></p></li>
-  <li><code>getSteamrep(steamId, success, error)</code> Retrieve the Steamrep data for a Steam member<ul><li><b>steamId</b>: <sup><code>string</code></sup> The steam ID of the Steam member</li><li><b>success(data)</b>: <sup><code>function</code></sup> The function to execute after receiving Steamrep data (optional)</li><li><b>error(err)</b>: <sup><code>function</code></sup> The function to execute when an error occurs (optional)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code></li></ul><blockquote><p>⚠️ Unfortunately this plugin method no longer works since Steamrep has shutdown at the end of 2024</p></blockquote></li>
+  <li><code>getSteamrep(steamId, success, error)</code> Retrieve the Steamrep data for a Steam member<ul><li><b>steamId</b>: <sup><code>string</code></sup> The steam ID of the Steam member</li><li><b>success(data)</b>: <sup><code>function</code></sup> The function to execute after receiving Steamrep data (optional)</li><li><b>error(err)</b>: <sup><code>function</code></sup> The function to execute when an error occurs (optional)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code></li></ul><blockquote><p>⚠️ Unfortunately, this plugin method no longer works since Steamrep has shutdown at the end of 2024</p></blockquote></li>
   <li><code>getTeamChat(callback)</code> Get recent team chat messages<ul><li><b>callback(message)</b>: <sup><code>function</code></sup> The function to execute after getting the team chat messages (<code>message.response</code> contains <code><a href="#ChatMessage">ChatMessage</a></code>)</li><li><b>returns</b>: <sup><code>bool</code></sup> <code>true</code> if successful</li></ul><p><pre><code>// getTeamChat example
 const messages_max = 5;
 var app = this.app;
@@ -483,6 +494,48 @@ this.registeredHandlers.add('config', this.configFunc);
 }</code></pre>
   </li>
   <li>
+    <b>ClanInfo</b><a name="ClanInfo"></a>
+    <pre><code>{
+  "clanId": "1",
+  "name": "",
+  "created": "1786234111961",
+  "creator": "",
+  "motd": "hello",
+  "motdTimestamp": "1786234131172",
+  "motdAuthor": "",
+  "logo": "",
+  "color": -367841793,
+  "roles": [{
+    "roleId": 1,
+    "rank": 1,
+    "name": "Leader",
+    "canSetMotd": true,
+    "canSetLogo": true,
+    "canInvite": true,
+    "canKick": true,
+    "canPromote": true,
+    "canDemote": true,
+    "canSetPlayerNotes": true,
+    "canAccessLogs": true
+  }],
+  "members": [{
+    "steamId": "",
+    "roleId": 1,
+    "joined": "1786234111961",
+    "lastSeen": "1786234245385",
+    "notes": "",
+    "online": true
+  }],
+  "invites": [{
+    "steamId": "",
+    "recruiter": "",
+    "timestamp": "1786234112961"
+  }],
+  "maxMemberCount": [100],
+  "score": 0
+}</code></pre>
+  </li>
+  <li>
     <b>Config</b><a name="Config"></a>
     <pre><code>{     
   "lang": "en",
@@ -681,6 +734,19 @@ this.registeredHandlers.add('config', this.configFunc);
     "salt": 0
   }
 }</code></pre>
+  </li>
+  <li>
+    <b>CustomMarkers</b><a name="CustomMarkers"></a>
+    <pre><code>[{
+  "id": "1786308050130",
+  "steamId": "",
+  "name": "RustyPlayer1",
+  "msg": "Hello World!",
+  "x": 1636,
+  "y": 874.86669921875,
+  "color": "blue",
+  "expires": 0
+}]</code></pre>
   </li>
   <li>
     <b>MapMarkers</b><a name="MapMarkers"></a>
