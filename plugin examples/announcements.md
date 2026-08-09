@@ -6,7 +6,7 @@ You can define the announcements in the bot's config on the Commands tab, in the
 
 In this plugin example, the following team chat commands are implemented:
 
-- `!announcement-interval` / `!announcementinterval` will show or set the interval for the announcement message.
+- `!announcement-interval` / `!announcementinterval` will show or set the interval for the announcement message. (set to `0` to disable)
 
 ### Place the following code blocks in their respective events in the Plugin Studio to test this plugin:
 
